@@ -1,0 +1,32 @@
+{
+    "apps" : [
+        {
+            "name"               : "web",
+            "exec_interpreter"   : "node",
+            "exec_mode"          : "cluster",
+            "instances"          : 1,
+            "log_date_format"    : "YYYY-MM-DD HH:mm Z",
+            "max_memory_restart" : "100M",
+            "merge_logs"         : true,
+            "cwd"                : "scripts",
+            "script"             : "server.js"
+        },
+        {
+            "name"               : "web-dev-css-watch",
+            "exec_interpreter"   : "node",
+            "exec_mode"          : "cluster",
+            "instances"          : 1,
+            "log_date_format"    : "YYYY-MM-DD HH:mm Z",
+            "max_memory_restart" : "100M",
+            "merge_logs"         : true,
+            "cwd"                : ".",
+            "script"             : "node_modules/.bin/node-sass",
+            "args"               : [
+                "--watch",
+                "./sources/styles",
+                "--output",
+                "./web"
+            ]
+        }
+    ]
+}
