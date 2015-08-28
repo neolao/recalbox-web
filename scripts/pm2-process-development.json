@@ -22,10 +22,29 @@
             "cwd"                : ".",
             "script"             : "node_modules/.bin/node-sass",
             "args"               : [
+                "--recursive",
                 "--watch",
                 "./sources/styles",
                 "--output",
                 "./web"
+            ]
+        },
+        {
+            "name"               : "web-dev-application-watch",
+            "exec_interpreter"   : "node",
+            "exec_mode"          : "cluster",
+            "instances"          : 1,
+            "log_date_format"    : "YYYY-MM-DD HH:mm Z",
+            "max_memory_restart" : "100M",
+            "merge_logs"         : true,
+            "cwd"                : ".",
+            "script"             : "node_modules/.bin/watch-spawn",
+            "args"               : [
+                "--initial",
+                "--pattern",
+                "sources/application/**/*.jsx",
+                "node_modules/.bin/browserify",
+                "sources/application/index.jsx --external react --outfile web/application.js"
             ]
         }
     ]

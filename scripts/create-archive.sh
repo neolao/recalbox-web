@@ -4,12 +4,13 @@ currentDirectory=$(dirname "$PWD/$0")
 
 cd $currentDirectory/..
 
-tar cvf api.tar \
+tar cvf web.tar \
     package.json \
     start.sh \
     stop.sh \
     LICENSE \
     scripts/ \
+    web/ \
     node_modules/.bin \
     node_modules/npm \
     node_modules/pm2
