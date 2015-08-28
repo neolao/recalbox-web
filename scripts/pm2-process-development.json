@@ -24,9 +24,9 @@
             "args"               : [
                 "--recursive",
                 "--watch",
-                "./sources/styles",
+                "./sources/stylesheets",
                 "--output",
-                "./web"
+                "./web/stylesheets"
             ]
         },
         {
@@ -44,7 +44,7 @@
                 "--pattern",
                 "sources/application/**/*.jsx",
                 "node_modules/.bin/browserify",
-                "sources/application/index.jsx --external react --outfile web/application.js"
+                "sources/application/index.jsx --external react --outfile web/javascripts/application.js"
             ]
         }
     ]
