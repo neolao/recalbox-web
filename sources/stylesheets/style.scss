@@ -1,4 +1,7 @@
+// Make sure the charset is set appropriately
+@charset "UTF-8";
+
 @import "./_variables.scss";
-@import "../../node_modules/foundation/scss/normalize.scss";
-@import "../../node_modules/foundation/scss/foundation.scss";
+@import "../../node_modules/foundation-sites/scss/normalize.scss";
+@import "../../node_modules/foundation-sites/scss/foundation.scss";
 

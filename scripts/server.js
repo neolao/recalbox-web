@@ -17,6 +17,14 @@ var server = http.createServer(function(request, response)
     var mime = "text/plain";
     if (/\.html$/.test(filePath)) {
         mime = "text/html";
+    } else if (/\.js$/.test(filePath)) {
+        mime = "application/javascript";
+    } else if (/\.jpe?g$/.test(filePath)) {
+        mime = "image/jpeg";
+    } else if (/\.png$/.test(filePath)) {
+        mime = "image/png";
+    } else if (/\.svg$/.test(filePath)) {
+        mime = "application/svg+xml";
     } else if (/\.css$/.test(filePath)) {
         mime = "text/css";
     }

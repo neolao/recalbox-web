@@ -1,3 +1,3 @@
-import Main from "./components/Main.jsx";
+import Main from "./Main.jsx";
 
 React.render(<Main/>, document.body);

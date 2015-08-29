@@ -1,4 +1,5 @@
-import Header from "./Header.jsx";
+import Header from "./components/Header.jsx";
+import Homepage from "./pages/Homepage.jsx";
 
 /**
  * The application
@@ -9,6 +10,7 @@ export default class Main extends React.Component {
         return (
             <div>
                 <Header/>
+                <Homepage/>
             </div>
         );
     }
