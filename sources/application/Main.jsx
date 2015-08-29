@@ -1,16 +1,19 @@
 import Header from "./components/Header.jsx";
-import Homepage from "./pages/Homepage.jsx";
+let RouteHandler = ReactRouter.RouteHandler;
 
 /**
  * The application
  */
-export default class Main extends React.Component {
-
+export default class Main extends React.Component
+{
+    /**
+     * render the copmonent
+     */
     render() {
         return (
             <div>
                 <Header/>
-                <Homepage/>
+                <RouteHandler/>
             </div>
         );
     }

@@ -1,9 +1,13 @@
 /**
  * The homepage
  */
-export default class Homepage extends React.Component {
-
-    render() {
+export default class HomePage extends React.Component
+{
+    /**
+     * render the component
+     */
+    render()
+    {
         return (
             <div>
                 <p>Homepage</p>

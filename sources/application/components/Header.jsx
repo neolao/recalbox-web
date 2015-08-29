@@ -1,15 +1,21 @@
+let Link = ReactRouter.Link;
+
 /**
  * The application header
  */
-export default class Header extends React.Component {
-
-    render() {
+export default class Header extends React.Component
+{
+    /**
+     * render the copmonent
+     */
+    render()
+    {
         return (
             <header>
                 <nav className="top-bar" data-topbar role="navigation">
                     <ul className="title-area">
                         <li className="name">
-                            <h1><a href="#">Recalbox Web Interface</a></h1>
+                            <h1><Link to="home">Recalbox Web Interface</Link></h1>
                         </li>
                         <li className="toggle-topbar menu-icon">
                             <a href="#"><span>Menu</span></a>
@@ -27,8 +33,8 @@ export default class Header extends React.Component {
                         </ul>
                         <ul className="left">
                             <li>
-                                <a href="#">Configuration</a>
-                           </li>
+                                <Link to="configuration">Configuration</Link>
+                            </li>
                         </ul>
                     </section>
                 </nav>

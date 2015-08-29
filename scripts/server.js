@@ -9,9 +9,7 @@ var server = http.createServer(function(request, response)
     // Get the file path
     var urlInfo = parseUrl(request.url, true);
     var filePath = webDirectory + urlInfo.pathname;
-    if (urlInfo.pathname === "/") {
-        filePath = webDirectory + "/index.html";
-    }
+    var mainHtml = webDirectory + "/index.html";
 
     // Detect the mime type
     var mime = "text/plain";
@@ -47,9 +45,12 @@ var server = http.createServer(function(request, response)
             return;
         }
 
-        // An error occurred or it is not a file
-        response.writeHead(404);
-        response.end("Not found");
+        // Display the main HTML
+        fs.readFile(mainHtml, function(error, data)
+        {
+            response.writeHead(200, {"Content-Type": "text/html"});
+            response.end(data);
+        });
     });
 });
 

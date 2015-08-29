@@ -19,9 +19,7 @@ var _componentsHeaderJsx = require("./components/Header.jsx");
 
 var _componentsHeaderJsx2 = _interopRequireDefault(_componentsHeaderJsx);
 
-var _pagesHomepageJsx = require("./pages/Homepage.jsx");
-
-var _pagesHomepageJsx2 = _interopRequireDefault(_pagesHomepageJsx);
+var RouteHandler = ReactRouter.RouteHandler;
 
 /**
  * The application
@@ -38,12 +36,16 @@ var Main = (function (_React$Component) {
 
     _createClass(Main, [{
         key: "render",
+
+        /**
+         * render the copmonent
+         */
         value: function render() {
             return React.createElement(
                 "div",
                 null,
                 React.createElement(_componentsHeaderJsx2["default"], null),
-                React.createElement(_pagesHomepageJsx2["default"], null)
+                React.createElement(RouteHandler, null)
             );
         }
     }]);
@@ -55,10 +57,7 @@ exports["default"] = Main;
 module.exports = exports["default"];
 
 
-},{"./components/Header.jsx":2,"./pages/Homepage.jsx":4}],2:[function(require,module,exports){
-/**
- * The application header
- */
+},{"./components/Header.jsx":2}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -73,6 +72,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var Link = ReactRouter.Link;
+
+/**
+ * The application header
+ */
+
 var Header = (function (_React$Component) {
     _inherits(Header, _React$Component);
 
@@ -84,6 +89,10 @@ var Header = (function (_React$Component) {
 
     _createClass(Header, [{
         key: "render",
+
+        /**
+         * render the copmonent
+         */
         value: function render() {
             return React.createElement(
                 "header",
@@ -101,8 +110,8 @@ var Header = (function (_React$Component) {
                                 "h1",
                                 null,
                                 React.createElement(
-                                    "a",
-                                    { href: "#" },
+                                    Link,
+                                    { to: "home" },
                                     "Recalbox Web Interface"
                                 )
                             )
@@ -166,8 +175,8 @@ var Header = (function (_React$Component) {
                                 "li",
                                 null,
                                 React.createElement(
-                                    "a",
-                                    { href: "#" },
+                                    Link,
+                                    { to: "configuration" },
                                     "Configuration"
                                 )
                             )
@@ -194,10 +203,84 @@ var _MainJsx = require("./Main.jsx");
 
 var _MainJsx2 = _interopRequireDefault(_MainJsx);
 
-React.render(React.createElement(_MainJsx2["default"], null), document.body);
+var _pagesHomePageJsx = require("./pages/HomePage.jsx");
+
+var _pagesHomePageJsx2 = _interopRequireDefault(_pagesHomePageJsx);
+
+var _pagesConfigPageJsx = require("./pages/ConfigPage.jsx");
+
+var _pagesConfigPageJsx2 = _interopRequireDefault(_pagesConfigPageJsx);
+
+var Route = ReactRouter.Route;
+var DefaultRoute = ReactRouter.DefaultRoute;
+var HistoryLocation = ReactRouter.HistoryLocation;
+
+var routes = React.createElement(
+    Route,
+    { name: "home", path: "/", handler: _MainJsx2["default"] },
+    React.createElement(DefaultRoute, { handler: _pagesHomePageJsx2["default"] }),
+    React.createElement(Route, { name: "configuration", path: "/configuration", handler: _pagesConfigPageJsx2["default"] })
+);
+
+ReactRouter.run(routes, HistoryLocation, function (Handler) {
+    React.render(React.createElement(Handler, null), document.body);
+});
 
 
-},{"./Main.jsx":1}],4:[function(require,module,exports){
+},{"./Main.jsx":1,"./pages/ConfigPage.jsx":4,"./pages/HomePage.jsx":5}],4:[function(require,module,exports){
+/**
+ * The configuration page
+ */
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ConfigPage = (function (_React$Component) {
+    _inherits(ConfigPage, _React$Component);
+
+    function ConfigPage() {
+        _classCallCheck(this, ConfigPage);
+
+        _get(Object.getPrototypeOf(ConfigPage.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(ConfigPage, [{
+        key: "render",
+
+        /**
+         * render the component
+         */
+        value: function render() {
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "p",
+                    null,
+                    "Configuration"
+                )
+            );
+        }
+    }]);
+
+    return ConfigPage;
+})(React.Component);
+
+exports["default"] = ConfigPage;
+module.exports = exports["default"];
+
+
+},{}],5:[function(require,module,exports){
 /**
  * The homepage
  */
@@ -215,17 +298,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Homepage = (function (_React$Component) {
-    _inherits(Homepage, _React$Component);
+var HomePage = (function (_React$Component) {
+    _inherits(HomePage, _React$Component);
 
-    function Homepage() {
-        _classCallCheck(this, Homepage);
+    function HomePage() {
+        _classCallCheck(this, HomePage);
 
-        _get(Object.getPrototypeOf(Homepage.prototype), "constructor", this).apply(this, arguments);
+        _get(Object.getPrototypeOf(HomePage.prototype), "constructor", this).apply(this, arguments);
     }
 
-    _createClass(Homepage, [{
+    _createClass(HomePage, [{
         key: "render",
+
+        /**
+         * render the component
+         */
         value: function render() {
             return React.createElement(
                 "div",
@@ -239,10 +326,10 @@ var Homepage = (function (_React$Component) {
         }
     }]);
 
-    return Homepage;
+    return HomePage;
 })(React.Component);
 
-exports["default"] = Homepage;
+exports["default"] = HomePage;
 module.exports = exports["default"];
 
 
