@@ -1,0 +1,17 @@
+/**
+ * The main layout of a page
+ */
+.layout {
+    display: flex;
+    flex-wrap: nowrap;
+
+    // The sidebar
+    &__sidebar {
+        max-width: 10em;
+    }
+
+    // The content
+    &__content {
+        flex: 1;
+    }
+}

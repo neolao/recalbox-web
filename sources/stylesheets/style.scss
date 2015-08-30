@@ -1,7 +1,28 @@
 // Make sure the charset is set appropriately
 @charset "UTF-8";
 
+@import "normalize.scss";
+@import "foundation/_settings.scss";
 @import "./_variables.scss";
-@import "../../node_modules/foundation-sites/scss/normalize.scss";
-@import "../../node_modules/foundation-sites/scss/foundation.scss";
+@import "foundation.scss";
 
+
+// General
+html, body {
+    height: 100%;
+}
+.off-canvas-wrap {
+    height: 100%;
+}
+.inner-wrap {
+    height: 100%;
+}
+.left-off-canvas-menu {
+}
+.app-content {
+    height: 100%;
+    overflow: auto;
+}
+
+// Components
+@import "./components/_layout.scss";

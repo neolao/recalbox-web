@@ -4974,7 +4974,7 @@ meta.foundation-mq-topbar {
         width: 75%; }
   .top-bar .toggle-topbar {
     position: absolute;
-    right: 0;
+    left: 0;
     top: 0; }
     .top-bar .toggle-topbar a {
       color: #FFFFFF;
@@ -6635,3 +6635,27 @@ th.hide-for-touch {
 @media not print {
   .show-for-print {
     display: none !important; } }
+
+html, body {
+  height: 100%; }
+
+.off-canvas-wrap {
+  height: 100%; }
+
+.inner-wrap {
+  height: 100%; }
+
+.app-content {
+  height: 100%;
+  overflow: auto; }
+
+/**
+ * The main layout of a page
+ */
+.layout {
+  display: flex;
+  flex-wrap: nowrap; }
+  .layout__sidebar {
+    max-width: 10em; }
+  .layout__content {
+    flex: 1; }

@@ -40,6 +40,7 @@
 
         "dev-start"     : "pm2 startOrReload ./scripts/pm2-process-development.json",
         "dev-stop"      : "pm2 stop ./scripts/pm2-process-development.json",
+        "dev-restart"   : "pm2 restart ./scripts/pm2-process-development.json",
         "dev-logs"      : "pm2 logs ./scripts/pm2-process-development.json"
     }
 }

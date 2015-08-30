@@ -20,6 +20,7 @@ var _componentsHeaderJsx = require("./components/Header.jsx");
 var _componentsHeaderJsx2 = _interopRequireDefault(_componentsHeaderJsx);
 
 var RouteHandler = ReactRouter.RouteHandler;
+var Link = ReactRouter.Link;
 
 /**
  * The application
@@ -43,9 +44,52 @@ var Main = (function (_React$Component) {
         value: function render() {
             return React.createElement(
                 "div",
-                null,
-                React.createElement(_componentsHeaderJsx2["default"], null),
-                React.createElement(RouteHandler, null)
+                { className: "off-canvas-wrap", "data-offcanvas": true },
+                React.createElement(
+                    "div",
+                    { className: "inner-wrap" },
+                    React.createElement(
+                        "nav",
+                        { className: "left-off-canvas-menu" },
+                        React.createElement(
+                            "ul",
+                            { className: "side-nav" },
+                            React.createElement(
+                                "li",
+                                null,
+                                React.createElement(
+                                    Link,
+                                    { to: "home" },
+                                    "Homepage"
+                                )
+                            ),
+                            React.createElement(
+                                "li",
+                                null,
+                                "Configuration",
+                                React.createElement(
+                                    "ul",
+                                    null,
+                                    React.createElement(
+                                        "li",
+                                        null,
+                                        React.createElement(
+                                            Link,
+                                            { to: "configuration" },
+                                            "General"
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    ),
+                    React.createElement(_componentsHeaderJsx2["default"], { className: "app-header" }),
+                    React.createElement(
+                        "div",
+                        { className: "app-content" },
+                        React.createElement(RouteHandler, null)
+                    )
+                )
             );
         }
     }]);
@@ -99,7 +143,25 @@ var Header = (function (_React$Component) {
                 null,
                 React.createElement(
                     "nav",
-                    { className: "top-bar", "data-topbar": true, role: "navigation" },
+                    { className: "tab-bar show-for-small-only" },
+                    React.createElement(
+                        "section",
+                        { className: "left-small" },
+                        React.createElement(
+                            "a",
+                            { href: "#", role: "button", className: "left-off-canvas-toggle menu-icon" },
+                            React.createElement("span", null)
+                        )
+                    ),
+                    React.createElement(
+                        "section",
+                        { className: "middle tab-bar-section" },
+                        "Recalbox"
+                    )
+                ),
+                React.createElement(
+                    "nav",
+                    { className: "top-bar hide-for-small", "data-topbar": true, role: "navigation" },
                     React.createElement(
                         "ul",
                         { className: "title-area" },
@@ -115,24 +177,24 @@ var Header = (function (_React$Component) {
                                     "Recalbox Web Interface"
                                 )
                             )
-                        ),
-                        React.createElement(
-                            "li",
-                            { className: "toggle-topbar menu-icon" },
-                            React.createElement(
-                                "a",
-                                { href: "#" },
-                                React.createElement(
-                                    "span",
-                                    null,
-                                    "Menu"
-                                )
-                            )
                         )
                     ),
                     React.createElement(
                         "section",
                         { className: "top-bar-section" },
+                        React.createElement(
+                            "ul",
+                            { className: "left" },
+                            React.createElement(
+                                "li",
+                                null,
+                                React.createElement(
+                                    Link,
+                                    { to: "configuration" },
+                                    "Configuration"
+                                )
+                            )
+                        ),
                         React.createElement(
                             "ul",
                             { className: "right" },
@@ -167,19 +229,6 @@ var Header = (function (_React$Component) {
                                     )
                                 )
                             )
-                        ),
-                        React.createElement(
-                            "ul",
-                            { className: "left" },
-                            React.createElement(
-                                "li",
-                                null,
-                                React.createElement(
-                                    Link,
-                                    { to: "configuration" },
-                                    "Configuration"
-                                )
-                            )
                         )
                     )
                 )
@@ -211,6 +260,10 @@ var _pagesConfigPageJsx = require("./pages/ConfigPage.jsx");
 
 var _pagesConfigPageJsx2 = _interopRequireDefault(_pagesConfigPageJsx);
 
+var _pagesConfigGeneralPageJsx = require("./pages/config/GeneralPage.jsx");
+
+var _pagesConfigGeneralPageJsx2 = _interopRequireDefault(_pagesConfigGeneralPageJsx);
+
 var Route = ReactRouter.Route;
 var DefaultRoute = ReactRouter.DefaultRoute;
 var HistoryLocation = ReactRouter.HistoryLocation;
@@ -219,7 +272,11 @@ var routes = React.createElement(
     Route,
     { name: "home", path: "/", handler: _MainJsx2["default"] },
     React.createElement(DefaultRoute, { handler: _pagesHomePageJsx2["default"] }),
-    React.createElement(Route, { name: "configuration", path: "/configuration", handler: _pagesConfigPageJsx2["default"] })
+    React.createElement(
+        Route,
+        { name: "configuration", path: "/configuration", handler: _pagesConfigPageJsx2["default"] },
+        React.createElement(DefaultRoute, { handler: _pagesConfigGeneralPageJsx2["default"] })
+    )
 );
 
 ReactRouter.run(routes, HistoryLocation, function (Handler) {
@@ -227,10 +284,7 @@ ReactRouter.run(routes, HistoryLocation, function (Handler) {
 });
 
 
-},{"./Main.jsx":1,"./pages/ConfigPage.jsx":4,"./pages/HomePage.jsx":5}],4:[function(require,module,exports){
-/**
- * The configuration page
- */
+},{"./Main.jsx":1,"./pages/ConfigPage.jsx":4,"./pages/HomePage.jsx":5,"./pages/config/GeneralPage.jsx":6}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -244,6 +298,13 @@ var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_ag
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var RouteHandler = ReactRouter.RouteHandler;
+var Link = ReactRouter.Link;
+
+/**
+ * The configuration page
+ */
 
 var ConfigPage = (function (_React$Component) {
     _inherits(ConfigPage, _React$Component);
@@ -263,11 +324,28 @@ var ConfigPage = (function (_React$Component) {
         value: function render() {
             return React.createElement(
                 "div",
-                null,
+                { className: "layout" },
                 React.createElement(
-                    "p",
-                    null,
-                    "Configuration"
+                    "aside",
+                    { className: "layout__sidebar hide-for-small" },
+                    React.createElement(
+                        "ul",
+                        { className: "side-nav" },
+                        React.createElement(
+                            "li",
+                            null,
+                            React.createElement(
+                                Link,
+                                { to: "configuration" },
+                                "General"
+                            )
+                        )
+                    )
+                ),
+                React.createElement(
+                    "main",
+                    { className: "layout__content" },
+                    React.createElement(RouteHandler, null)
                 )
             );
         }
@@ -321,6 +399,146 @@ var HomePage = (function (_React$Component) {
                     "p",
                     null,
                     "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Homepage"
                 )
             );
         }
@@ -330,6 +548,67 @@ var HomePage = (function (_React$Component) {
 })(React.Component);
 
 exports["default"] = HomePage;
+module.exports = exports["default"];
+
+
+},{}],6:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var RouteHandler = ReactRouter.RouteHandler;
+
+/**
+ * The general configuration
+ */
+
+var GeneralPage = (function (_React$Component) {
+    _inherits(GeneralPage, _React$Component);
+
+    function GeneralPage() {
+        _classCallCheck(this, GeneralPage);
+
+        _get(Object.getPrototypeOf(GeneralPage.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(GeneralPage, [{
+        key: "render",
+
+        /**
+         * render the component
+         */
+        value: function render() {
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "h1",
+                    null,
+                    "General"
+                ),
+                React.createElement(
+                    "p",
+                    null,
+                    "Lorem ipsum"
+                )
+            );
+        }
+    }]);
+
+    return GeneralPage;
+})(React.Component);
+
+exports["default"] = GeneralPage;
 module.exports = exports["default"];
 
 

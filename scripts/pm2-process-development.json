@@ -17,7 +17,6 @@
             "exec_mode"          : "cluster",
             "instances"          : 1,
             "log_date_format"    : "YYYY-MM-DD HH:mm Z",
-            "max_memory_restart" : "100M",
             "merge_logs"         : true,
             "cwd"                : ".",
             "script"             : "node_modules/.bin/node-sass",
@@ -25,6 +24,8 @@
                 "--recursive",
                 "--watch",
                 "./sources/stylesheets",
+                "--include-path",
+                "./node_modules/foundation-sites/scss",
                 "--output",
                 "./web/stylesheets"
             ]
@@ -35,7 +36,6 @@
             "exec_mode"          : "cluster",
             "instances"          : 1,
             "log_date_format"    : "YYYY-MM-DD HH:mm Z",
-            "max_memory_restart" : "100M",
             "merge_logs"         : true,
             "cwd"                : ".",
             "script"             : "node_modules/.bin/watch-spawn",
