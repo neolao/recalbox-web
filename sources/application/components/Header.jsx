@@ -1,7 +1,7 @@
 import counterpart from "counterpart";
 import React from "react";
-import Translate from "react-translate-component";
 import ReactRouter from "react-router";
+import Translate from "react-translate-component";
 let Link = ReactRouter.Link;
 
 /**
@@ -47,13 +47,13 @@ export default class Header extends React.Component
                     <section className="top-bar-section">
                         <ul className="left">
                             <li>
-                                <Link to="configuration"><Translate content="menu.configuration"/></Link>
+                                <Link to="configuration:general"><Translate content="menu.configuration"/></Link>
                             </li>
                             <li>
-                                <Link to="configuration"><Translate content="menu.games"/></Link>
+                                <Link to="games:listing"><Translate content="menu.games"/></Link>
                             </li>
                             <li>
-                                <Link to="configuration"><Translate content="menu.advanced"/></Link>
+                                <Link to="advanced:config"><Translate content="menu.advanced"/></Link>
                             </li>
                         </ul>
                         <ul className="right">

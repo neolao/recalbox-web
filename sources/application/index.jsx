@@ -2,10 +2,6 @@ import async from "async";
 import counterpart from "counterpart";
 import React from "react";
 import ReactRouter from "react-router";
-import Main from "./Main.jsx";
-import HomePage from "./pages/HomePage.jsx";
-import ConfigPage from "./pages/ConfigPage.jsx";
-import ConfigGeneralPage from "./pages/config/GeneralPage.jsx";
 let Route = ReactRouter.Route;
 let DefaultRoute = ReactRouter.DefaultRoute;
 let HistoryLocation = ReactRouter.HistoryLocation;
@@ -18,11 +14,34 @@ counterpart.registerTranslations("fr_FR", fr_FR.messages);
 counterpart.setLocale("en_US");
 
 // Initialize routing
+import Main from "./Main.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import ConfigPage from "./pages/ConfigPage.jsx";
+import ConfigGeneralPage from "./pages/config/GeneralPage.jsx";
+import ConfigKodiPage from "./pages/config/KodiPage.jsx";
+import GamesPage from "./pages/GamesPage.jsx";
+import GameListingPage from "./pages/games/ListingPage.jsx";
+import AdvancedPage from "./pages/AdvancedPage.jsx";
 let routes = (
-    <Route name="home" path="/" handler={Main}>
-        <DefaultRoute handler={HomePage}/>
+    <Route name="main" path="/" handler={Main}>
+        <Route name="home" path="/" handler={HomePage}/>
         <Route name="configuration" path="/configuration" handler={ConfigPage}>
-            <DefaultRoute handler={ConfigGeneralPage}/>
+            <Route name="configuration:general" path="/configuration/general" handler={ConfigGeneralPage}/>
+            <Route name="configuration:kodi" path="/configuration/kodi" handler={ConfigKodiPage}/>
+            <Route name="configuration:network" path="/configuration/network" handler={ConfigKodiPage}/>
+            <Route name="configuration:audio" path="/configuration/audio" handler={ConfigKodiPage}/>
+            <Route name="configuration:controllers" path="/configuration/controllers" handler={ConfigKodiPage}/>
+            <Route name="configuration:emulators" path="/configuration/emulators" handler={ConfigKodiPage}/>
+        </Route>
+        <Route name="games" path="/games" handler={GamesPage}>
+            <Route name="games:listing" path="/games/bios" handler={GameListingPage}/>
+            <Route name="games:bios" path="/games/bios" handler={GameListingPage}/>
+            <Route name="games:saves" path="/games/saves" handler={GameListingPage}/>
+            <Route name="games:screenshots" path="/games/screenshots" handler={GameListingPage}/>
+        </Route>
+        <Route name="advanced" path="/advanced" handler={AdvancedPage}>
+            <Route name="advanced:config" path="/advanced/config" handler={GameListingPage}/>
+            <Route name="advanced:logs" path="/advanced/logs" handler={GameListingPage}/>
         </Route>
     </Route>
 );

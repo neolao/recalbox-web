@@ -23,22 +23,22 @@ export default class MenuOffCanvas extends React.Component
                         <span className="menu-off-canvas__section-title"><Translate content="menu.configuration"/></span>
                         <ul className="menu-off-canvas__section">
                             <li className="menu-off-canvas__item">
-                                <Link to="configuration" className="menu-off-canvas__link">General</Link>
+                                <Link to="configuration:general" className="menu-off-canvas__link"><Translate content="menu.general"/></Link>
                             </li>
                             <li className="menu-off-canvas__item">
-                                <Link to="configuration" className="menu-off-canvas__link">Kodi</Link>
+                                <Link to="configuration:kodi" className="menu-off-canvas__link"><Translate content="menu.kodi"/></Link>
                             </li>
                             <li className="menu-off-canvas__item">
-                                <Link to="configuration" className="menu-off-canvas__link">Network</Link>
+                                <Link to="configuration:network" className="menu-off-canvas__link"><Translate content="menu.network"/></Link>
                             </li>
                             <li className="menu-off-canvas__item">
-                                <Link to="configuration" className="menu-off-canvas__link">Audio</Link>
+                                <Link to="configuration:audio" className="menu-off-canvas__link"><Translate content="menu.audio"/></Link>
                             </li>
                             <li className="menu-off-canvas__item">
-                                <Link to="configuration" className="menu-off-canvas__link">Controllers</Link>
+                                <Link to="configuration:controllers" className="menu-off-canvas__link"><Translate content="menu.controllers"/></Link>
                             </li>
                             <li className="menu-off-canvas__item">
-                                <Link to="configuration" className="menu-off-canvas__link">Emulators</Link>
+                                <Link to="configuration:emulators" className="menu-off-canvas__link"><Translate content="menu.emulators"/></Link>
                             </li>
                         </ul>
                     </li>
@@ -46,16 +46,16 @@ export default class MenuOffCanvas extends React.Component
                         <span className="menu-off-canvas__section-title"><Translate content="menu.games"/></span>
                         <ul className="menu-off-canvas__section">
                             <li className="menu-off-canvas__item">
-                                <Link to="configuration" className="menu-off-canvas__link">Listing</Link>
+                                <Link to="games:listing" className="menu-off-canvas__link"><Translate content="menu.listing"/></Link>
                             </li>
                             <li className="menu-off-canvas__item">
-                                <Link to="configuration" className="menu-off-canvas__link">BIOS</Link>
+                                <Link to="games:bios" className="menu-off-canvas__link"><Translate content="menu.bios"/></Link>
                             </li>
                             <li className="menu-off-canvas__item">
-                                <Link to="configuration" className="menu-off-canvas__link">Saves</Link>
+                                <Link to="games:saves" className="menu-off-canvas__link"><Translate content="menu.saves"/></Link>
                             </li>
                             <li className="menu-off-canvas__item">
-                                <Link to="configuration" className="menu-off-canvas__link">Screenshots</Link>
+                                <Link to="games:screenshots" className="menu-off-canvas__link"><Translate content="menu.screenshots"/></Link>
                             </li>
                         </ul>
                     </li>
@@ -63,10 +63,10 @@ export default class MenuOffCanvas extends React.Component
                         <span className="menu-off-canvas__section-title"><Translate content="menu.advanced"/></span>
                         <ul className="menu-off-canvas__section">
                             <li className="menu-off-canvas__item">
-                                <Link to="configuration" className="menu-off-canvas__link">recalbox.conf</Link>
+                                <Link to="advanced:config" className="menu-off-canvas__link"><Translate content="menu.recalbox.conf"/></Link>
                             </li>
                             <li className="menu-off-canvas__item">
-                                <Link to="configuration" className="menu-off-canvas__link">Logs</Link>
+                                <Link to="advanced:logs" className="menu-off-canvas__link"><Translate content="menu.logs"/></Link>
                             </li>
                         </ul>
                     </li>

@@ -31,7 +31,7 @@
             color: #fff;
         }
 
-        &--active {
+        &--active, &.active {
             background: $primary-color;
             color: #fff;
             &:hover {

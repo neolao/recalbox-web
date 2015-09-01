@@ -7,8 +7,22 @@
         "menu": {
             "homepage": "Accueil",
             "configuration": "Configuration",
+            "general": "Général",
+            "kodi": "Kodi",
+            "network": "Réseau",
+            "audio": "Audio",
+            "controllers": "Manettes",
+            "emulators": "Émulateurs",
             "games": "Jeux",
-            "advanced": "Avancé"
+            "listing": "Liste",
+            "bios": "BIOS",
+            "saves": "Sauvegardes",
+            "screenshots": "Captures",
+            "advanced": "Avancé",
+            "recalbox": {
+                "conf": "recalbox.conf"
+            },
+            "logs": "Logs"
         }
     }
 }

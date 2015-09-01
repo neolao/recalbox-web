@@ -6670,10 +6670,10 @@ html, body {
     .menu-off-canvas__link:hover {
       background: rgba(255, 255, 255, 0.3);
       color: #fff; }
-    .menu-off-canvas__link--active {
+    .menu-off-canvas__link--active, .menu-off-canvas__link.active {
       background: #2ba6cb;
       color: #fff; }
-      .menu-off-canvas__link--active:hover {
+      .menu-off-canvas__link--active:hover, .menu-off-canvas__link.active:hover {
         background: #2ba6cb;
         color: #fff; }
 

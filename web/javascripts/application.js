@@ -26151,13 +26151,13 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactTranslateComponent = require("react-translate-component");
-
-var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
-
 var _reactRouter = require("react-router");
 
 var _reactRouter2 = _interopRequireDefault(_reactRouter);
+
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
 
 var Link = _reactRouter2["default"].Link;
 
@@ -26245,7 +26245,7 @@ var Header = (function (_React$Component) {
                                 null,
                                 _react2["default"].createElement(
                                     Link,
-                                    { to: "configuration" },
+                                    { to: "configuration:general" },
                                     _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.configuration" })
                                 )
                             ),
@@ -26254,7 +26254,7 @@ var Header = (function (_React$Component) {
                                 null,
                                 _react2["default"].createElement(
                                     Link,
-                                    { to: "configuration" },
+                                    { to: "games:listing" },
                                     _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.games" })
                                 )
                             ),
@@ -26263,7 +26263,7 @@ var Header = (function (_React$Component) {
                                 null,
                                 _react2["default"].createElement(
                                     Link,
-                                    { to: "configuration" },
+                                    { to: "advanced:config" },
                                     _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.advanced" })
                                 )
                             )
@@ -26399,8 +26399,8 @@ var MenuOffCanvas = (function (_React$Component) {
                                 { className: "menu-off-canvas__item" },
                                 _react2["default"].createElement(
                                     Link,
-                                    { to: "configuration", className: "menu-off-canvas__link" },
-                                    "General"
+                                    { to: "configuration:general", className: "menu-off-canvas__link" },
+                                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.general" })
                                 )
                             ),
                             _react2["default"].createElement(
@@ -26408,8 +26408,8 @@ var MenuOffCanvas = (function (_React$Component) {
                                 { className: "menu-off-canvas__item" },
                                 _react2["default"].createElement(
                                     Link,
-                                    { to: "configuration", className: "menu-off-canvas__link" },
-                                    "Kodi"
+                                    { to: "configuration:kodi", className: "menu-off-canvas__link" },
+                                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.kodi" })
                                 )
                             ),
                             _react2["default"].createElement(
@@ -26417,8 +26417,8 @@ var MenuOffCanvas = (function (_React$Component) {
                                 { className: "menu-off-canvas__item" },
                                 _react2["default"].createElement(
                                     Link,
-                                    { to: "configuration", className: "menu-off-canvas__link" },
-                                    "Network"
+                                    { to: "configuration:network", className: "menu-off-canvas__link" },
+                                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.network" })
                                 )
                             ),
                             _react2["default"].createElement(
@@ -26426,8 +26426,8 @@ var MenuOffCanvas = (function (_React$Component) {
                                 { className: "menu-off-canvas__item" },
                                 _react2["default"].createElement(
                                     Link,
-                                    { to: "configuration", className: "menu-off-canvas__link" },
-                                    "Audio"
+                                    { to: "configuration:audio", className: "menu-off-canvas__link" },
+                                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.audio" })
                                 )
                             ),
                             _react2["default"].createElement(
@@ -26435,8 +26435,8 @@ var MenuOffCanvas = (function (_React$Component) {
                                 { className: "menu-off-canvas__item" },
                                 _react2["default"].createElement(
                                     Link,
-                                    { to: "configuration", className: "menu-off-canvas__link" },
-                                    "Controllers"
+                                    { to: "configuration:controllers", className: "menu-off-canvas__link" },
+                                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.controllers" })
                                 )
                             ),
                             _react2["default"].createElement(
@@ -26444,8 +26444,8 @@ var MenuOffCanvas = (function (_React$Component) {
                                 { className: "menu-off-canvas__item" },
                                 _react2["default"].createElement(
                                     Link,
-                                    { to: "configuration", className: "menu-off-canvas__link" },
-                                    "Emulators"
+                                    { to: "configuration:emulators", className: "menu-off-canvas__link" },
+                                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.emulators" })
                                 )
                             )
                         )
@@ -26466,8 +26466,8 @@ var MenuOffCanvas = (function (_React$Component) {
                                 { className: "menu-off-canvas__item" },
                                 _react2["default"].createElement(
                                     Link,
-                                    { to: "configuration", className: "menu-off-canvas__link" },
-                                    "Listing"
+                                    { to: "games:listing", className: "menu-off-canvas__link" },
+                                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.listing" })
                                 )
                             ),
                             _react2["default"].createElement(
@@ -26475,8 +26475,8 @@ var MenuOffCanvas = (function (_React$Component) {
                                 { className: "menu-off-canvas__item" },
                                 _react2["default"].createElement(
                                     Link,
-                                    { to: "configuration", className: "menu-off-canvas__link" },
-                                    "BIOS"
+                                    { to: "games:bios", className: "menu-off-canvas__link" },
+                                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.bios" })
                                 )
                             ),
                             _react2["default"].createElement(
@@ -26484,8 +26484,8 @@ var MenuOffCanvas = (function (_React$Component) {
                                 { className: "menu-off-canvas__item" },
                                 _react2["default"].createElement(
                                     Link,
-                                    { to: "configuration", className: "menu-off-canvas__link" },
-                                    "Saves"
+                                    { to: "games:saves", className: "menu-off-canvas__link" },
+                                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.saves" })
                                 )
                             ),
                             _react2["default"].createElement(
@@ -26493,8 +26493,8 @@ var MenuOffCanvas = (function (_React$Component) {
                                 { className: "menu-off-canvas__item" },
                                 _react2["default"].createElement(
                                     Link,
-                                    { to: "configuration", className: "menu-off-canvas__link" },
-                                    "Screenshots"
+                                    { to: "games:screenshots", className: "menu-off-canvas__link" },
+                                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.screenshots" })
                                 )
                             )
                         )
@@ -26515,8 +26515,8 @@ var MenuOffCanvas = (function (_React$Component) {
                                 { className: "menu-off-canvas__item" },
                                 _react2["default"].createElement(
                                     Link,
-                                    { to: "configuration", className: "menu-off-canvas__link" },
-                                    "recalbox.conf"
+                                    { to: "advanced:config", className: "menu-off-canvas__link" },
+                                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.recalbox.conf" })
                                 )
                             ),
                             _react2["default"].createElement(
@@ -26524,8 +26524,8 @@ var MenuOffCanvas = (function (_React$Component) {
                                 { className: "menu-off-canvas__item" },
                                 _react2["default"].createElement(
                                     Link,
-                                    { to: "configuration", className: "menu-off-canvas__link" },
-                                    "Logs"
+                                    { to: "advanced:logs", className: "menu-off-canvas__link" },
+                                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.logs" })
                                 )
                             )
                         )
@@ -26563,6 +26563,18 @@ var _reactRouter = require("react-router");
 
 var _reactRouter2 = _interopRequireDefault(_reactRouter);
 
+// Initialize translations
+
+var _translationsEn_USJson = require("../../translations/en_US.json");
+
+var _translationsEn_USJson2 = _interopRequireDefault(_translationsEn_USJson);
+
+var _translationsFr_FRJson = require("../../translations/fr_FR.json");
+
+var _translationsFr_FRJson2 = _interopRequireDefault(_translationsFr_FRJson);
+
+// Initialize routing
+
 var _MainJsx = require("./Main.jsx");
 
 var _MainJsx2 = _interopRequireDefault(_MainJsx);
@@ -26579,15 +26591,21 @@ var _pagesConfigGeneralPageJsx = require("./pages/config/GeneralPage.jsx");
 
 var _pagesConfigGeneralPageJsx2 = _interopRequireDefault(_pagesConfigGeneralPageJsx);
 
-// Initialize translations
+var _pagesConfigKodiPageJsx = require("./pages/config/KodiPage.jsx");
 
-var _translationsEn_USJson = require("../../translations/en_US.json");
+var _pagesConfigKodiPageJsx2 = _interopRequireDefault(_pagesConfigKodiPageJsx);
 
-var _translationsEn_USJson2 = _interopRequireDefault(_translationsEn_USJson);
+var _pagesGamesPageJsx = require("./pages/GamesPage.jsx");
 
-var _translationsFr_FRJson = require("../../translations/fr_FR.json");
+var _pagesGamesPageJsx2 = _interopRequireDefault(_pagesGamesPageJsx);
 
-var _translationsFr_FRJson2 = _interopRequireDefault(_translationsFr_FRJson);
+var _pagesGamesListingPageJsx = require("./pages/games/ListingPage.jsx");
+
+var _pagesGamesListingPageJsx2 = _interopRequireDefault(_pagesGamesListingPageJsx);
+
+var _pagesAdvancedPageJsx = require("./pages/AdvancedPage.jsx");
+
+var _pagesAdvancedPageJsx2 = _interopRequireDefault(_pagesAdvancedPageJsx);
 
 var Route = _reactRouter2["default"].Route;
 var DefaultRoute = _reactRouter2["default"].DefaultRoute;
@@ -26595,16 +26613,33 @@ var HistoryLocation = _reactRouter2["default"].HistoryLocation;
 _counterpart2["default"].registerTranslations("en_US", _translationsEn_USJson2["default"].messages);
 _counterpart2["default"].registerTranslations("fr_FR", _translationsFr_FRJson2["default"].messages);
 _counterpart2["default"].setLocale("en_US");
-
-// Initialize routing
 var routes = _react2["default"].createElement(
     Route,
-    { name: "home", path: "/", handler: _MainJsx2["default"] },
-    _react2["default"].createElement(DefaultRoute, { handler: _pagesHomePageJsx2["default"] }),
+    { name: "main", path: "/", handler: _MainJsx2["default"] },
+    _react2["default"].createElement(Route, { name: "home", path: "/", handler: _pagesHomePageJsx2["default"] }),
     _react2["default"].createElement(
         Route,
         { name: "configuration", path: "/configuration", handler: _pagesConfigPageJsx2["default"] },
-        _react2["default"].createElement(DefaultRoute, { handler: _pagesConfigGeneralPageJsx2["default"] })
+        _react2["default"].createElement(Route, { name: "configuration:general", path: "/configuration/general", handler: _pagesConfigGeneralPageJsx2["default"] }),
+        _react2["default"].createElement(Route, { name: "configuration:kodi", path: "/configuration/kodi", handler: _pagesConfigKodiPageJsx2["default"] }),
+        _react2["default"].createElement(Route, { name: "configuration:network", path: "/configuration/network", handler: _pagesConfigKodiPageJsx2["default"] }),
+        _react2["default"].createElement(Route, { name: "configuration:audio", path: "/configuration/audio", handler: _pagesConfigKodiPageJsx2["default"] }),
+        _react2["default"].createElement(Route, { name: "configuration:controllers", path: "/configuration/controllers", handler: _pagesConfigKodiPageJsx2["default"] }),
+        _react2["default"].createElement(Route, { name: "configuration:emulators", path: "/configuration/emulators", handler: _pagesConfigKodiPageJsx2["default"] })
+    ),
+    _react2["default"].createElement(
+        Route,
+        { name: "games", path: "/games", handler: _pagesGamesPageJsx2["default"] },
+        _react2["default"].createElement(Route, { name: "games:listing", path: "/games/bios", handler: _pagesGamesListingPageJsx2["default"] }),
+        _react2["default"].createElement(Route, { name: "games:bios", path: "/games/bios", handler: _pagesGamesListingPageJsx2["default"] }),
+        _react2["default"].createElement(Route, { name: "games:saves", path: "/games/saves", handler: _pagesGamesListingPageJsx2["default"] }),
+        _react2["default"].createElement(Route, { name: "games:screenshots", path: "/games/screenshots", handler: _pagesGamesListingPageJsx2["default"] })
+    ),
+    _react2["default"].createElement(
+        Route,
+        { name: "advanced", path: "/advanced", handler: _pagesAdvancedPageJsx2["default"] },
+        _react2["default"].createElement(Route, { name: "advanced:config", path: "/advanced/config", handler: _pagesGamesListingPageJsx2["default"] }),
+        _react2["default"].createElement(Route, { name: "advanced:logs", path: "/advanced/logs", handler: _pagesGamesListingPageJsx2["default"] })
     )
 );
 _reactRouter2["default"].run(routes, HistoryLocation, function (Handler) {
@@ -26612,7 +26647,7 @@ _reactRouter2["default"].run(routes, HistoryLocation, function (Handler) {
 });
 
 
-},{"../../translations/en_US.json":223,"../../translations/fr_FR.json":224,"./Main.jsx":216,"./pages/ConfigPage.jsx":220,"./pages/HomePage.jsx":221,"./pages/config/GeneralPage.jsx":222,"async":1,"counterpart":7,"react":215,"react-router":44}],220:[function(require,module,exports){
+},{"../../translations/en_US.json":227,"../../translations/fr_FR.json":228,"./Main.jsx":216,"./pages/AdvancedPage.jsx":220,"./pages/ConfigPage.jsx":221,"./pages/GamesPage.jsx":222,"./pages/HomePage.jsx":223,"./pages/config/GeneralPage.jsx":224,"./pages/config/KodiPage.jsx":225,"./pages/games/ListingPage.jsx":226,"async":1,"counterpart":7,"react":215,"react-router":44}],220:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26636,6 +26671,107 @@ var _react2 = _interopRequireDefault(_react);
 var _reactRouter = require("react-router");
 
 var _reactRouter2 = _interopRequireDefault(_reactRouter);
+
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
+var RouteHandler = _reactRouter2["default"].RouteHandler;
+var Link = _reactRouter2["default"].Link;
+
+/**
+ * The advanced configuration page
+ */
+
+var AdvancedPage = (function (_React$Component) {
+    _inherits(AdvancedPage, _React$Component);
+
+    function AdvancedPage() {
+        _classCallCheck(this, AdvancedPage);
+
+        _get(Object.getPrototypeOf(AdvancedPage.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(AdvancedPage, [{
+        key: "render",
+
+        /**
+         * render the component
+         */
+        value: function render() {
+            return _react2["default"].createElement(
+                "div",
+                { className: "layout" },
+                _react2["default"].createElement(
+                    "aside",
+                    { className: "layout__sidebar hide-for-small" },
+                    _react2["default"].createElement(
+                        "ul",
+                        { className: "side-nav" },
+                        _react2["default"].createElement(
+                            "li",
+                            null,
+                            _react2["default"].createElement(
+                                Link,
+                                { to: "advanced:config" },
+                                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.recalbox.conf" })
+                            )
+                        ),
+                        _react2["default"].createElement(
+                            "li",
+                            null,
+                            _react2["default"].createElement(
+                                Link,
+                                { to: "advanced:logs" },
+                                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.logs" })
+                            )
+                        )
+                    )
+                ),
+                _react2["default"].createElement(
+                    "main",
+                    { className: "layout__content" },
+                    _react2["default"].createElement(RouteHandler, null)
+                )
+            );
+        }
+    }]);
+
+    return AdvancedPage;
+})(_react2["default"].Component);
+
+exports["default"] = AdvancedPage;
+module.exports = exports["default"];
+
+
+},{"react":215,"react-router":44,"react-translate-component":59}],221:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require("react-router");
+
+var _reactRouter2 = _interopRequireDefault(_reactRouter);
+
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
 
 var RouteHandler = _reactRouter2["default"].RouteHandler;
 var Link = _reactRouter2["default"].Link;
@@ -26674,8 +26810,53 @@ var ConfigPage = (function (_React$Component) {
                             null,
                             _react2["default"].createElement(
                                 Link,
-                                { to: "configuration" },
-                                "General"
+                                { to: "configuration:general" },
+                                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.general" })
+                            )
+                        ),
+                        _react2["default"].createElement(
+                            "li",
+                            null,
+                            _react2["default"].createElement(
+                                Link,
+                                { to: "configuration:kodi" },
+                                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.kodi" })
+                            )
+                        ),
+                        _react2["default"].createElement(
+                            "li",
+                            null,
+                            _react2["default"].createElement(
+                                Link,
+                                { to: "configuration:network" },
+                                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.network" })
+                            )
+                        ),
+                        _react2["default"].createElement(
+                            "li",
+                            null,
+                            _react2["default"].createElement(
+                                Link,
+                                { to: "configuration:audio" },
+                                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.audio" })
+                            )
+                        ),
+                        _react2["default"].createElement(
+                            "li",
+                            null,
+                            _react2["default"].createElement(
+                                Link,
+                                { to: "configuration:controllers" },
+                                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.controllers" })
+                            )
+                        ),
+                        _react2["default"].createElement(
+                            "li",
+                            null,
+                            _react2["default"].createElement(
+                                Link,
+                                { to: "configuration:emulators" },
+                                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.emulators" })
                             )
                         )
                     )
@@ -26696,7 +26877,122 @@ exports["default"] = ConfigPage;
 module.exports = exports["default"];
 
 
-},{"react":215,"react-router":44}],221:[function(require,module,exports){
+},{"react":215,"react-router":44,"react-translate-component":59}],222:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require("react-router");
+
+var _reactRouter2 = _interopRequireDefault(_reactRouter);
+
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
+var RouteHandler = _reactRouter2["default"].RouteHandler;
+var Link = _reactRouter2["default"].Link;
+
+/**
+ * The games page
+ */
+
+var GamesPage = (function (_React$Component) {
+    _inherits(GamesPage, _React$Component);
+
+    function GamesPage() {
+        _classCallCheck(this, GamesPage);
+
+        _get(Object.getPrototypeOf(GamesPage.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(GamesPage, [{
+        key: "render",
+
+        /**
+         * render the component
+         */
+        value: function render() {
+            return _react2["default"].createElement(
+                "div",
+                { className: "layout" },
+                _react2["default"].createElement(
+                    "aside",
+                    { className: "layout__sidebar hide-for-small" },
+                    _react2["default"].createElement(
+                        "ul",
+                        { className: "side-nav" },
+                        _react2["default"].createElement(
+                            "li",
+                            null,
+                            _react2["default"].createElement(
+                                Link,
+                                { to: "games:listing" },
+                                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.listing" })
+                            )
+                        ),
+                        _react2["default"].createElement(
+                            "li",
+                            null,
+                            _react2["default"].createElement(
+                                Link,
+                                { to: "games:bios" },
+                                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.bios" })
+                            )
+                        ),
+                        _react2["default"].createElement(
+                            "li",
+                            null,
+                            _react2["default"].createElement(
+                                Link,
+                                { to: "games:saves" },
+                                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.saves" })
+                            )
+                        ),
+                        _react2["default"].createElement(
+                            "li",
+                            null,
+                            _react2["default"].createElement(
+                                Link,
+                                { to: "games:screenshots" },
+                                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.screenshots" })
+                            )
+                        )
+                    )
+                ),
+                _react2["default"].createElement(
+                    "main",
+                    { className: "layout__content" },
+                    _react2["default"].createElement(RouteHandler, null)
+                )
+            );
+        }
+    }]);
+
+    return GamesPage;
+})(_react2["default"].Component);
+
+exports["default"] = GamesPage;
+module.exports = exports["default"];
+
+
+},{"react":215,"react-router":44,"react-translate-component":59}],223:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26756,7 +27052,7 @@ exports["default"] = HomePage;
 module.exports = exports["default"];
 
 
-},{"react":215}],222:[function(require,module,exports){
+},{"react":215}],224:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26821,7 +27117,137 @@ exports["default"] = GeneralPage;
 module.exports = exports["default"];
 
 
-},{"react":215}],223:[function(require,module,exports){
+},{"react":215}],225:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+/**
+ * The configuration of Kodi
+ */
+
+var KodiPage = (function (_React$Component) {
+    _inherits(KodiPage, _React$Component);
+
+    function KodiPage() {
+        _classCallCheck(this, KodiPage);
+
+        _get(Object.getPrototypeOf(KodiPage.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(KodiPage, [{
+        key: "render",
+
+        /**
+         * render the component
+         */
+        value: function render() {
+            return _react2["default"].createElement(
+                "div",
+                null,
+                _react2["default"].createElement(
+                    "h1",
+                    null,
+                    "Title"
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    "Lorem ipsum"
+                )
+            );
+        }
+    }]);
+
+    return KodiPage;
+})(_react2["default"].Component);
+
+exports["default"] = KodiPage;
+module.exports = exports["default"];
+
+
+},{"react":215}],226:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+/**
+ * The listing of games
+ */
+
+var ListingPage = (function (_React$Component) {
+    _inherits(ListingPage, _React$Component);
+
+    function ListingPage() {
+        _classCallCheck(this, ListingPage);
+
+        _get(Object.getPrototypeOf(ListingPage.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(ListingPage, [{
+        key: "render",
+
+        /**
+         * render the component
+         */
+        value: function render() {
+            return _react2["default"].createElement(
+                "div",
+                null,
+                _react2["default"].createElement(
+                    "h1",
+                    null,
+                    "Title"
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    "Lorem ipsum"
+                )
+            );
+        }
+    }]);
+
+    return ListingPage;
+})(_react2["default"].Component);
+
+exports["default"] = ListingPage;
+module.exports = exports["default"];
+
+
+},{"react":215}],227:[function(require,module,exports){
 module.exports={
     "messages": {
         "locale": {
@@ -26831,13 +27257,28 @@ module.exports={
         "menu": {
             "homepage": "Homepage",
             "configuration": "Configuration",
+            "general": "General",
+            "kodi": "Kodi",
+            "network": "Network",
+            "audio": "Audio",
+            "controllers": "Controllers",
+            "emulators": "Emulators",
             "games": "Games",
-            "advanced": "Advanced"
+            "listing": "Listing",
+            "bios": "BIOS",
+            "saves": "Saves",
+            "screenshots": "Screenshots",
+            "advanced": "Advanced",
+            "recalbox": {
+                "conf": "recalbox.conf"
+            },
+            "logs": "Logs"
+
         }
     }
 }
 
-},{}],224:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 module.exports={
     "messages": {
         "locale": {
@@ -26847,8 +27288,22 @@ module.exports={
         "menu": {
             "homepage": "Accueil",
             "configuration": "Configuration",
+            "general": "Général",
+            "kodi": "Kodi",
+            "network": "Réseau",
+            "audio": "Audio",
+            "controllers": "Manettes",
+            "emulators": "Émulateurs",
             "games": "Jeux",
-            "advanced": "Avancé"
+            "listing": "Liste",
+            "bios": "BIOS",
+            "saves": "Sauvegardes",
+            "screenshots": "Captures",
+            "advanced": "Avancé",
+            "recalbox": {
+                "conf": "recalbox.conf"
+            },
+            "logs": "Logs"
         }
     }
 }
