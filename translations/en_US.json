@@ -6,7 +6,7 @@
         },
         "menu": {
             "homepage": "Homepage",
-            "configuration": "Configuration",
+            "configuration": "Settings",
             "general": "General",
             "kodi": "Kodi",
             "network": "Network",
@@ -24,6 +24,26 @@
             },
             "logs": "Logs"
 
+        },
+        "page": {
+            "title": {
+                "general": "General settings",
+                "kodi": "Kodi settings",
+                "network": "Network settings",
+                "audio": "Audio settings",
+                "controllers": "Controllers settings",
+                "emulators": "Emulators settings",
+                "games": {
+                    "listing": "Games"
+                },
+                "bios": "System BIOS",
+                "saves": "Game saves",
+                "screenshots": "Game screenshots",
+                "recalbox": {
+                    "conf": "recalbox.conf"
+                },
+                "logs": "Logs"
+            }
         }
     }
 }

@@ -14,24 +14,28 @@ counterpart.registerTranslations("fr_FR", fr_FR.messages);
 counterpart.setLocale("en_US");
 
 // Initialize routing
-import Main from "./Main.jsx";
-import HomePage from "./pages/HomePage.jsx";
-import ConfigPage from "./pages/ConfigPage.jsx";
-import ConfigGeneralPage from "./pages/config/GeneralPage.jsx";
-import ConfigKodiPage from "./pages/config/KodiPage.jsx";
-import GamesPage from "./pages/GamesPage.jsx";
-import GameListingPage from "./pages/games/ListingPage.jsx";
-import AdvancedPage from "./pages/AdvancedPage.jsx";
+import Main                 from "./Main.jsx";
+import HomePage             from "./pages/HomePage.jsx";
+import ConfigPage           from "./pages/ConfigPage.jsx";
+import ConfigGeneralPage    from "./pages/config/GeneralPage.jsx";
+import ConfigKodiPage       from "./pages/config/KodiPage.jsx";
+import ConfigNetworkPage    from "./pages/config/NetworkPage.jsx";
+import ConfigAudioPage      from "./pages/config/AudioPage.jsx";
+import ConfigControllersPage from "./pages/config/ControllersPage.jsx";
+import ConfigEmulatorsPage  from "./pages/config/EmulatorsPage.jsx";
+import GamesPage            from "./pages/GamesPage.jsx";
+import GameListingPage      from "./pages/games/ListingPage.jsx";
+import AdvancedPage         from "./pages/AdvancedPage.jsx";
 let routes = (
     <Route name="main" path="/" handler={Main}>
         <Route name="home" path="/" handler={HomePage}/>
         <Route name="configuration" path="/configuration" handler={ConfigPage}>
             <Route name="configuration:general" path="/configuration/general" handler={ConfigGeneralPage}/>
             <Route name="configuration:kodi" path="/configuration/kodi" handler={ConfigKodiPage}/>
-            <Route name="configuration:network" path="/configuration/network" handler={ConfigKodiPage}/>
-            <Route name="configuration:audio" path="/configuration/audio" handler={ConfigKodiPage}/>
-            <Route name="configuration:controllers" path="/configuration/controllers" handler={ConfigKodiPage}/>
-            <Route name="configuration:emulators" path="/configuration/emulators" handler={ConfigKodiPage}/>
+            <Route name="configuration:network" path="/configuration/network" handler={ConfigNetworkPage}/>
+            <Route name="configuration:audio" path="/configuration/audio" handler={ConfigAudioPage}/>
+            <Route name="configuration:controllers" path="/configuration/controllers" handler={ConfigControllersPage}/>
+            <Route name="configuration:emulators" path="/configuration/emulators" handler={ConfigEmulatorsPage}/>
         </Route>
         <Route name="games" path="/games" handler={GamesPage}>
             <Route name="games:listing" path="/games/bios" handler={GameListingPage}/>

@@ -26595,6 +26595,22 @@ var _pagesConfigKodiPageJsx = require("./pages/config/KodiPage.jsx");
 
 var _pagesConfigKodiPageJsx2 = _interopRequireDefault(_pagesConfigKodiPageJsx);
 
+var _pagesConfigNetworkPageJsx = require("./pages/config/NetworkPage.jsx");
+
+var _pagesConfigNetworkPageJsx2 = _interopRequireDefault(_pagesConfigNetworkPageJsx);
+
+var _pagesConfigAudioPageJsx = require("./pages/config/AudioPage.jsx");
+
+var _pagesConfigAudioPageJsx2 = _interopRequireDefault(_pagesConfigAudioPageJsx);
+
+var _pagesConfigControllersPageJsx = require("./pages/config/ControllersPage.jsx");
+
+var _pagesConfigControllersPageJsx2 = _interopRequireDefault(_pagesConfigControllersPageJsx);
+
+var _pagesConfigEmulatorsPageJsx = require("./pages/config/EmulatorsPage.jsx");
+
+var _pagesConfigEmulatorsPageJsx2 = _interopRequireDefault(_pagesConfigEmulatorsPageJsx);
+
 var _pagesGamesPageJsx = require("./pages/GamesPage.jsx");
 
 var _pagesGamesPageJsx2 = _interopRequireDefault(_pagesGamesPageJsx);
@@ -26622,10 +26638,10 @@ var routes = _react2["default"].createElement(
         { name: "configuration", path: "/configuration", handler: _pagesConfigPageJsx2["default"] },
         _react2["default"].createElement(Route, { name: "configuration:general", path: "/configuration/general", handler: _pagesConfigGeneralPageJsx2["default"] }),
         _react2["default"].createElement(Route, { name: "configuration:kodi", path: "/configuration/kodi", handler: _pagesConfigKodiPageJsx2["default"] }),
-        _react2["default"].createElement(Route, { name: "configuration:network", path: "/configuration/network", handler: _pagesConfigKodiPageJsx2["default"] }),
-        _react2["default"].createElement(Route, { name: "configuration:audio", path: "/configuration/audio", handler: _pagesConfigKodiPageJsx2["default"] }),
-        _react2["default"].createElement(Route, { name: "configuration:controllers", path: "/configuration/controllers", handler: _pagesConfigKodiPageJsx2["default"] }),
-        _react2["default"].createElement(Route, { name: "configuration:emulators", path: "/configuration/emulators", handler: _pagesConfigKodiPageJsx2["default"] })
+        _react2["default"].createElement(Route, { name: "configuration:network", path: "/configuration/network", handler: _pagesConfigNetworkPageJsx2["default"] }),
+        _react2["default"].createElement(Route, { name: "configuration:audio", path: "/configuration/audio", handler: _pagesConfigAudioPageJsx2["default"] }),
+        _react2["default"].createElement(Route, { name: "configuration:controllers", path: "/configuration/controllers", handler: _pagesConfigControllersPageJsx2["default"] }),
+        _react2["default"].createElement(Route, { name: "configuration:emulators", path: "/configuration/emulators", handler: _pagesConfigEmulatorsPageJsx2["default"] })
     ),
     _react2["default"].createElement(
         Route,
@@ -26647,7 +26663,7 @@ _reactRouter2["default"].run(routes, HistoryLocation, function (Handler) {
 });
 
 
-},{"../../translations/en_US.json":227,"../../translations/fr_FR.json":228,"./Main.jsx":216,"./pages/AdvancedPage.jsx":220,"./pages/ConfigPage.jsx":221,"./pages/GamesPage.jsx":222,"./pages/HomePage.jsx":223,"./pages/config/GeneralPage.jsx":224,"./pages/config/KodiPage.jsx":225,"./pages/games/ListingPage.jsx":226,"async":1,"counterpart":7,"react":215,"react-router":44}],220:[function(require,module,exports){
+},{"../../translations/en_US.json":231,"../../translations/fr_FR.json":232,"./Main.jsx":216,"./pages/AdvancedPage.jsx":220,"./pages/ConfigPage.jsx":221,"./pages/GamesPage.jsx":222,"./pages/HomePage.jsx":223,"./pages/config/AudioPage.jsx":224,"./pages/config/ControllersPage.jsx":225,"./pages/config/EmulatorsPage.jsx":226,"./pages/config/GeneralPage.jsx":227,"./pages/config/KodiPage.jsx":228,"./pages/config/NetworkPage.jsx":229,"./pages/games/ListingPage.jsx":230,"async":1,"counterpart":7,"react":215,"react-router":44}],220:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27073,6 +27089,217 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
+/**
+ * The audio settings
+ */
+
+var AudioPage = (function (_React$Component) {
+    _inherits(AudioPage, _React$Component);
+
+    function AudioPage() {
+        _classCallCheck(this, AudioPage);
+
+        _get(Object.getPrototypeOf(AudioPage.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(AudioPage, [{
+        key: "render",
+
+        /**
+         * render the component
+         */
+        value: function render() {
+            return _react2["default"].createElement(
+                "div",
+                null,
+                _react2["default"].createElement(
+                    "h1",
+                    null,
+                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.audio" })
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    "Lorem ipsum"
+                )
+            );
+        }
+    }]);
+
+    return AudioPage;
+})(_react2["default"].Component);
+
+exports["default"] = AudioPage;
+module.exports = exports["default"];
+
+
+},{"react":215,"react-translate-component":59}],225:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
+/**
+ * The controllers settings
+ */
+
+var ControllersPage = (function (_React$Component) {
+    _inherits(ControllersPage, _React$Component);
+
+    function ControllersPage() {
+        _classCallCheck(this, ControllersPage);
+
+        _get(Object.getPrototypeOf(ControllersPage.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(ControllersPage, [{
+        key: "render",
+
+        /**
+         * render the component
+         */
+        value: function render() {
+            return _react2["default"].createElement(
+                "div",
+                null,
+                _react2["default"].createElement(
+                    "h1",
+                    null,
+                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.controllers" })
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    "Lorem ipsum"
+                )
+            );
+        }
+    }]);
+
+    return ControllersPage;
+})(_react2["default"].Component);
+
+exports["default"] = ControllersPage;
+module.exports = exports["default"];
+
+
+},{"react":215,"react-translate-component":59}],226:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
+/**
+ * The emulators settings
+ */
+
+var EmulatorsPage = (function (_React$Component) {
+    _inherits(EmulatorsPage, _React$Component);
+
+    function EmulatorsPage() {
+        _classCallCheck(this, EmulatorsPage);
+
+        _get(Object.getPrototypeOf(EmulatorsPage.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(EmulatorsPage, [{
+        key: "render",
+
+        /**
+         * render the component
+         */
+        value: function render() {
+            return _react2["default"].createElement(
+                "div",
+                null,
+                _react2["default"].createElement(
+                    "h1",
+                    null,
+                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.emulators" })
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    "Lorem ipsum"
+                )
+            );
+        }
+    }]);
+
+    return EmulatorsPage;
+})(_react2["default"].Component);
+
+exports["default"] = EmulatorsPage;
+module.exports = exports["default"];
+
+
+},{"react":215,"react-translate-component":59}],227:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
 /**
  * The general configuration
  */
@@ -27099,7 +27326,7 @@ var GeneralPage = (function (_React$Component) {
                 _react2["default"].createElement(
                     "h1",
                     null,
-                    "General"
+                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.general" })
                 ),
                 _react2["default"].createElement(
                     "p",
@@ -27117,7 +27344,7 @@ exports["default"] = GeneralPage;
 module.exports = exports["default"];
 
 
-},{"react":215}],225:[function(require,module,exports){
+},{"react":215,"react-translate-component":59}],228:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27137,6 +27364,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
+
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
 
 /**
  * The configuration of Kodi
@@ -27164,7 +27395,7 @@ var KodiPage = (function (_React$Component) {
                 _react2["default"].createElement(
                     "h1",
                     null,
-                    "Title"
+                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.kodi" })
                 ),
                 _react2["default"].createElement(
                     "p",
@@ -27182,7 +27413,76 @@ exports["default"] = KodiPage;
 module.exports = exports["default"];
 
 
-},{"react":215}],226:[function(require,module,exports){
+},{"react":215,"react-translate-component":59}],229:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
+/**
+ * The configuration of the network
+ */
+
+var NetworkPage = (function (_React$Component) {
+    _inherits(NetworkPage, _React$Component);
+
+    function NetworkPage() {
+        _classCallCheck(this, NetworkPage);
+
+        _get(Object.getPrototypeOf(NetworkPage.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(NetworkPage, [{
+        key: "render",
+
+        /**
+         * render the component
+         */
+        value: function render() {
+            return _react2["default"].createElement(
+                "div",
+                null,
+                _react2["default"].createElement(
+                    "h1",
+                    null,
+                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.network" })
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    "Lorem ipsum"
+                )
+            );
+        }
+    }]);
+
+    return NetworkPage;
+})(_react2["default"].Component);
+
+exports["default"] = NetworkPage;
+module.exports = exports["default"];
+
+
+},{"react":215,"react-translate-component":59}],230:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27247,7 +27547,7 @@ exports["default"] = ListingPage;
 module.exports = exports["default"];
 
 
-},{"react":215}],227:[function(require,module,exports){
+},{"react":215}],231:[function(require,module,exports){
 module.exports={
     "messages": {
         "locale": {
@@ -27256,7 +27556,7 @@ module.exports={
         },
         "menu": {
             "homepage": "Homepage",
-            "configuration": "Configuration",
+            "configuration": "Settings",
             "general": "General",
             "kodi": "Kodi",
             "network": "Network",
@@ -27274,11 +27574,31 @@ module.exports={
             },
             "logs": "Logs"
 
+        },
+        "page": {
+            "title": {
+                "general": "General settings",
+                "kodi": "Kodi settings",
+                "network": "Network settings",
+                "audio": "Audio settings",
+                "controllers": "Controllers settings",
+                "emulators": "Emulators settings",
+                "games": {
+                    "listing": "Games"
+                },
+                "bios": "System BIOS",
+                "saves": "Game saves",
+                "screenshots": "Game screenshots",
+                "recalbox": {
+                    "conf": "recalbox.conf"
+                },
+                "logs": "Logs"
+            }
         }
     }
 }
 
-},{}],228:[function(require,module,exports){
+},{}],232:[function(require,module,exports){
 module.exports={
     "messages": {
         "locale": {
@@ -27304,6 +27624,26 @@ module.exports={
                 "conf": "recalbox.conf"
             },
             "logs": "Logs"
+        },
+        "page": {
+            "title": {
+                "general": "Configuration générale",
+                "kodi": "Configuration de Kodi",
+                "network": "Configuration du réseau",
+                "audio": "Configuration de l'audio",
+                "controllers": "Configuration des manettes",
+                "emulators": "Configuration des émulateurs",
+                "games": {
+                    "listing": "Jeux"
+                },
+                "bios": "BIOS des systèmes",
+                "saves": "Sauvegardes des jeux",
+                "screenshots": "Captures des jeux",
+                "recalbox": {
+                    "conf": "recalbox.conf"
+                },
+                "logs": "Logs"
+            }
         }
     }
 }

@@ -23,6 +23,26 @@
                 "conf": "recalbox.conf"
             },
             "logs": "Logs"
+        },
+        "page": {
+            "title": {
+                "general": "Configuration générale",
+                "kodi": "Configuration de Kodi",
+                "network": "Configuration du réseau",
+                "audio": "Configuration de l'audio",
+                "controllers": "Configuration des manettes",
+                "emulators": "Configuration des émulateurs",
+                "games": {
+                    "listing": "Jeux"
+                },
+                "bios": "BIOS des systèmes",
+                "saves": "Sauvegardes des jeux",
+                "screenshots": "Captures des jeux",
+                "recalbox": {
+                    "conf": "recalbox.conf"
+                },
+                "logs": "Logs"
+            }
         }
     }
 }

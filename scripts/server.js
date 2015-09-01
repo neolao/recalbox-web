@@ -1,7 +1,49 @@
 var http = require("http");
 var fs = require("fs");
+var zlib = require("zlib");
+var Stream = require("stream");
 var parseUrl = require("url").parse;
 var webDirectory = __dirname + "/../web";
+
+// Compression gzip / deflate
+var compress = function(request, response, data)
+{
+    // Check the accept encoding
+    var acceptEncoding = request.headers["accept-encoding"];
+    if (!acceptEncoding) {
+        acceptEncoding = "";
+    }
+
+    // gzip
+    if (acceptEncoding.match(/\bgzip\b/)) {
+        var gzip = zlib.createGzip();
+        if (data instanceof Stream) {
+            data.pipe(gzip);
+        } else {
+            gzip.end(data);
+        }
+
+        response.setHeader("Content-Encoding", "gzip");
+
+        return gzip;
+    }
+
+    // deflate
+    if (acceptEncoding.match(/\bdeflate\b/)) {
+        var deflate = zlib.createDeflate();
+        if (data instanceof Stream) {
+            data.pipe(deflate);
+        } else {
+            deflate.end(data);
+        }
+
+        response.setHeader("Content-Encoding", "deflate");
+
+        return deflate;
+    }
+
+    return data;
+};
 
 // Create an HTTP server
 var server = http.createServer(function(request, response)
@@ -27,6 +69,9 @@ var server = http.createServer(function(request, response)
         mime = "text/css";
     }
 
+    // Detect accept encoding
+    // @todo
+
     // Check the file
     fs.stat(filePath, function(error, stats)
     {
@@ -38,9 +83,17 @@ var server = http.createServer(function(request, response)
                     throw error;
                 }
 
+                // gzip / deflate
+                data = compress(request, response, data);
+
                 // Display the content
-                response.writeHead(200, {"Content-Type": mime});
-                response.end(data);
+                response.setHeader("Content-Type", mime);
+                response.statusCode = 200;
+                if (data instanceof Stream) {
+                    data.pipe(response);
+                } else {
+                    response.end(data);
+                }
             });
             return;
         }
@@ -48,8 +101,16 @@ var server = http.createServer(function(request, response)
         // Display the main HTML
         fs.readFile(mainHtml, function(error, data)
         {
-            response.writeHead(200, {"Content-Type": "text/html"});
-            response.end(data);
+            // gzip / deflate
+            data = compress(request, response, data);
+
+            response.setHeader("Content-Type", "text/html");
+            response.statusCode = 200;
+            if (data instanceof Stream) {
+                data.pipe(response);
+            } else {
+                response.end(data);
+            }
         });
     });
 });
