@@ -26047,6 +26047,59 @@ module.exports = warning;
 module.exports = require('./lib/React');
 
 },{"./lib/React":88}],216:[function(require,module,exports){
+module.exports={
+    "author": "neolao",
+    "license": "MIT",
+    "name": "recalbox-web",
+    "description": "Web interface for Recalbox",
+    "version": "0.1.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/neolao/recalbox-web.git"
+    },
+    "engines": {
+        "node": ">=0.12"
+    },
+    "main": "./bundle/Api.js",
+    "dependencies": {
+        "pm2"           : "0.14.*"
+    },
+    "devDependencies": {
+        "node-sass"                 : "3.2.*",
+        "foundation-sites"          : "5.5.2",
+        "async"                     : "1.4.*",
+        "counterpart"               : "0.16.*",
+        "react"                     : "0.13.*",
+        "react-router"              : "0.13.*",
+        "react-translate-component" : "0.9.*",
+        "watch-spawn"               : "1.0.*",
+        "browserify"                : "11.0.*",
+        "babelify"                  : "6.2.*",
+        "reactify"                  : "1.1.*",
+        "uglify"                    : "0.1.*"
+    },
+    "browserify": {
+        "transform": [
+            ["babelify"],
+            ["reactify"]
+        ]
+    },
+    "scripts"       :
+    {
+        "start"         : "pm2 startOrReload ./scripts/pm2-process-production.json",
+        "stop"          : "pm2 stop ./scripts/pm2-process-production.json",
+        "monitoring"    : "pm2 monit ./scripts/pm2-process-production.json",
+        "logs"          : "pm2 logs ./scripts/pm2-process-production.json",
+
+        "dev-start"     : "pm2 startOrReload ./scripts/pm2-process-development.json",
+        "dev-stop"      : "pm2 stop ./scripts/pm2-process-development.json",
+        "dev-restart"   : "pm2 restart ./scripts/pm2-process-development.json",
+        "dev-logs"      : "pm2 logs ./scripts/pm2-process-development.json",
+        "minify"        : "uglify -s ./web/javascripts/application.js -o ./web/javascripts/application.js"
+    }
+}
+
+},{}],217:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26126,7 +26179,7 @@ exports["default"] = Main;
 module.exports = exports["default"];
 
 
-},{"./components/Header.jsx":217,"./components/MenuOffCanvas.jsx":218,"react":215,"react-router":44}],217:[function(require,module,exports){
+},{"./components/Header.jsx":218,"./components/MenuOffCanvas.jsx":219,"react":215,"react-router":44}],218:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26147,6 +26200,10 @@ var _counterpart = require("counterpart");
 
 var _counterpart2 = _interopRequireDefault(_counterpart);
 
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
@@ -26154,10 +26211,6 @@ var _react2 = _interopRequireDefault(_react);
 var _reactRouter = require("react-router");
 
 var _reactRouter2 = _interopRequireDefault(_reactRouter);
-
-var _reactTranslateComponent = require("react-translate-component");
-
-var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
 
 var Link = _reactRouter2["default"].Link;
 
@@ -26168,23 +26221,35 @@ var Link = _reactRouter2["default"].Link;
 var Header = (function (_React$Component) {
     _inherits(Header, _React$Component);
 
-    function Header() {
+    /**
+     * Constructor
+     *
+     * @param   {object}    props   The properties
+     */
+
+    function Header(props) {
         _classCallCheck(this, Header);
 
-        _get(Object.getPrototypeOf(Header.prototype), "constructor", this).apply(this, arguments);
+        _get(Object.getPrototypeOf(Header.prototype), "constructor", this).call(this, props);
+
+        this.state = {
+            currentLocale: _counterpart2["default"].getLocale()
+        };
     }
+
+    /**
+     * The user changes the locale
+     *
+     * @param   {object}    event   The click event
+     */
 
     _createClass(Header, [{
         key: "onLocaleChange",
-
-        /**
-         * The user changes the locale
-         *
-         * @param   {object}    event   The click event
-         */
         value: function onLocaleChange(event) {
             var locale = event.target.attributes.getNamedItem("data-locale");
             _counterpart2["default"].setLocale(locale.value);
+
+            this.setState({ currentLocale: locale.value });
         }
 
         /**
@@ -26193,6 +26258,44 @@ var Header = (function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
+            // Build the language list
+            var availableLocales = _counterpart2["default"].getAvailableLocales();
+            var currentLocale = _counterpart2["default"].getLocale();
+            var languageList = [];
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = availableLocales[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var availableLocale = _step.value;
+
+                    var localeLabel = (0, _counterpart2["default"])("locale.label", { locale: availableLocale });
+                    languageList.push(_react2["default"].createElement(
+                        "li",
+                        { key: availableLocale },
+                        _react2["default"].createElement(
+                            "a",
+                            { "data-locale": availableLocale, onClick: this.onLocaleChange.bind(this) },
+                            localeLabel
+                        )
+                    ));
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator["return"]) {
+                        _iterator["return"]();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
             return _react2["default"].createElement(
                 "header",
                 null,
@@ -26273,7 +26376,7 @@ var Header = (function (_React$Component) {
                             { className: "right" },
                             _react2["default"].createElement(
                                 "li",
-                                { className: "has-dropdown" },
+                                { className: "has-dropdown", key: Math.random() },
                                 _react2["default"].createElement(
                                     "a",
                                     null,
@@ -26282,24 +26385,7 @@ var Header = (function (_React$Component) {
                                 _react2["default"].createElement(
                                     "ul",
                                     { className: "dropdown" },
-                                    _react2["default"].createElement(
-                                        "li",
-                                        null,
-                                        _react2["default"].createElement(
-                                            "a",
-                                            { "data-locale": "en_US", onClick: this.onLocaleChange },
-                                            "English"
-                                        )
-                                    ),
-                                    _react2["default"].createElement(
-                                        "li",
-                                        null,
-                                        _react2["default"].createElement(
-                                            "a",
-                                            { "data-locale": "fr_FR", onClick: this.onLocaleChange },
-                                            "Français"
-                                        )
-                                    )
+                                    languageList
                                 )
                             )
                         )
@@ -26316,7 +26402,7 @@ exports["default"] = Header;
 module.exports = exports["default"];
 
 
-},{"counterpart":7,"react":215,"react-router":44,"react-translate-component":59}],218:[function(require,module,exports){
+},{"counterpart":7,"react":215,"react-router":44,"react-translate-component":59}],219:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26332,6 +26418,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _counterpart = require("counterpart");
+
+var _counterpart2 = _interopRequireDefault(_counterpart);
 
 var _react = require("react");
 
@@ -26355,19 +26445,85 @@ var Link = _reactRouter2["default"].Link;
 var MenuOffCanvas = (function (_React$Component) {
     _inherits(MenuOffCanvas, _React$Component);
 
-    function MenuOffCanvas() {
+    /**
+     * Constructor
+     *
+     * @param   {object}    props   The properties
+     */
+
+    function MenuOffCanvas(props) {
         _classCallCheck(this, MenuOffCanvas);
 
-        _get(Object.getPrototypeOf(MenuOffCanvas.prototype), "constructor", this).apply(this, arguments);
+        _get(Object.getPrototypeOf(MenuOffCanvas.prototype), "constructor", this).call(this, props);
+
+        this.state = {
+            currentLocale: _counterpart2["default"].getLocale()
+        };
     }
 
+    /**
+     * The user changes the locale
+     *
+     * @param   {object}    event   The click event
+     */
+
     _createClass(MenuOffCanvas, [{
-        key: "render",
+        key: "onLocaleChange",
+        value: function onLocaleChange(event) {
+            var locale = event.target.attributes.getNamedItem("data-locale");
+            _counterpart2["default"].setLocale(locale.value);
+
+            this.setState({ currentLocale: locale.value });
+        }
 
         /**
          * render the copmonent
          */
+    }, {
+        key: "render",
         value: function render() {
+            // Build the language list
+            var availableLocales = _counterpart2["default"].getAvailableLocales();
+            var currentLocale = _counterpart2["default"].getLocale();
+            var languageList = [];
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = availableLocales[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var availableLocale = _step.value;
+
+                    var localeLabel = (0, _counterpart2["default"])("locale.label", { locale: availableLocale });
+                    var linkClassName = "menu-off-canvas__link";
+                    if (availableLocale === currentLocale) {
+                        linkClassName += " menu-off-canvas__link--active";
+                    }
+                    languageList.push(_react2["default"].createElement(
+                        "li",
+                        { className: "menu-off-canvas__item", key: availableLocale },
+                        _react2["default"].createElement(
+                            "a",
+                            { className: linkClassName, "data-locale": availableLocale, onClick: this.onLocaleChange.bind(this) },
+                            localeLabel
+                        )
+                    ));
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator["return"]) {
+                        _iterator["return"]();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
             return _react2["default"].createElement(
                 "nav",
                 { className: "menu-off-canvas left-off-canvas-menu" },
@@ -26529,6 +26685,20 @@ var MenuOffCanvas = (function (_React$Component) {
                                 )
                             )
                         )
+                    ),
+                    _react2["default"].createElement(
+                        "li",
+                        null,
+                        _react2["default"].createElement(
+                            "span",
+                            { className: "menu-off-canvas__section-title" },
+                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.language" })
+                        ),
+                        _react2["default"].createElement(
+                            "ul",
+                            { className: "menu-off-canvas__section" },
+                            languageList
+                        )
                     )
                 )
             );
@@ -26542,7 +26712,7 @@ exports["default"] = MenuOffCanvas;
 module.exports = exports["default"];
 
 
-},{"react":215,"react-router":44,"react-translate-component":59}],219:[function(require,module,exports){
+},{"counterpart":7,"react":215,"react-router":44,"react-translate-component":59}],220:[function(require,module,exports){
 "use strict";
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -26562,6 +26732,10 @@ var _react2 = _interopRequireDefault(_react);
 var _reactRouter = require("react-router");
 
 var _reactRouter2 = _interopRequireDefault(_reactRouter);
+
+var _packageJson = require("../../package.json");
+
+var _packageJson2 = _interopRequireDefault(_packageJson);
 
 // Initialize translations
 
@@ -26619,16 +26793,38 @@ var _pagesGamesListingPageJsx = require("./pages/games/ListingPage.jsx");
 
 var _pagesGamesListingPageJsx2 = _interopRequireDefault(_pagesGamesListingPageJsx);
 
+var _pagesGamesBiosPageJsx = require("./pages/games/BiosPage.jsx");
+
+var _pagesGamesBiosPageJsx2 = _interopRequireDefault(_pagesGamesBiosPageJsx);
+
+var _pagesGamesSavesPageJsx = require("./pages/games/SavesPage.jsx");
+
+var _pagesGamesSavesPageJsx2 = _interopRequireDefault(_pagesGamesSavesPageJsx);
+
+var _pagesGamesScreenshotsPageJsx = require("./pages/games/ScreenshotsPage.jsx");
+
+var _pagesGamesScreenshotsPageJsx2 = _interopRequireDefault(_pagesGamesScreenshotsPageJsx);
+
 var _pagesAdvancedPageJsx = require("./pages/AdvancedPage.jsx");
 
 var _pagesAdvancedPageJsx2 = _interopRequireDefault(_pagesAdvancedPageJsx);
+
+var _pagesAdvancedConfigPageJsx = require("./pages/advanced/ConfigPage.jsx");
+
+var _pagesAdvancedConfigPageJsx2 = _interopRequireDefault(_pagesAdvancedConfigPageJsx);
+
+var _pagesAdvancedLogsPageJsx = require("./pages/advanced/LogsPage.jsx");
+
+var _pagesAdvancedLogsPageJsx2 = _interopRequireDefault(_pagesAdvancedLogsPageJsx);
 
 var Route = _reactRouter2["default"].Route;
 var DefaultRoute = _reactRouter2["default"].DefaultRoute;
 var HistoryLocation = _reactRouter2["default"].HistoryLocation;
 _counterpart2["default"].registerTranslations("en_US", _translationsEn_USJson2["default"].messages);
 _counterpart2["default"].registerTranslations("fr_FR", _translationsFr_FRJson2["default"].messages);
+_counterpart2["default"].setAvailableLocales(["en_US", "fr_FR"]);
 _counterpart2["default"].setLocale("en_US");
+_counterpart2["default"].setFallbackLocale("en_US");
 var routes = _react2["default"].createElement(
     Route,
     { name: "main", path: "/", handler: _MainJsx2["default"] },
@@ -26646,16 +26842,16 @@ var routes = _react2["default"].createElement(
     _react2["default"].createElement(
         Route,
         { name: "games", path: "/games", handler: _pagesGamesPageJsx2["default"] },
-        _react2["default"].createElement(Route, { name: "games:listing", path: "/games/bios", handler: _pagesGamesListingPageJsx2["default"] }),
-        _react2["default"].createElement(Route, { name: "games:bios", path: "/games/bios", handler: _pagesGamesListingPageJsx2["default"] }),
-        _react2["default"].createElement(Route, { name: "games:saves", path: "/games/saves", handler: _pagesGamesListingPageJsx2["default"] }),
-        _react2["default"].createElement(Route, { name: "games:screenshots", path: "/games/screenshots", handler: _pagesGamesListingPageJsx2["default"] })
+        _react2["default"].createElement(Route, { name: "games:listing", path: "/games/listing", handler: _pagesGamesListingPageJsx2["default"] }),
+        _react2["default"].createElement(Route, { name: "games:bios", path: "/games/bios", handler: _pagesGamesBiosPageJsx2["default"] }),
+        _react2["default"].createElement(Route, { name: "games:saves", path: "/games/saves", handler: _pagesGamesSavesPageJsx2["default"] }),
+        _react2["default"].createElement(Route, { name: "games:screenshots", path: "/games/screenshots", handler: _pagesGamesScreenshotsPageJsx2["default"] })
     ),
     _react2["default"].createElement(
         Route,
         { name: "advanced", path: "/advanced", handler: _pagesAdvancedPageJsx2["default"] },
-        _react2["default"].createElement(Route, { name: "advanced:config", path: "/advanced/config", handler: _pagesGamesListingPageJsx2["default"] }),
-        _react2["default"].createElement(Route, { name: "advanced:logs", path: "/advanced/logs", handler: _pagesGamesListingPageJsx2["default"] })
+        _react2["default"].createElement(Route, { name: "advanced:config", path: "/advanced/config", handler: _pagesAdvancedConfigPageJsx2["default"] }),
+        _react2["default"].createElement(Route, { name: "advanced:logs", path: "/advanced/logs", handler: _pagesAdvancedLogsPageJsx2["default"] })
     )
 );
 _reactRouter2["default"].run(routes, HistoryLocation, function (Handler) {
@@ -26663,7 +26859,7 @@ _reactRouter2["default"].run(routes, HistoryLocation, function (Handler) {
 });
 
 
-},{"../../translations/en_US.json":231,"../../translations/fr_FR.json":232,"./Main.jsx":216,"./pages/AdvancedPage.jsx":220,"./pages/ConfigPage.jsx":221,"./pages/GamesPage.jsx":222,"./pages/HomePage.jsx":223,"./pages/config/AudioPage.jsx":224,"./pages/config/ControllersPage.jsx":225,"./pages/config/EmulatorsPage.jsx":226,"./pages/config/GeneralPage.jsx":227,"./pages/config/KodiPage.jsx":228,"./pages/config/NetworkPage.jsx":229,"./pages/games/ListingPage.jsx":230,"async":1,"counterpart":7,"react":215,"react-router":44}],220:[function(require,module,exports){
+},{"../../package.json":216,"../../translations/en_US.json":237,"../../translations/fr_FR.json":238,"./Main.jsx":217,"./pages/AdvancedPage.jsx":221,"./pages/ConfigPage.jsx":222,"./pages/GamesPage.jsx":223,"./pages/HomePage.jsx":224,"./pages/advanced/ConfigPage.jsx":225,"./pages/advanced/LogsPage.jsx":226,"./pages/config/AudioPage.jsx":227,"./pages/config/ControllersPage.jsx":228,"./pages/config/EmulatorsPage.jsx":229,"./pages/config/GeneralPage.jsx":230,"./pages/config/KodiPage.jsx":231,"./pages/config/NetworkPage.jsx":232,"./pages/games/BiosPage.jsx":233,"./pages/games/ListingPage.jsx":234,"./pages/games/SavesPage.jsx":235,"./pages/games/ScreenshotsPage.jsx":236,"async":1,"counterpart":7,"react":215,"react-router":44}],221:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26717,19 +26913,19 @@ var AdvancedPage = (function (_React$Component) {
         value: function render() {
             return _react2["default"].createElement(
                 "div",
-                { className: "layout" },
+                { className: "page-layout" },
                 _react2["default"].createElement(
                     "aside",
-                    { className: "layout__sidebar hide-for-small" },
+                    { className: "page-layout__sidebar hide-for-small" },
                     _react2["default"].createElement(
                         "ul",
-                        { className: "side-nav" },
+                        { className: "menu-sidebar" },
                         _react2["default"].createElement(
                             "li",
                             null,
                             _react2["default"].createElement(
                                 Link,
-                                { to: "advanced:config" },
+                                { to: "advanced:config", className: "menu-sidebar__link" },
                                 _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.recalbox.conf" })
                             )
                         ),
@@ -26738,7 +26934,7 @@ var AdvancedPage = (function (_React$Component) {
                             null,
                             _react2["default"].createElement(
                                 Link,
-                                { to: "advanced:logs" },
+                                { to: "advanced:logs", className: "menu-sidebar__link" },
                                 _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.logs" })
                             )
                         )
@@ -26746,7 +26942,7 @@ var AdvancedPage = (function (_React$Component) {
                 ),
                 _react2["default"].createElement(
                     "main",
-                    { className: "layout__content" },
+                    { className: "page-layout__content" },
                     _react2["default"].createElement(RouteHandler, null)
                 )
             );
@@ -26760,7 +26956,7 @@ exports["default"] = AdvancedPage;
 module.exports = exports["default"];
 
 
-},{"react":215,"react-router":44,"react-translate-component":59}],221:[function(require,module,exports){
+},{"react":215,"react-router":44,"react-translate-component":59}],222:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26814,19 +27010,19 @@ var ConfigPage = (function (_React$Component) {
         value: function render() {
             return _react2["default"].createElement(
                 "div",
-                { className: "layout" },
+                { className: "page-layout" },
                 _react2["default"].createElement(
                     "aside",
-                    { className: "layout__sidebar hide-for-small" },
+                    { className: "page-layout__sidebar hide-for-small" },
                     _react2["default"].createElement(
                         "ul",
-                        { className: "side-nav" },
+                        { className: "menu-sidebar" },
                         _react2["default"].createElement(
                             "li",
                             null,
                             _react2["default"].createElement(
                                 Link,
-                                { to: "configuration:general" },
+                                { to: "configuration:general", className: "menu-sidebar__link" },
                                 _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.general" })
                             )
                         ),
@@ -26835,7 +27031,7 @@ var ConfigPage = (function (_React$Component) {
                             null,
                             _react2["default"].createElement(
                                 Link,
-                                { to: "configuration:kodi" },
+                                { to: "configuration:kodi", className: "menu-sidebar__link" },
                                 _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.kodi" })
                             )
                         ),
@@ -26844,7 +27040,7 @@ var ConfigPage = (function (_React$Component) {
                             null,
                             _react2["default"].createElement(
                                 Link,
-                                { to: "configuration:network" },
+                                { to: "configuration:network", className: "menu-sidebar__link" },
                                 _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.network" })
                             )
                         ),
@@ -26853,7 +27049,7 @@ var ConfigPage = (function (_React$Component) {
                             null,
                             _react2["default"].createElement(
                                 Link,
-                                { to: "configuration:audio" },
+                                { to: "configuration:audio", className: "menu-sidebar__link" },
                                 _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.audio" })
                             )
                         ),
@@ -26862,7 +27058,7 @@ var ConfigPage = (function (_React$Component) {
                             null,
                             _react2["default"].createElement(
                                 Link,
-                                { to: "configuration:controllers" },
+                                { to: "configuration:controllers", className: "menu-sidebar__link" },
                                 _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.controllers" })
                             )
                         ),
@@ -26871,7 +27067,7 @@ var ConfigPage = (function (_React$Component) {
                             null,
                             _react2["default"].createElement(
                                 Link,
-                                { to: "configuration:emulators" },
+                                { to: "configuration:emulators", className: "menu-sidebar__link" },
                                 _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.emulators" })
                             )
                         )
@@ -26879,7 +27075,7 @@ var ConfigPage = (function (_React$Component) {
                 ),
                 _react2["default"].createElement(
                     "main",
-                    { className: "layout__content" },
+                    { className: "page-layout__content" },
                     _react2["default"].createElement(RouteHandler, null)
                 )
             );
@@ -26893,7 +27089,7 @@ exports["default"] = ConfigPage;
 module.exports = exports["default"];
 
 
-},{"react":215,"react-router":44,"react-translate-component":59}],222:[function(require,module,exports){
+},{"react":215,"react-router":44,"react-translate-component":59}],223:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26947,19 +27143,19 @@ var GamesPage = (function (_React$Component) {
         value: function render() {
             return _react2["default"].createElement(
                 "div",
-                { className: "layout" },
+                { className: "page-layout" },
                 _react2["default"].createElement(
                     "aside",
-                    { className: "layout__sidebar hide-for-small" },
+                    { className: "page-layout__sidebar hide-for-small" },
                     _react2["default"].createElement(
                         "ul",
-                        { className: "side-nav" },
+                        { className: "menu-sidebar" },
                         _react2["default"].createElement(
                             "li",
                             null,
                             _react2["default"].createElement(
                                 Link,
-                                { to: "games:listing" },
+                                { to: "games:listing", className: "menu-sidebar__link" },
                                 _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.listing" })
                             )
                         ),
@@ -26968,7 +27164,7 @@ var GamesPage = (function (_React$Component) {
                             null,
                             _react2["default"].createElement(
                                 Link,
-                                { to: "games:bios" },
+                                { to: "games:bios", className: "menu-sidebar__link" },
                                 _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.bios" })
                             )
                         ),
@@ -26977,7 +27173,7 @@ var GamesPage = (function (_React$Component) {
                             null,
                             _react2["default"].createElement(
                                 Link,
-                                { to: "games:saves" },
+                                { to: "games:saves", className: "menu-sidebar__link" },
                                 _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.saves" })
                             )
                         ),
@@ -26986,7 +27182,7 @@ var GamesPage = (function (_React$Component) {
                             null,
                             _react2["default"].createElement(
                                 Link,
-                                { to: "games:screenshots" },
+                                { to: "games:screenshots", className: "menu-sidebar__link" },
                                 _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.screenshots" })
                             )
                         )
@@ -26994,7 +27190,7 @@ var GamesPage = (function (_React$Component) {
                 ),
                 _react2["default"].createElement(
                     "main",
-                    { className: "layout__content" },
+                    { className: "page-layout__content" },
                     _react2["default"].createElement(RouteHandler, null)
                 )
             );
@@ -27008,7 +27204,7 @@ exports["default"] = GamesPage;
 module.exports = exports["default"];
 
 
-},{"react":215,"react-router":44,"react-translate-component":59}],223:[function(require,module,exports){
+},{"react":215,"react-router":44,"react-translate-component":59}],224:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27028,6 +27224,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
+
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
 
 /**
  * The homepage
@@ -27050,12 +27250,12 @@ var HomePage = (function (_React$Component) {
          */
         value: function render() {
             return _react2["default"].createElement(
-                "div",
-                null,
+                "article",
+                { className: "page" },
                 _react2["default"].createElement(
-                    "p",
-                    null,
-                    "Homepage"
+                    "h1",
+                    { className: "page__title" },
+                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.homepage" })
                 )
             );
         }
@@ -27068,7 +27268,145 @@ exports["default"] = HomePage;
 module.exports = exports["default"];
 
 
-},{"react":215}],224:[function(require,module,exports){
+},{"react":215,"react-translate-component":59}],225:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
+/**
+ * The main configuration file (recalbox.conf)
+ */
+
+var ConfigPage = (function (_React$Component) {
+    _inherits(ConfigPage, _React$Component);
+
+    function ConfigPage() {
+        _classCallCheck(this, ConfigPage);
+
+        _get(Object.getPrototypeOf(ConfigPage.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(ConfigPage, [{
+        key: "render",
+
+        /**
+         * render the component
+         */
+        value: function render() {
+            return _react2["default"].createElement(
+                "article",
+                { className: "page" },
+                _react2["default"].createElement(
+                    "h1",
+                    { className: "page__title" },
+                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.recalbox.conf" })
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    "Lorem ipsum"
+                )
+            );
+        }
+    }]);
+
+    return ConfigPage;
+})(_react2["default"].Component);
+
+exports["default"] = ConfigPage;
+module.exports = exports["default"];
+
+
+},{"react":215,"react-translate-component":59}],226:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
+/**
+ * The logs
+ */
+
+var LogsPage = (function (_React$Component) {
+    _inherits(LogsPage, _React$Component);
+
+    function LogsPage() {
+        _classCallCheck(this, LogsPage);
+
+        _get(Object.getPrototypeOf(LogsPage.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(LogsPage, [{
+        key: "render",
+
+        /**
+         * render the component
+         */
+        value: function render() {
+            return _react2["default"].createElement(
+                "article",
+                { className: "page" },
+                _react2["default"].createElement(
+                    "h1",
+                    { className: "page__title" },
+                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.logs" })
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    "Lorem ipsum"
+                )
+            );
+        }
+    }]);
+
+    return LogsPage;
+})(_react2["default"].Component);
+
+exports["default"] = LogsPage;
+module.exports = exports["default"];
+
+
+},{"react":215,"react-translate-component":59}],227:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27114,11 +27452,11 @@ var AudioPage = (function (_React$Component) {
          */
         value: function render() {
             return _react2["default"].createElement(
-                "div",
-                null,
+                "article",
+                { className: "page" },
                 _react2["default"].createElement(
                     "h1",
-                    null,
+                    { className: "page__title" },
                     _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.audio" })
                 ),
                 _react2["default"].createElement(
@@ -27137,7 +27475,7 @@ exports["default"] = AudioPage;
 module.exports = exports["default"];
 
 
-},{"react":215,"react-translate-component":59}],225:[function(require,module,exports){
+},{"react":215,"react-translate-component":59}],228:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27183,11 +27521,11 @@ var ControllersPage = (function (_React$Component) {
          */
         value: function render() {
             return _react2["default"].createElement(
-                "div",
-                null,
+                "article",
+                { className: "page" },
                 _react2["default"].createElement(
                     "h1",
-                    null,
+                    { className: "page__title" },
                     _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.controllers" })
                 ),
                 _react2["default"].createElement(
@@ -27206,7 +27544,7 @@ exports["default"] = ControllersPage;
 module.exports = exports["default"];
 
 
-},{"react":215,"react-translate-component":59}],226:[function(require,module,exports){
+},{"react":215,"react-translate-component":59}],229:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27252,11 +27590,11 @@ var EmulatorsPage = (function (_React$Component) {
          */
         value: function render() {
             return _react2["default"].createElement(
-                "div",
-                null,
+                "article",
+                { className: "page" },
                 _react2["default"].createElement(
                     "h1",
-                    null,
+                    { className: "page__title" },
                     _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.emulators" })
                 ),
                 _react2["default"].createElement(
@@ -27275,7 +27613,7 @@ exports["default"] = EmulatorsPage;
 module.exports = exports["default"];
 
 
-},{"react":215,"react-translate-component":59}],227:[function(require,module,exports){
+},{"react":215,"react-translate-component":59}],230:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27321,17 +27659,816 @@ var GeneralPage = (function (_React$Component) {
          */
         value: function render() {
             return _react2["default"].createElement(
-                "div",
-                null,
+                "article",
+                { className: "page" },
                 _react2["default"].createElement(
                     "h1",
-                    null,
+                    { className: "page__title" },
                     _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.general" })
                 ),
                 _react2["default"].createElement(
-                    "p",
-                    null,
-                    "Lorem ipsum"
+                    "div",
+                    { className: "large-6" },
+                    _react2["default"].createElement(
+                        "label",
+                        null,
+                        _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.language.label" }),
+                        _react2["default"].createElement(
+                            "select",
+                            null,
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "en_US" },
+                                "English (US)"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "en_GB" },
+                                "English (GB)"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "fr_FR" },
+                                "Français"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "de_DE" },
+                                "Deutsche"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "pt_BR" },
+                                "Português"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "es_ES" },
+                                "Español"
+                            )
+                        )
+                    )
+                ),
+                _react2["default"].createElement(
+                    "div",
+                    { className: "large-6" },
+                    _react2["default"].createElement(
+                        "label",
+                        null,
+                        _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.keyboardlayout.label" }),
+                        _react2["default"].createElement(
+                            "select",
+                            null,
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "us" },
+                                "English (US)"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "en" },
+                                "English (UK)"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "fr" },
+                                "Français"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "de" },
+                                "Deutsche"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "es" },
+                                "Español"
+                            )
+                        )
+                    )
+                ),
+                _react2["default"].createElement(
+                    "div",
+                    { className: "large-6" },
+                    _react2["default"].createElement(
+                        "label",
+                        null,
+                        _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.timezone.label" }),
+                        _react2["default"].createElement(
+                            "select",
+                            null,
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Pacific/Midway" },
+                                "Pacific/Midway"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Pacific/Samoa" },
+                                "Pacific/Samoa"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Pacific/Honolulu" },
+                                "Pacific/Honolulu"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "US/Alaska" },
+                                "US/Alaska"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Los_Angeles" },
+                                "America/Los_Angeles"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Tijuana" },
+                                "America/Tijuana"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "US/Arizona" },
+                                "US/Arizona"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Chihuahua" },
+                                "America/Chihuahua"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Chihuahua" },
+                                "America/Chihuahua"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Mazatlan" },
+                                "America/Mazatlan"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "US/Mountain" },
+                                "US/Mountain"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Managua" },
+                                "America/Managua"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "US/Central" },
+                                "US/Central"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Mexico_City" },
+                                "America/Mexico_City"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Mexico_City" },
+                                "America/Mexico_City"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Monterrey" },
+                                "America/Monterrey"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Canada/Saskatchewan" },
+                                "Canada/Saskatchewan"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Bogota" },
+                                "America/Bogota"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "US/Eastern" },
+                                "US/Eastern"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "US/East-Indiana" },
+                                "US/East-Indiana"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Lima" },
+                                "America/Lima"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Bogota" },
+                                "America/Bogota"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Canada/Atlantic" },
+                                "Canada/Atlantic"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Caracas" },
+                                "America/Caracas"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/La_Paz" },
+                                "America/La_Paz"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Santiago" },
+                                "America/Santiago"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Canada/Newfoundland" },
+                                "Canada/Newfoundland"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Sao_Paulo" },
+                                "America/Sao_Paulo"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Argentina/Buenos_Aires" },
+                                "America/Argentina/Buenos_Aires"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Argentina/Buenos_Aires" },
+                                "America/Argentina/Buenos_Aires"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Godthab" },
+                                "America/Godthab"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "America/Noronha" },
+                                "America/Noronha"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Atlantic/Azores" },
+                                "Atlantic/Azores"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Atlantic/Cape_Verde" },
+                                "Atlantic/Cape_Verde"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Africa/Casablanca" },
+                                "Africa/Casablanca"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/London" },
+                                "Europe/London"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Etc/Greenwich" },
+                                "Etc/Greenwich"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Lisbon" },
+                                "Europe/Lisbon"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/London" },
+                                "Europe/London"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Africa/Monrovia" },
+                                "Africa/Monrovia"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Amsterdam" },
+                                "Europe/Amsterdam"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Belgrade" },
+                                "Europe/Belgrade"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Berlin" },
+                                "Europe/Berlin"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Berlin" },
+                                "Europe/Berlin"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Bratislava" },
+                                "Europe/Bratislava"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Brussels" },
+                                "Europe/Brussels"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Budapest" },
+                                "Europe/Budapest"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Copenhagen" },
+                                "Europe/Copenhagen"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Ljubljana" },
+                                "Europe/Ljubljana"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Madrid" },
+                                "Europe/Madrid"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Paris" },
+                                "Europe/Paris"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Prague" },
+                                "Europe/Prague"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Rome" },
+                                "Europe/Rome"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Sarajevo" },
+                                "Europe/Sarajevo"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Skopje" },
+                                "Europe/Skopje"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Stockholm" },
+                                "Europe/Stockholm"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Vienna" },
+                                "Europe/Vienna"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Warsaw" },
+                                "Europe/Warsaw"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Africa/Lagos" },
+                                "Africa/Lagos"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Zagreb" },
+                                "Europe/Zagreb"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Athens" },
+                                "Europe/Athens"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Bucharest" },
+                                "Europe/Bucharest"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Africa/Cairo" },
+                                "Africa/Cairo"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Africa/Harare" },
+                                "Africa/Harare"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Helsinki" },
+                                "Europe/Helsinki"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Istanbul" },
+                                "Europe/Istanbul"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Jerusalem" },
+                                "Asia/Jerusalem"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Helsinki" },
+                                "Europe/Helsinki"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Africa/Johannesburg" },
+                                "Africa/Johannesburg"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Riga" },
+                                "Europe/Riga"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Sofia" },
+                                "Europe/Sofia"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Tallinn" },
+                                "Europe/Tallinn"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Vilnius" },
+                                "Europe/Vilnius"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Baghdad" },
+                                "Asia/Baghdad"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Kuwait" },
+                                "Asia/Kuwait"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Minsk" },
+                                "Europe/Minsk"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Africa/Nairobi" },
+                                "Africa/Nairobi"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Riyadh" },
+                                "Asia/Riyadh"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Volgograd" },
+                                "Europe/Volgograd"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Tehran" },
+                                "Asia/Tehran"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Muscat" },
+                                "Asia/Muscat"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Baku" },
+                                "Asia/Baku"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Moscow" },
+                                "Europe/Moscow"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Muscat" },
+                                "Asia/Muscat"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Europe/Moscow" },
+                                "Europe/Moscow"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Tbilisi" },
+                                "Asia/Tbilisi"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Yerevan" },
+                                "Asia/Yerevan"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Kabul" },
+                                "Asia/Kabul"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Karachi" },
+                                "Asia/Karachi"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Karachi" },
+                                "Asia/Karachi"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Tashkent" },
+                                "Asia/Tashkent"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Calcutta" },
+                                "Asia/Calcutta"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Kolkata" },
+                                "Asia/Kolkata"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Calcutta" },
+                                "Asia/Calcutta"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Calcutta" },
+                                "Asia/Calcutta"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Calcutta" },
+                                "Asia/Calcutta"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Katmandu" },
+                                "Asia/Katmandu"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Almaty" },
+                                "Asia/Almaty"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Dhaka" },
+                                "Asia/Dhaka"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Dhaka" },
+                                "Asia/Dhaka"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Yekaterinburg" },
+                                "Asia/Yekaterinburg"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Rangoon" },
+                                "Asia/Rangoon"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Bangkok" },
+                                "Asia/Bangkok"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Bangkok" },
+                                "Asia/Bangkok"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Jakarta" },
+                                "Asia/Jakarta"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Novosibirsk" },
+                                "Asia/Novosibirsk"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Hong_Kong" },
+                                "Asia/Hong_Kong"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Chongqing" },
+                                "Asia/Chongqing"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Hong_Kong" },
+                                "Asia/Hong_Kong"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Krasnoyarsk" },
+                                "Asia/Krasnoyarsk"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Kuala_Lumpur" },
+                                "Asia/Kuala_Lumpur"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Australia/Perth" },
+                                "Australia/Perth"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Singapore" },
+                                "Asia/Singapore"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Taipei" },
+                                "Asia/Taipei"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Ulan_Bator" },
+                                "Asia/Ulan_Bator"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Urumqi" },
+                                "Asia/Urumqi"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Irkutsk" },
+                                "Asia/Irkutsk"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Tokyo" },
+                                "Asia/Tokyo"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Tokyo" },
+                                "Asia/Tokyo"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Seoul" },
+                                "Asia/Seoul"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Tokyo" },
+                                "Asia/Tokyo"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Australia/Adelaide" },
+                                "Australia/Adelaide"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Australia/Darwin" },
+                                "Australia/Darwin"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Australia/Brisbane" },
+                                "Australia/Brisbane"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Australia/Canberra" },
+                                "Australia/Canberra"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Pacific/Guam" },
+                                "Pacific/Guam"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Australia/Hobart" },
+                                "Australia/Hobart"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Australia/Melbourne" },
+                                "Australia/Melbourne"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Pacific/Port_Moresby" },
+                                "Pacific/Port_Moresby"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Australia/Sydney" },
+                                "Australia/Sydney"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Yakutsk" },
+                                "Asia/Yakutsk"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Vladivostok" },
+                                "Asia/Vladivostok"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Pacific/Auckland" },
+                                "Pacific/Auckland"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Pacific/Fiji" },
+                                "Pacific/Fiji"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Pacific/Kwajalein" },
+                                "Pacific/Kwajalein"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Kamchatka" },
+                                "Asia/Kamchatka"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Magadan" },
+                                "Asia/Magadan"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Pacific/Fiji" },
+                                "Pacific/Fiji"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Magadan" },
+                                "Asia/Magadan"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Asia/Magadan" },
+                                "Asia/Magadan"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Pacific/Auckland" },
+                                "Pacific/Auckland"
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "Pacific/Tongatapu" },
+                                "Pacific/Tongatapu"
+                            )
+                        )
+                    )
                 )
             );
         }
@@ -27344,7 +28481,7 @@ exports["default"] = GeneralPage;
 module.exports = exports["default"];
 
 
-},{"react":215,"react-translate-component":59}],228:[function(require,module,exports){
+},{"react":215,"react-translate-component":59}],231:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27390,17 +28527,81 @@ var KodiPage = (function (_React$Component) {
          */
         value: function render() {
             return _react2["default"].createElement(
-                "div",
-                null,
+                "article",
+                { className: "page" },
                 _react2["default"].createElement(
                     "h1",
-                    null,
+                    { className: "page__title" },
                     _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.kodi" })
                 ),
                 _react2["default"].createElement(
-                    "p",
-                    null,
-                    "Lorem ipsum"
+                    "div",
+                    { className: "clearfix" },
+                    _react2["default"].createElement(
+                        "div",
+                        { className: "small-2 medium-2 large-1 columns" },
+                        _react2["default"].createElement(
+                            "div",
+                            { className: "form-switch switch tiny" },
+                            _react2["default"].createElement("input", { type: "checkbox", id: "enabled" }),
+                            _react2["default"].createElement("label", { htmlFor: "enabled" })
+                        )
+                    ),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: "small-10 medium-6 large-5 columns end" },
+                        _react2["default"].createElement(
+                            "label",
+                            { htmlFor: "enabled" },
+                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.kodi.enabled.label" })
+                        )
+                    )
+                ),
+                _react2["default"].createElement(
+                    "div",
+                    { className: "clearfix" },
+                    _react2["default"].createElement(
+                        "div",
+                        { className: "small-2 medium-2 large-1 columns" },
+                        _react2["default"].createElement(
+                            "div",
+                            { className: "form-switch switch tiny" },
+                            _react2["default"].createElement("input", { type: "checkbox", id: "atstartup" }),
+                            _react2["default"].createElement("label", { htmlFor: "atstartup" })
+                        )
+                    ),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: "small-10 medium-6 large-5 columns end" },
+                        _react2["default"].createElement(
+                            "label",
+                            { htmlFor: "atstartup" },
+                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.kodi.atstartup.label" })
+                        )
+                    )
+                ),
+                _react2["default"].createElement(
+                    "div",
+                    { className: "clearfix" },
+                    _react2["default"].createElement(
+                        "div",
+                        { className: "small-2 medium-2 large-1 columns" },
+                        _react2["default"].createElement(
+                            "div",
+                            { className: "form-switch switch tiny" },
+                            _react2["default"].createElement("input", { type: "checkbox", id: "xbutton" }),
+                            _react2["default"].createElement("label", { htmlFor: "xbutton" })
+                        )
+                    ),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: "small-10 medium-6 large-5 columns end" },
+                        _react2["default"].createElement(
+                            "label",
+                            { htmlFor: "xbutton" },
+                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.kodi.xbutton.label" })
+                        )
+                    )
                 )
             );
         }
@@ -27413,7 +28614,7 @@ exports["default"] = KodiPage;
 module.exports = exports["default"];
 
 
-},{"react":215,"react-translate-component":59}],229:[function(require,module,exports){
+},{"react":215,"react-translate-component":59}],232:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27459,11 +28660,11 @@ var NetworkPage = (function (_React$Component) {
          */
         value: function render() {
             return _react2["default"].createElement(
-                "div",
-                null,
+                "article",
+                { className: "page" },
                 _react2["default"].createElement(
                     "h1",
-                    null,
+                    { className: "page__title" },
                     _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.network" })
                 ),
                 _react2["default"].createElement(
@@ -27482,7 +28683,7 @@ exports["default"] = NetworkPage;
 module.exports = exports["default"];
 
 
-},{"react":215,"react-translate-component":59}],230:[function(require,module,exports){
+},{"react":215,"react-translate-component":59}],233:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27502,6 +28703,79 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
+
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
+/**
+ * The system BIOS
+ */
+
+var BiosPage = (function (_React$Component) {
+    _inherits(BiosPage, _React$Component);
+
+    function BiosPage() {
+        _classCallCheck(this, BiosPage);
+
+        _get(Object.getPrototypeOf(BiosPage.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(BiosPage, [{
+        key: "render",
+
+        /**
+         * render the component
+         */
+        value: function render() {
+            return _react2["default"].createElement(
+                "article",
+                { className: "page" },
+                _react2["default"].createElement(
+                    "h1",
+                    { className: "page__title" },
+                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.bios" })
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    "Lorem ipsum"
+                )
+            );
+        }
+    }]);
+
+    return BiosPage;
+})(_react2["default"].Component);
+
+exports["default"] = BiosPage;
+module.exports = exports["default"];
+
+
+},{"react":215,"react-translate-component":59}],234:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
 
 /**
  * The listing of games
@@ -27524,12 +28798,12 @@ var ListingPage = (function (_React$Component) {
          */
         value: function render() {
             return _react2["default"].createElement(
-                "div",
-                null,
+                "article",
+                { className: "page" },
                 _react2["default"].createElement(
                     "h1",
-                    null,
-                    "Title"
+                    { className: "page__title" },
+                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.games.listing" })
                 ),
                 _react2["default"].createElement(
                     "p",
@@ -27547,7 +28821,145 @@ exports["default"] = ListingPage;
 module.exports = exports["default"];
 
 
-},{"react":215}],231:[function(require,module,exports){
+},{"react":215,"react-translate-component":59}],235:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
+/**
+ * The game saves
+ */
+
+var SavesPage = (function (_React$Component) {
+    _inherits(SavesPage, _React$Component);
+
+    function SavesPage() {
+        _classCallCheck(this, SavesPage);
+
+        _get(Object.getPrototypeOf(SavesPage.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(SavesPage, [{
+        key: "render",
+
+        /**
+         * render the component
+         */
+        value: function render() {
+            return _react2["default"].createElement(
+                "article",
+                { className: "page" },
+                _react2["default"].createElement(
+                    "h1",
+                    { className: "page__title" },
+                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.saves" })
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    "Lorem ipsum"
+                )
+            );
+        }
+    }]);
+
+    return SavesPage;
+})(_react2["default"].Component);
+
+exports["default"] = SavesPage;
+module.exports = exports["default"];
+
+
+},{"react":215,"react-translate-component":59}],236:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
+/**
+ * The game screenshots
+ */
+
+var ScreenshotsPage = (function (_React$Component) {
+    _inherits(ScreenshotsPage, _React$Component);
+
+    function ScreenshotsPage() {
+        _classCallCheck(this, ScreenshotsPage);
+
+        _get(Object.getPrototypeOf(ScreenshotsPage.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(ScreenshotsPage, [{
+        key: "render",
+
+        /**
+         * render the component
+         */
+        value: function render() {
+            return _react2["default"].createElement(
+                "article",
+                { className: "page" },
+                _react2["default"].createElement(
+                    "h1",
+                    { className: "page__title" },
+                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.screenshots" })
+                ),
+                _react2["default"].createElement(
+                    "p",
+                    null,
+                    "Lorem ipsum"
+                )
+            );
+        }
+    }]);
+
+    return ScreenshotsPage;
+})(_react2["default"].Component);
+
+exports["default"] = ScreenshotsPage;
+module.exports = exports["default"];
+
+
+},{"react":215,"react-translate-component":59}],237:[function(require,module,exports){
 module.exports={
     "messages": {
         "locale": {
@@ -27572,15 +28984,16 @@ module.exports={
             "recalbox": {
                 "conf": "recalbox.conf"
             },
-            "logs": "Logs"
-
+            "logs": "Logs",
+            "language": "Language"
         },
         "page": {
             "title": {
+                "homepage": "Welcome to Recalbox",
                 "general": "General settings",
                 "kodi": "Kodi settings",
                 "network": "Network settings",
-                "audio": "Audio settings",
+                "audio": "Sound settings",
                 "controllers": "Controllers settings",
                 "emulators": "Emulators settings",
                 "games": {
@@ -27594,11 +29007,33 @@ module.exports={
                 },
                 "logs": "Logs"
             }
+        },
+        "setting": {
+            "language": {
+                "label": "Language"
+            },
+            "keyboardlayout": {
+                "label": "Keyboard layout"
+            },
+            "timezone": {
+                "label": "Timezone"
+            },
+            "kodi": {
+                "enabled": {
+                    "label": "Enable Kodi"
+                },
+                "atstartup": {
+                    "label": "Start Kodi at launch"
+                },
+                "xbutton": {
+                    "label": "Set X button shortcut"
+                }
+            }
         }
     }
 }
 
-},{}],232:[function(require,module,exports){
+},{}],238:[function(require,module,exports){
 module.exports={
     "messages": {
         "locale": {
@@ -27623,14 +29058,16 @@ module.exports={
             "recalbox": {
                 "conf": "recalbox.conf"
             },
-            "logs": "Logs"
+            "logs": "Logs",
+            "language": "Langue"
         },
         "page": {
             "title": {
+                "homepage": "Bienvenue sur Recalbox",
                 "general": "Configuration générale",
                 "kodi": "Configuration de Kodi",
                 "network": "Configuration du réseau",
-                "audio": "Configuration de l'audio",
+                "audio": "Configuration du son",
                 "controllers": "Configuration des manettes",
                 "emulators": "Configuration des émulateurs",
                 "games": {
@@ -27644,8 +29081,13 @@ module.exports={
                 },
                 "logs": "Logs"
             }
+        },
+        "setting": {
+            "language": {
+                "label": "Langue"
+            }
         }
     }
 }
 
-},{}]},{},[219]);
+},{}]},{},[220]);

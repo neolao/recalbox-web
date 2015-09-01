@@ -15,14 +15,14 @@ export default class AdvancedPage extends React.Component
     render()
     {
         return (
-            <div className="layout">
-                <aside className="layout__sidebar hide-for-small">
-                    <ul className="side-nav">
-                        <li><Link to="advanced:config"><Translate content="menu.recalbox.conf"/></Link></li>
-                        <li><Link to="advanced:logs"><Translate content="menu.logs"/></Link></li>
+            <div className="page-layout">
+                <aside className="page-layout__sidebar hide-for-small">
+                    <ul className="menu-sidebar">
+                        <li><Link to="advanced:config" className="menu-sidebar__link"><Translate content="menu.recalbox.conf"/></Link></li>
+                        <li><Link to="advanced:logs" className="menu-sidebar__link"><Translate content="menu.logs"/></Link></li>
                     </ul>
                 </aside>
-                <main className="layout__content">
+                <main className="page-layout__content">
                     <RouteHandler/>
                 </main>
             </div>

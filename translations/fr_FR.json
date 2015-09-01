@@ -22,14 +22,16 @@
             "recalbox": {
                 "conf": "recalbox.conf"
             },
-            "logs": "Logs"
+            "logs": "Logs",
+            "language": "Langue"
         },
         "page": {
             "title": {
+                "homepage": "Bienvenue sur Recalbox",
                 "general": "Configuration générale",
                 "kodi": "Configuration de Kodi",
                 "network": "Configuration du réseau",
-                "audio": "Configuration de l'audio",
+                "audio": "Configuration du son",
                 "controllers": "Configuration des manettes",
                 "emulators": "Configuration des émulateurs",
                 "games": {
@@ -42,6 +44,11 @@
                     "conf": "recalbox.conf"
                 },
                 "logs": "Logs"
+            }
+        },
+        "setting": {
+            "language": {
+                "label": "Langue"
             }
         }
     }

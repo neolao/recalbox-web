@@ -22,15 +22,16 @@
             "recalbox": {
                 "conf": "recalbox.conf"
             },
-            "logs": "Logs"
-
+            "logs": "Logs",
+            "language": "Language"
         },
         "page": {
             "title": {
+                "homepage": "Welcome to Recalbox",
                 "general": "General settings",
                 "kodi": "Kodi settings",
                 "network": "Network settings",
-                "audio": "Audio settings",
+                "audio": "Sound settings",
                 "controllers": "Controllers settings",
                 "emulators": "Emulators settings",
                 "games": {
@@ -43,6 +44,28 @@
                     "conf": "recalbox.conf"
                 },
                 "logs": "Logs"
+            }
+        },
+        "setting": {
+            "language": {
+                "label": "Language"
+            },
+            "keyboardlayout": {
+                "label": "Keyboard layout"
+            },
+            "timezone": {
+                "label": "Timezone"
+            },
+            "kodi": {
+                "enabled": {
+                    "label": "Enable Kodi"
+                },
+                "atstartup": {
+                    "label": "Start Kodi at launch"
+                },
+                "xbutton": {
+                    "label": "Set X button shortcut"
+                }
             }
         }
     }

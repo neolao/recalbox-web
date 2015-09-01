@@ -1,13 +1,13 @@
 /**
  * The main layout of a page
  */
-.layout {
+.page-layout {
     display: flex;
     flex-wrap: nowrap;
 
     // The sidebar
     &__sidebar {
-        max-width: 10em;
+        max-width: 15em;
     }
 
     // The content

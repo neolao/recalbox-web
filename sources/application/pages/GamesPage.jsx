@@ -15,16 +15,16 @@ export default class GamesPage extends React.Component
     render()
     {
         return (
-            <div className="layout">
-                <aside className="layout__sidebar hide-for-small">
-                    <ul className="side-nav">
-                        <li><Link to="games:listing"><Translate content="menu.listing"/></Link></li>
-                        <li><Link to="games:bios"><Translate content="menu.bios"/></Link></li>
-                        <li><Link to="games:saves"><Translate content="menu.saves"/></Link></li>
-                        <li><Link to="games:screenshots"><Translate content="menu.screenshots"/></Link></li>
+            <div className="page-layout">
+                <aside className="page-layout__sidebar hide-for-small">
+                    <ul className="menu-sidebar">
+                        <li><Link to="games:listing" className="menu-sidebar__link"><Translate content="menu.listing"/></Link></li>
+                        <li><Link to="games:bios" className="menu-sidebar__link"><Translate content="menu.bios"/></Link></li>
+                        <li><Link to="games:saves" className="menu-sidebar__link"><Translate content="menu.saves"/></Link></li>
+                        <li><Link to="games:screenshots" className="menu-sidebar__link"><Translate content="menu.screenshots"/></Link></li>
                     </ul>
                 </aside>
-                <main className="layout__content">
+                <main className="page-layout__content">
                     <RouteHandler/>
                 </main>
             </div>

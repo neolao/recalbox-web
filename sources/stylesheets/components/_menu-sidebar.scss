@@ -1,0 +1,21 @@
+/**
+ * The sidebar menu of a page
+ */
+.menu-sidebar {
+    padding: 0;
+    margin: 0;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    list-style: none;
+    min-width: 10em;
+
+    &__link {
+        display: block;
+        padding: .5em 1em;
+
+        &--active, &.active {
+            background: $primary-color;
+            color: #fff;
+        }
+    }
+}

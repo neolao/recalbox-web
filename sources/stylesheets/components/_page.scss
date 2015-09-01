@@ -1,0 +1,12 @@
+/**
+ * The page elements
+ */
+.page {
+    padding: 1em;
+
+    // The main title
+    &__title {
+        margin: 0 0 1em 0;
+        color: $primary-color;
+    }
+}

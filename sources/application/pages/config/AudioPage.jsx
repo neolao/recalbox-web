@@ -12,10 +12,10 @@ export default class AudioPage extends React.Component
     render()
     {
         return (
-            <div>
-                <h1><Translate content="page.title.audio"/></h1>
+            <article className="page">
+                <h1 className="page__title"><Translate content="page.title.audio"/></h1>
                 <p>Lorem ipsum</p>
-            </div>
+            </article>
         );
     }
 }

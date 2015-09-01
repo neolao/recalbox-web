@@ -1,7 +1,7 @@
 import counterpart from "counterpart";
+import Translate from "react-translate-component";
 import React from "react";
 import ReactRouter from "react-router";
-import Translate from "react-translate-component";
 let Link = ReactRouter.Link;
 
 /**
@@ -9,6 +9,20 @@ let Link = ReactRouter.Link;
  */
 export default class Header extends React.Component
 {
+    /**
+     * Constructor
+     *
+     * @param   {object}    props   The properties
+     */
+    constructor(props)
+    {
+        super(props);
+
+        this.state = {
+            currentLocale: counterpart.getLocale()
+        };
+    }
+
     /**
      * The user changes the locale
      *
@@ -18,6 +32,8 @@ export default class Header extends React.Component
     {
         let locale = event.target.attributes.getNamedItem("data-locale");
         counterpart.setLocale(locale.value);
+
+        this.setState({currentLocale: locale.value});
     }
 
     /**
@@ -25,6 +41,20 @@ export default class Header extends React.Component
      */
     render()
     {
+        // Build the language list
+        let availableLocales = counterpart.getAvailableLocales();
+        let currentLocale = counterpart.getLocale();
+        let languageList = [];
+        for (let availableLocale of availableLocales) {
+            let localeLabel = counterpart("locale.label", {locale: availableLocale});
+            languageList.push(
+                <li key={availableLocale}>
+                    <a data-locale={availableLocale} onClick={this.onLocaleChange.bind(this)}>{localeLabel}</a>
+                </li>
+            );
+        }
+
+
         return (
             <header>
                 <nav className="tab-bar show-for-small-only">
@@ -57,11 +87,10 @@ export default class Header extends React.Component
                             </li>
                         </ul>
                         <ul className="right">
-                            <li className="has-dropdown">
+                            <li className="has-dropdown" key={Math.random()}>
                                 <a><Translate content="locale.label"/></a>
                                 <ul className="dropdown">
-                                    <li><a data-locale="en_US" onClick={this.onLocaleChange}>English</a></li>
-                                    <li><a data-locale="fr_FR" onClick={this.onLocaleChange}>Français</a></li>
+                                    {languageList}
                                 </ul>
                             </li>
                         </ul>

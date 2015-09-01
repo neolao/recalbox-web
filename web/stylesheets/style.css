@@ -6680,10 +6680,42 @@ html, body {
 /**
  * The main layout of a page
  */
-.layout {
+.page-layout {
   display: flex;
   flex-wrap: nowrap; }
-  .layout__sidebar {
-    max-width: 10em; }
-  .layout__content {
+  .page-layout__sidebar {
+    max-width: 15em; }
+  .page-layout__content {
     flex: 1; }
+
+/**
+ * The sidebar menu of a page
+ */
+.menu-sidebar {
+  padding: 0;
+  margin: 0;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  list-style: none;
+  min-width: 10em; }
+  .menu-sidebar__link {
+    display: block;
+    padding: 0.5em 1em; }
+    .menu-sidebar__link--active, .menu-sidebar__link.active {
+      background: #2ba6cb;
+      color: #fff; }
+
+/**
+ * The page elements
+ */
+.page {
+  padding: 1em; }
+  .page__title {
+    margin: 0 0 1em 0;
+    color: #2ba6cb; }
+
+/**
+ * Form elements
+ */
+.form-switch {
+  margin-bottom: .8rem; }

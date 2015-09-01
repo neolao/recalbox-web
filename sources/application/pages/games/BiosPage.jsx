@@ -2,9 +2,9 @@ import React from "react";
 import Translate from "react-translate-component";
 
 /**
- * The controllers settings
+ * The system BIOS
  */
-export default class ControllersPage extends React.Component
+export default class BiosPage extends React.Component
 {
     /**
      * render the component
@@ -13,7 +13,7 @@ export default class ControllersPage extends React.Component
     {
         return (
             <article className="page">
-                <h1 className="page__title"><Translate content="page.title.controllers"/></h1>
+                <h1 className="page__title"><Translate content="page.title.bios"/></h1>
                 <p>Lorem ipsum</p>
             </article>
         );

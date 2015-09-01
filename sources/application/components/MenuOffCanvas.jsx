@@ -1,3 +1,4 @@
+import counterpart from "counterpart";
 import React from "react";
 import ReactRouter from "react-router";
 import Translate from "react-translate-component";
@@ -10,9 +11,54 @@ let Link = ReactRouter.Link;
 export default class MenuOffCanvas extends React.Component
 {
     /**
+     * Constructor
+     *
+     * @param   {object}    props   The properties
+     */
+    constructor(props)
+    {
+        super(props);
+
+        this.state = {
+            currentLocale: counterpart.getLocale()
+        };
+    }
+
+    /**
+     * The user changes the locale
+     *
+     * @param   {object}    event   The click event
+     */
+    onLocaleChange(event)
+    {
+        let locale = event.target.attributes.getNamedItem("data-locale");
+        counterpart.setLocale(locale.value);
+
+        this.setState({currentLocale: locale.value});
+    }
+
+
+    /**
      * render the copmonent
      */
     render() {
+        // Build the language list
+        let availableLocales = counterpart.getAvailableLocales();
+        let currentLocale = counterpart.getLocale();
+        let languageList = [];
+        for (let availableLocale of availableLocales) {
+            let localeLabel = counterpart("locale.label", {locale: availableLocale});
+            let linkClassName = "menu-off-canvas__link";
+            if (availableLocale === currentLocale) {
+                linkClassName += " menu-off-canvas__link--active";
+            }
+            languageList.push(
+                <li className="menu-off-canvas__item" key={availableLocale}>
+                    <a className={linkClassName} data-locale={availableLocale} onClick={this.onLocaleChange.bind(this)}>{localeLabel}</a>
+                </li>
+            );
+        }
+
         return (
             <nav className="menu-off-canvas left-off-canvas-menu">
                 <ul className="menu-off-canvas__section">
@@ -68,6 +114,12 @@ export default class MenuOffCanvas extends React.Component
                             <li className="menu-off-canvas__item">
                                 <Link to="advanced:logs" className="menu-off-canvas__link"><Translate content="menu.logs"/></Link>
                             </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span className="menu-off-canvas__section-title"><Translate content="menu.language"/></span>
+                        <ul className="menu-off-canvas__section">
+                            {languageList}
                         </ul>
                     </li>
                 </ul>
