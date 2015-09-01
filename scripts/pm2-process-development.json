@@ -44,7 +44,7 @@
                 "--pattern",
                 "sources/application/**/*.jsx",
                 "node_modules/.bin/browserify",
-                "sources/application/index.jsx --external react --outfile web/javascripts/application.js"
+                "sources/application/index.jsx --outfile web/javascripts/application.js"
             ]
         }
     ]

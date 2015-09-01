@@ -1,0 +1,43 @@
+/**
+ * The menu outside the canvas
+ * It appears on mobile
+ */
+.menu-off-canvas {
+    box-shadow: -5px 0 10px #000 inset;
+
+    &__section-title {
+        display: block;
+        padding: .5em;
+        color: #bbb;
+        background: rgba(#000, .5);
+    }
+
+    &__section {
+        padding: 0;
+        margin: 0;
+    }
+
+    &__item {
+
+    }
+
+    &__link {
+        display: block;
+        padding: .5em;
+        color: #eee;
+
+        &:hover {
+            background: rgba(#fff, .3);
+            color: #fff;
+        }
+
+        &--active {
+            background: $primary-color;
+            color: #fff;
+            &:hover {
+                background: $primary-color;
+                color: #fff;
+            }
+        }
+    }
+}

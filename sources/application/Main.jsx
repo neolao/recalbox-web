@@ -1,6 +1,8 @@
+import React from "react";
+import ReactRouter from "react-router";
 import Header from "./components/Header.jsx";
+import MenuOffCanvas from "./components/MenuOffCanvas.jsx";
 let RouteHandler = ReactRouter.RouteHandler;
-let Link = ReactRouter.Link;
 
 /**
  * The application
@@ -14,18 +16,7 @@ export default class Main extends React.Component
         return (
             <div className="off-canvas-wrap" data-offcanvas>
                 <div className="inner-wrap">
-                    <nav className="left-off-canvas-menu">
-                        <ul className="side-nav">
-                            <li><Link to="home">Homepage</Link></li>
-                            <li>
-                                Configuration
-                                <ul>
-                                    <li><Link to="configuration">General</Link></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-
+                    <MenuOffCanvas/>
                     <Header className="app-header"/>
                     <div className="app-content">
                         <RouteHandler/>

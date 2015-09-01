@@ -1,4 +1,4 @@
-let RouteHandler = ReactRouter.RouteHandler;
+import React from "react";
 
 /**
  * The general configuration

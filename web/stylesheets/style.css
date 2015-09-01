@@ -6650,6 +6650,34 @@ html, body {
   overflow: auto; }
 
 /**
+ * The menu outside the canvas
+ * It appears on mobile
+ */
+.menu-off-canvas {
+  box-shadow: -5px 0 10px #000 inset; }
+  .menu-off-canvas__section-title {
+    display: block;
+    padding: .5em;
+    color: #bbb;
+    background: rgba(0, 0, 0, 0.5); }
+  .menu-off-canvas__section {
+    padding: 0;
+    margin: 0; }
+  .menu-off-canvas__link {
+    display: block;
+    padding: .5em;
+    color: #eee; }
+    .menu-off-canvas__link:hover {
+      background: rgba(255, 255, 255, 0.3);
+      color: #fff; }
+    .menu-off-canvas__link--active {
+      background: #2ba6cb;
+      color: #fff; }
+      .menu-off-canvas__link--active:hover {
+        background: #2ba6cb;
+        color: #fff; }
+
+/**
  * The main layout of a page
  */
 .layout {

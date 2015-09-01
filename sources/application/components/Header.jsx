@@ -1,3 +1,7 @@
+import counterpart from "counterpart";
+import React from "react";
+import Translate from "react-translate-component";
+import ReactRouter from "react-router";
 let Link = ReactRouter.Link;
 
 /**
@@ -5,6 +9,17 @@ let Link = ReactRouter.Link;
  */
 export default class Header extends React.Component
 {
+    /**
+     * The user changes the locale
+     *
+     * @param   {object}    event   The click event
+     */
+    onLocaleChange(event)
+    {
+        let locale = event.target.attributes.getNamedItem("data-locale");
+        counterpart.setLocale(locale.value);
+    }
+
     /**
      * render the copmonent
      */
@@ -32,15 +47,21 @@ export default class Header extends React.Component
                     <section className="top-bar-section">
                         <ul className="left">
                             <li>
-                                <Link to="configuration">Configuration</Link>
+                                <Link to="configuration"><Translate content="menu.configuration"/></Link>
+                            </li>
+                            <li>
+                                <Link to="configuration"><Translate content="menu.games"/></Link>
+                            </li>
+                            <li>
+                                <Link to="configuration"><Translate content="menu.advanced"/></Link>
                             </li>
                         </ul>
                         <ul className="right">
                             <li className="has-dropdown">
-                                <a href="#">English</a>
+                                <a><Translate content="locale.label"/></a>
                                 <ul className="dropdown">
-                                    <li className="active"><a href="#">English</a></li>
-                                    <li><a href="#">Français</a></li>
+                                    <li><a data-locale="en_US" onClick={this.onLocaleChange}>English</a></li>
+                                    <li><a data-locale="fr_FR" onClick={this.onLocaleChange}>Français</a></li>
                                 </ul>
                             </li>
                         </ul>

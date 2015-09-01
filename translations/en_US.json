@@ -1,0 +1,14 @@
+{
+    "messages": {
+        "locale": {
+            "label": "English",
+            "code": "en_US"
+        },
+        "menu": {
+            "homepage": "Homepage",
+            "configuration": "Configuration",
+            "games": "Games",
+            "advanced": "Advanced"
+        }
+    }
+}

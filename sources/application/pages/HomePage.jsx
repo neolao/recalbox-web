@@ -1,3 +1,5 @@
+import React from "react";
+
 /**
  * The homepage
  */
@@ -10,34 +12,6 @@ export default class HomePage extends React.Component
     {
         return (
             <div>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
-                <p>Homepage</p>
                 <p>Homepage</p>
             </div>
         );
