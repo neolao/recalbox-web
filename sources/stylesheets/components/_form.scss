@@ -7,3 +7,11 @@
 .form-switch {
     margin-bottom: .8rem;
 }
+
+
+// Add a media query for the inline label
+label.inline-for-medium-up {
+    @media #{$medium} {
+        @include form-label(inline, false);
+    }
+}

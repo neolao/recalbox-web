@@ -49,7 +49,39 @@
         "setting": {
             "language": {
                 "label": "Langue"
+            },
+            "keyboardlayout": {
+                "label": "Agencement du clavier"
+            },
+            "timezone": {
+                "label": "Fuseau horaire"
+            },
+            "kodi": {
+                "enabled": {
+                    "label": "Activer Kodi"
+                },
+                "atstartup": {
+                    "label": "Lancer Kodi au démarrage"
+                },
+                "xbutton": {
+                    "label": "Définir le raccourci sur le bouton X"
+                }
+            },
+            "hostname": {
+                "label": "Nom d'hôte"
+            },
+            "wifi": {
+                "enabled": {
+                    "label": "Activer le WiFi"
+                },
+                "ssid": {
+                    "label": "SSID"
+                },
+                "key": {
+                    "label": "Clé"
+                }
             }
         }
+
     }
 }

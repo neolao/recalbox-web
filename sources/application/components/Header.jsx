@@ -87,9 +87,9 @@ export default class Header extends React.Component
                             </li>
                         </ul>
                         <ul className="right">
-                            <li className="has-dropdown" key={Math.random()}>
+                            <li className="has-dropdown">
                                 <a><Translate content="locale.label"/></a>
-                                <ul className="dropdown">
+                                <ul className="dropdown" key={Math.random()}>
                                     {languageList}
                                 </ul>
                             </li>

@@ -6719,3 +6719,8 @@ html, body {
  */
 .form-switch {
   margin-bottom: .8rem; }
+
+@media only screen and (min-width: 40.0625em) {
+  label.inline-for-medium-up {
+    margin: 0 0 1rem 0;
+    padding: 0.5625rem 0; } }

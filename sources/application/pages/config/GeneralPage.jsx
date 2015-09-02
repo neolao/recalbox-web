@@ -11,14 +11,22 @@ export default class GeneralPage extends React.Component
      */
     render()
     {
+        let labelColumnClassName = "small-6 medium-4 large-2 columns";
+        let fieldColumnClassName = "small-6 medium-6 large-4 columns end";
+
+
         return (
             <article className="page">
                 <h1 className="page__title"><Translate content="page.title.general"/></h1>
 
-                <div className="large-6">
-                    <label>
-                        <Translate content="setting.language.label"/>
-                        <select>
+                <div className="clearfix">
+                    <div className={labelColumnClassName}>
+                        <label htmlFor="language" className="inline">
+                            <Translate content="setting.language.label"/>
+                        </label>
+                    </div>
+                    <div className={fieldColumnClassName}>
+                        <select id="language">
                             <option value="en_US">English (US)</option>
                             <option value="en_GB">English (GB)</option>
                             <option value="fr_FR">Français</option>
@@ -26,26 +34,34 @@ export default class GeneralPage extends React.Component
                             <option value="pt_BR">Português</option>
                             <option value="es_ES">Español</option>
                         </select>
-                    </label>
+                    </div>
                 </div>
 
-                <div className="large-6">
-                    <label>
-                        <Translate content="setting.keyboardlayout.label"/>
-                        <select>
+                <div className="clearfix">
+                    <div className={labelColumnClassName}>
+                        <label htmlFor="keyboard" className="inline">
+                            <Translate content="setting.keyboardlayout.label"/>
+                        </label>
+                    </div>
+                    <div className={fieldColumnClassName}>
+                        <select id="keyboard">
                             <option value="us">English (US)</option>
                             <option value="en">English (UK)</option>
                             <option value="fr">Français</option>
                             <option value="de">Deutsche</option>
                             <option value="es">Español</option>
                         </select>
-                    </label>
+                    </div>
                 </div>
 
-                <div className="large-6">
-                    <label>
-                        <Translate content="setting.timezone.label"/>
-                        <select>
+                <div className="clearfix">
+                    <div className={labelColumnClassName}>
+                        <label htmlFor="timezone" className="inline">
+                            <Translate content="setting.timezone.label"/>
+                        </label>
+                    </div>
+                    <div className={fieldColumnClassName}>
+                        <select id="timezone">
                             <option value="Pacific/Midway">Pacific/Midway</option>
                             <option value="Pacific/Samoa">Pacific/Samoa</option>
                             <option value="Pacific/Honolulu">Pacific/Honolulu</option>
@@ -189,8 +205,9 @@ export default class GeneralPage extends React.Component
                             <option value="Pacific/Auckland">Pacific/Auckland</option>
                             <option value="Pacific/Tongatapu">Pacific/Tongatapu</option>
                         </select>
-                    </label>
+                    </div>
                 </div>
+
             </article>
         );
     }

@@ -66,6 +66,20 @@
                 "xbutton": {
                     "label": "Set X button shortcut"
                 }
+            },
+            "hostname": {
+                "label": "Hostname"
+            },
+            "wifi": {
+                "enabled": {
+                    "label": "Enable the WiFi"
+                },
+                "ssid": {
+                    "label": "SSID"
+                },
+                "key": {
+                    "label": "Key"
+                }
             }
         }
     }

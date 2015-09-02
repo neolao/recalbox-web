@@ -26095,6 +26095,8 @@ module.exports={
         "dev-stop"      : "pm2 stop ./scripts/pm2-process-development.json",
         "dev-restart"   : "pm2 restart ./scripts/pm2-process-development.json",
         "dev-logs"      : "pm2 logs ./scripts/pm2-process-development.json",
+        "compile-js"    : "browserify ./sources/application/index.jsx --outfile web/javascripts/application.js",
+        "compile-css"   : "node-sass --recursive ./sources/stylesheets --include-path ./node_modules/foundation-sites/scss --output ./web/stylesheets",
         "minify"        : "uglify -s ./web/javascripts/application.js -o ./web/javascripts/application.js"
     }
 }
@@ -26376,7 +26378,7 @@ var Header = (function (_React$Component) {
                             { className: "right" },
                             _react2["default"].createElement(
                                 "li",
-                                { className: "has-dropdown", key: Math.random() },
+                                { className: "has-dropdown" },
                                 _react2["default"].createElement(
                                     "a",
                                     null,
@@ -26384,7 +26386,7 @@ var Header = (function (_React$Component) {
                                 ),
                                 _react2["default"].createElement(
                                     "ul",
-                                    { className: "dropdown" },
+                                    { className: "dropdown", key: Math.random() },
                                     languageList
                                 )
                             )
@@ -27658,6 +27660,9 @@ var GeneralPage = (function (_React$Component) {
          * render the component
          */
         value: function render() {
+            var labelColumnClassName = "small-6 medium-4 large-2 columns";
+            var fieldColumnClassName = "small-6 medium-6 large-4 columns end";
+
             return _react2["default"].createElement(
                 "article",
                 { className: "page" },
@@ -27668,14 +27673,22 @@ var GeneralPage = (function (_React$Component) {
                 ),
                 _react2["default"].createElement(
                     "div",
-                    { className: "large-6" },
+                    { className: "clearfix" },
                     _react2["default"].createElement(
-                        "label",
-                        null,
-                        _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.language.label" }),
+                        "div",
+                        { className: labelColumnClassName },
+                        _react2["default"].createElement(
+                            "label",
+                            { htmlFor: "language", className: "inline" },
+                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.language.label" })
+                        )
+                    ),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: fieldColumnClassName },
                         _react2["default"].createElement(
                             "select",
-                            null,
+                            { id: "language" },
                             _react2["default"].createElement(
                                 "option",
                                 { value: "en_US" },
@@ -27711,14 +27724,22 @@ var GeneralPage = (function (_React$Component) {
                 ),
                 _react2["default"].createElement(
                     "div",
-                    { className: "large-6" },
+                    { className: "clearfix" },
                     _react2["default"].createElement(
-                        "label",
-                        null,
-                        _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.keyboardlayout.label" }),
+                        "div",
+                        { className: labelColumnClassName },
+                        _react2["default"].createElement(
+                            "label",
+                            { htmlFor: "keyboard", className: "inline" },
+                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.keyboardlayout.label" })
+                        )
+                    ),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: fieldColumnClassName },
                         _react2["default"].createElement(
                             "select",
-                            null,
+                            { id: "keyboard" },
                             _react2["default"].createElement(
                                 "option",
                                 { value: "us" },
@@ -27749,14 +27770,22 @@ var GeneralPage = (function (_React$Component) {
                 ),
                 _react2["default"].createElement(
                     "div",
-                    { className: "large-6" },
+                    { className: "clearfix" },
                     _react2["default"].createElement(
-                        "label",
-                        null,
-                        _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.timezone.label" }),
+                        "div",
+                        { className: labelColumnClassName },
+                        _react2["default"].createElement(
+                            "label",
+                            { htmlFor: "timezone", className: "inline" },
+                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.timezone.label" })
+                        )
+                    ),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: fieldColumnClassName },
                         _react2["default"].createElement(
                             "select",
-                            null,
+                            { id: "timezone" },
                             _react2["default"].createElement(
                                 "option",
                                 { value: "Pacific/Midway" },
@@ -28526,6 +28555,9 @@ var KodiPage = (function (_React$Component) {
          * render the component
          */
         value: function render() {
+            var labelColumnClassName = "small-6 medium-5 large-3 columns";
+            var fieldColumnClassName = "small-6 medium-7 large-9 columns end";
+
             return _react2["default"].createElement(
                 "article",
                 { className: "page" },
@@ -28539,22 +28571,22 @@ var KodiPage = (function (_React$Component) {
                     { className: "clearfix" },
                     _react2["default"].createElement(
                         "div",
-                        { className: "small-2 medium-2 large-1 columns" },
+                        { className: labelColumnClassName },
+                        _react2["default"].createElement(
+                            "label",
+                            { htmlFor: "enabled", className: "inline" },
+                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.kodi.enabled.label" })
+                        )
+                    ),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: fieldColumnClassName },
                         _react2["default"].createElement(
                             "div",
-                            { className: "form-switch switch tiny" },
+                            { className: "form-switch switch" },
                             _react2["default"].createElement("input", { type: "checkbox", id: "enabled" }),
                             _react2["default"].createElement("label", { htmlFor: "enabled" })
                         )
-                    ),
-                    _react2["default"].createElement(
-                        "div",
-                        { className: "small-10 medium-6 large-5 columns end" },
-                        _react2["default"].createElement(
-                            "label",
-                            { htmlFor: "enabled" },
-                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.kodi.enabled.label" })
-                        )
                     )
                 ),
                 _react2["default"].createElement(
@@ -28562,22 +28594,22 @@ var KodiPage = (function (_React$Component) {
                     { className: "clearfix" },
                     _react2["default"].createElement(
                         "div",
-                        { className: "small-2 medium-2 large-1 columns" },
+                        { className: labelColumnClassName },
+                        _react2["default"].createElement(
+                            "label",
+                            { htmlFor: "atstartup", className: "inline" },
+                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.kodi.atstartup.label" })
+                        )
+                    ),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: fieldColumnClassName },
                         _react2["default"].createElement(
                             "div",
-                            { className: "form-switch switch tiny" },
+                            { className: "form-switch switch" },
                             _react2["default"].createElement("input", { type: "checkbox", id: "atstartup" }),
                             _react2["default"].createElement("label", { htmlFor: "atstartup" })
                         )
-                    ),
-                    _react2["default"].createElement(
-                        "div",
-                        { className: "small-10 medium-6 large-5 columns end" },
-                        _react2["default"].createElement(
-                            "label",
-                            { htmlFor: "atstartup" },
-                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.kodi.atstartup.label" })
-                        )
                     )
                 ),
                 _react2["default"].createElement(
@@ -28585,21 +28617,21 @@ var KodiPage = (function (_React$Component) {
                     { className: "clearfix" },
                     _react2["default"].createElement(
                         "div",
-                        { className: "small-2 medium-2 large-1 columns" },
+                        { className: labelColumnClassName },
                         _react2["default"].createElement(
-                            "div",
-                            { className: "form-switch switch tiny" },
-                            _react2["default"].createElement("input", { type: "checkbox", id: "xbutton" }),
-                            _react2["default"].createElement("label", { htmlFor: "xbutton" })
+                            "label",
+                            { htmlFor: "xbutton", className: "inline" },
+                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.kodi.xbutton.label" })
                         )
                     ),
                     _react2["default"].createElement(
                         "div",
-                        { className: "small-10 medium-6 large-5 columns end" },
+                        { className: fieldColumnClassName },
                         _react2["default"].createElement(
-                            "label",
-                            { htmlFor: "xbutton" },
-                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.kodi.xbutton.label" })
+                            "div",
+                            { className: "form-switch switch" },
+                            _react2["default"].createElement("input", { type: "checkbox", id: "xbutton" }),
+                            _react2["default"].createElement("label", { htmlFor: "xbutton" })
                         )
                     )
                 )
@@ -28659,6 +28691,9 @@ var NetworkPage = (function (_React$Component) {
          * render the component
          */
         value: function render() {
+            var labelColumnClassName = "small-12 medium-4 large-2 columns";
+            var fieldColumnClassName = "small-12 medium-8 large-6 columns end";
+
             return _react2["default"].createElement(
                 "article",
                 { className: "page" },
@@ -28668,9 +28703,81 @@ var NetworkPage = (function (_React$Component) {
                     _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.network" })
                 ),
                 _react2["default"].createElement(
-                    "p",
-                    null,
-                    "Lorem ipsum"
+                    "div",
+                    { className: "clearfix" },
+                    _react2["default"].createElement(
+                        "div",
+                        { className: labelColumnClassName },
+                        _react2["default"].createElement(
+                            "label",
+                            { htmlFor: "hostname", className: "inline-for-medium-up" },
+                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.hostname.label" })
+                        )
+                    ),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: fieldColumnClassName },
+                        _react2["default"].createElement("input", { type: "text", id: "hostname" })
+                    )
+                ),
+                _react2["default"].createElement(
+                    "div",
+                    { className: "clearfix" },
+                    _react2["default"].createElement(
+                        "div",
+                        { className: labelColumnClassName },
+                        _react2["default"].createElement(
+                            "label",
+                            { htmlFor: "enabled", className: "inline-for-medium-up" },
+                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.wifi.enabled.label" })
+                        )
+                    ),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: fieldColumnClassName },
+                        _react2["default"].createElement(
+                            "div",
+                            { className: "form-switch switch" },
+                            _react2["default"].createElement("input", { type: "checkbox", id: "enabled" }),
+                            _react2["default"].createElement("label", { htmlFor: "enabled" })
+                        )
+                    )
+                ),
+                _react2["default"].createElement(
+                    "div",
+                    { className: "clearfix" },
+                    _react2["default"].createElement(
+                        "div",
+                        { className: labelColumnClassName },
+                        _react2["default"].createElement(
+                            "label",
+                            { htmlFor: "ssid", className: "inline-for-medium-up" },
+                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.wifi.ssid.label" })
+                        )
+                    ),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: fieldColumnClassName },
+                        _react2["default"].createElement("input", { type: "text", id: "ssid" })
+                    )
+                ),
+                _react2["default"].createElement(
+                    "div",
+                    { className: "clearfix" },
+                    _react2["default"].createElement(
+                        "div",
+                        { className: labelColumnClassName },
+                        _react2["default"].createElement(
+                            "label",
+                            { htmlFor: "key", className: "inline-for-medium-up" },
+                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.wifi.key.label" })
+                        )
+                    ),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: fieldColumnClassName },
+                        _react2["default"].createElement("input", { type: "text", id: "key" })
+                    )
                 )
             );
         }
@@ -29028,6 +29135,20 @@ module.exports={
                 "xbutton": {
                     "label": "Set X button shortcut"
                 }
+            },
+            "hostname": {
+                "label": "Hostname"
+            },
+            "wifi": {
+                "enabled": {
+                    "label": "Enable the WiFi"
+                },
+                "ssid": {
+                    "label": "SSID"
+                },
+                "key": {
+                    "label": "Key"
+                }
             }
         }
     }
@@ -29085,8 +29206,40 @@ module.exports={
         "setting": {
             "language": {
                 "label": "Langue"
+            },
+            "keyboardlayout": {
+                "label": "Agencement du clavier"
+            },
+            "timezone": {
+                "label": "Fuseau horaire"
+            },
+            "kodi": {
+                "enabled": {
+                    "label": "Activer Kodi"
+                },
+                "atstartup": {
+                    "label": "Lancer Kodi au démarrage"
+                },
+                "xbutton": {
+                    "label": "Définir le raccourci sur le bouton X"
+                }
+            },
+            "hostname": {
+                "label": "Nom d'hôte"
+            },
+            "wifi": {
+                "enabled": {
+                    "label": "Activer le WiFi"
+                },
+                "ssid": {
+                    "label": "SSID"
+                },
+                "key": {
+                    "label": "Clé"
+                }
             }
         }
+
     }
 }
 
