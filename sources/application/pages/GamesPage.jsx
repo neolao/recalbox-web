@@ -25,7 +25,7 @@ export default class GamesPage extends React.Component
                     </ul>
                 </aside>
                 <main className="page-layout__content">
-                    <RouteHandler/>
+                    <RouteHandler {...this.props}/>
                 </main>
             </div>
         );

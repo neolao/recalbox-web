@@ -64,7 +64,7 @@ var server = http.createServer(function(request, response)
     } else if (/\.png$/.test(filePath)) {
         mime = "image/png";
     } else if (/\.svg$/.test(filePath)) {
-        mime = "application/svg+xml";
+        mime = "image/svg+xml";
     } else if (/\.css$/.test(filePath)) {
         mime = "text/css";
     }

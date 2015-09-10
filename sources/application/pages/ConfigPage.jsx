@@ -27,7 +27,7 @@ export default class ConfigPage extends React.Component
                     </ul>
                 </aside>
                 <main className="page-layout__content">
-                    <RouteHandler/>
+                    <RouteHandler {...this.props}/>
                 </main>
             </div>
         );

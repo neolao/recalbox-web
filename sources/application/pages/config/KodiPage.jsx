@@ -11,8 +11,8 @@ export default class KodiPage extends React.Component
      */
     render()
     {
-        let labelColumnClassName = "small-6 medium-5 large-3 columns";
-        let fieldColumnClassName = "small-6 medium-7 large-9 columns end";
+        let labelColumnClassName = "small-9 medium-6 large-4 columns";
+        let fieldColumnClassName = "small-3 medium-6 large-8 columns end";
 
         return (
             <article className="page">

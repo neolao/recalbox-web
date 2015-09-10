@@ -57,8 +57,7 @@ let routes = (
         </Route>
     </Route>
 );
-ReactRouter.run(routes, HistoryLocation, function(Handler)
-{
-    React.render(<Handler/>, document.body);
+ReactRouter.run(routes, HistoryLocation, (Root) => {
+    React.render(<Root/>, document.body);
 });
 

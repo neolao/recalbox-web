@@ -1,3 +1,5 @@
 node_modules
+web/config.json
+web/config.json.dist
 web.tar
-web.tar.gz
+web.tar.xz

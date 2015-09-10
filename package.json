@@ -3,7 +3,7 @@
     "license": "MIT",
     "name": "recalbox-web",
     "description": "Web interface for Recalbox",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "repository": {
         "type": "git",
         "url": "https://github.com/neolao/recalbox-web.git"
@@ -11,7 +11,6 @@
     "engines": {
         "node": ">=0.12"
     },
-    "main": "./bundle/Api.js",
     "dependencies": {
         "pm2"           : "0.14.*"
     },
@@ -23,6 +22,7 @@
         "react"                     : "0.13.*",
         "react-router"              : "0.13.*",
         "react-translate-component" : "0.9.*",
+        "react-textarea-autosize"   : "2.5.*",
         "watch-spawn"               : "1.0.*",
         "browserify"                : "11.0.*",
         "babelify"                  : "6.2.*",

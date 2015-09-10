@@ -25,6 +25,9 @@
             "logs": "Logs",
             "language": "Language"
         },
+        "button": {
+            "save": "Save"
+        },
         "page": {
             "title": {
                 "homepage": "Welcome to Recalbox",
