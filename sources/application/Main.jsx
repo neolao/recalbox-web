@@ -37,9 +37,19 @@ export default class Main extends React.Component
     }
 
     /**
+     * The component is updated (rendered)
+     */
+    componentDidUpdate()
+    {
+        // Update foundation JS
+        $(document).foundation("reflow");
+    }
+
+    /**
      * render the copmonent
      */
     render() {
+
         // If the apiUrl is not defined, then display a loading
         if (!this.state.apiUrl) {
             return (
