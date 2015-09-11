@@ -33,6 +33,9 @@ export default class ApiIndicator extends React.Component
             errorMessage: null,
             uploadMessage: null
         };
+
+        // Timer for the auto close
+        this.timerAutoclose = null;
     }
 
     /**
@@ -46,6 +49,8 @@ export default class ApiIndicator extends React.Component
             type: "info",
             requestMessage: event.message
         });
+
+        clearTimeout(this.timerAutoclose);
     }
 
     /**
@@ -59,6 +64,8 @@ export default class ApiIndicator extends React.Component
         this.setState({
             type: null
         });
+
+        clearTimeout(this.timerAutoclose);
     }
 
     /**
@@ -72,6 +79,9 @@ export default class ApiIndicator extends React.Component
             type: "success",
             successMessage: event.message
         });
+
+        clearTimeout(this.timerAutoclose);
+        this.timerAutoclose = setTimeout(this.onClose.bind(this), 5000);
     }
 
     /**
@@ -85,6 +95,9 @@ export default class ApiIndicator extends React.Component
             type: "error",
             errorMessage: event.message
         });
+
+        clearTimeout(this.timerAutoclose);
+        this.timerAutoclose = setTimeout(this.onClose.bind(this), 5000);
     }
 
     /**
@@ -98,6 +111,8 @@ export default class ApiIndicator extends React.Component
             type: "upload",
             uploadMessage: event.message
         });
+
+        clearTimeout(this.timerAutoclose);
     }
 
     /**
@@ -110,6 +125,8 @@ export default class ApiIndicator extends React.Component
         this.setState({
             type: null
         });
+
+        clearTimeout(this.timerAutoclose);
     }
 
     /**

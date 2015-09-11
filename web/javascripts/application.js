@@ -26824,6 +26824,9 @@ var ApiIndicator = (function (_React$Component) {
             errorMessage: null,
             uploadMessage: null
         };
+
+        // Timer for the auto close
+        this.timerAutoclose = null;
     }
 
     /**
@@ -26839,6 +26842,8 @@ var ApiIndicator = (function (_React$Component) {
                 type: "info",
                 requestMessage: event.message
             });
+
+            clearTimeout(this.timerAutoclose);
         }
 
         /**
@@ -26853,6 +26858,8 @@ var ApiIndicator = (function (_React$Component) {
             this.setState({
                 type: null
             });
+
+            clearTimeout(this.timerAutoclose);
         }
 
         /**
@@ -26867,6 +26874,9 @@ var ApiIndicator = (function (_React$Component) {
                 type: "success",
                 successMessage: event.message
             });
+
+            clearTimeout(this.timerAutoclose);
+            this.timerAutoclose = setTimeout(this.onClose.bind(this), 5000);
         }
 
         /**
@@ -26881,6 +26891,9 @@ var ApiIndicator = (function (_React$Component) {
                 type: "error",
                 errorMessage: event.message
             });
+
+            clearTimeout(this.timerAutoclose);
+            this.timerAutoclose = setTimeout(this.onClose.bind(this), 5000);
         }
 
         /**
@@ -26895,6 +26908,8 @@ var ApiIndicator = (function (_React$Component) {
                 type: "upload",
                 uploadMessage: event.message
             });
+
+            clearTimeout(this.timerAutoclose);
         }
 
         /**
@@ -26908,6 +26923,8 @@ var ApiIndicator = (function (_React$Component) {
             this.setState({
                 type: null
             });
+
+            clearTimeout(this.timerAutoclose);
         }
 
         /**
