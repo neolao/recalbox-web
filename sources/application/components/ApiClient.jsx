@@ -84,6 +84,7 @@ class ApiClient
         event.message = message;
         this.dispatchEvent(event);
 
+        // The requested format
         if (!format) {
             format = "text";
         }
@@ -121,10 +122,16 @@ class ApiClient
         event.message = message;
         this.dispatchEvent(event);
 
+        // The requested format
+        if (!format) {
+            format = "text";
+        }
+
         return $.ajax({
             method: "PUT",
             url: `${this.url}${path}`,
             data: data,
+            dataType: format,
             success: () => {
                 let event = new Event("success");
                 event.message = message;

@@ -26697,6 +26697,7 @@ var ApiClient = (function () {
             event.message = message;
             this.dispatchEvent(event);
 
+            // The requested format
             if (!format) {
                 format = "text";
             }
@@ -26737,10 +26738,16 @@ var ApiClient = (function () {
             event.message = message;
             this.dispatchEvent(event);
 
+            // The requested format
+            if (!format) {
+                format = "text";
+            }
+
             return $.ajax({
                 method: "PUT",
                 url: "" + this.url + path,
                 data: data,
+                dataType: format,
                 success: function success() {
                     var event = new Event("success");
                     event.message = message;
