@@ -1,11 +1,24 @@
 import React from "react";
 import Translate from "react-translate-component";
+import apiClient from "../../components/ApiClient.jsx";
 
 /**
  * The general configuration
  */
 export default class GeneralPage extends React.Component
 {
+    /**
+     * The component is mounted
+     */
+    componentDidMount()
+    {
+        let self = this;
+        apiClient.get("/locale", "Get locale").done((data) => {
+            self.setState({locale: data});
+        });
+    }
+
+
     /**
      * render the component
      */

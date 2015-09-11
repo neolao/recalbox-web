@@ -26697,9 +26697,14 @@ var ApiClient = (function () {
             event.message = message;
             this.dispatchEvent(event);
 
+            if (!format) {
+                format = "text";
+            }
+
             return $.ajax({
                 method: "GET",
                 url: "" + this.url + path,
+                dataType: format,
                 complete: function complete() {
                     var event = new Event("complete");
                     self.dispatchEvent(event);
@@ -28563,6 +28568,10 @@ var _reactTranslateComponent = require("react-translate-component");
 
 var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
 
+var _componentsApiClientJsx = require("../../components/ApiClient.jsx");
+
+var _componentsApiClientJsx2 = _interopRequireDefault(_componentsApiClientJsx);
+
 /**
  * The general configuration
  */
@@ -28577,11 +28586,23 @@ var GeneralPage = (function (_React$Component) {
     }
 
     _createClass(GeneralPage, [{
-        key: "render",
+        key: "componentDidMount",
+
+        /**
+         * The component is mounted
+         */
+        value: function componentDidMount() {
+            var self = this;
+            _componentsApiClientJsx2["default"].get("/locale", "Get locale").done(function (data) {
+                self.setState({ locale: data });
+            });
+        }
 
         /**
          * render the component
          */
+    }, {
+        key: "render",
         value: function render() {
             var labelColumnClassName = "small-6 medium-4 large-2 columns";
             var fieldColumnClassName = "small-6 medium-6 large-4 columns end";
@@ -29433,7 +29454,7 @@ exports["default"] = GeneralPage;
 module.exports = exports["default"];
 
 
-},{"react":217,"react-translate-component":61}],235:[function(require,module,exports){
+},{"../../components/ApiClient.jsx":220,"react":217,"react-translate-component":61}],235:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29458,6 +29479,10 @@ var _reactTranslateComponent = require("react-translate-component");
 
 var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
 
+var _componentsApiClientJsx = require("../../components/ApiClient.jsx");
+
+var _componentsApiClientJsx2 = _interopRequireDefault(_componentsApiClientJsx);
+
 /**
  * The configuration of Kodi
  */
@@ -29465,18 +29490,65 @@ var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent)
 var KodiPage = (function (_React$Component) {
     _inherits(KodiPage, _React$Component);
 
-    function KodiPage() {
+    /**
+     * Constructor
+     *
+     * @param   {object}    props   Properties
+     */
+
+    function KodiPage(props) {
         _classCallCheck(this, KodiPage);
 
-        _get(Object.getPrototypeOf(KodiPage.prototype), "constructor", this).apply(this, arguments);
+        _get(Object.getPrototypeOf(KodiPage.prototype), "constructor", this).call(this, props);
+
+        // Initial state
+        this.state = {
+            enabled: false,
+            atstartup: false,
+            xbutton: false
+        };
     }
 
+    /**
+     * The component is mounted
+     */
+
     _createClass(KodiPage, [{
-        key: "render",
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            var self = this;
+            _componentsApiClientJsx2["default"].get("/kodi", "Get Kodi settings", "json").done(function (data) {
+                self.setState({
+                    enabled: data["kodi.enabled"] === "1",
+                    atstartup: data["kodi.atstartup"] === "1",
+                    xbutton: data["kodi.xbutton"] === "1"
+                });
+            });
+        }
+
+        /**
+         * The user changes a setting
+         *
+         * @param   {object}    event   The event
+         */
+    }, {
+        key: "onChange",
+        value: function onChange(event) {
+            var parameterName = event.target.name;
+            var parameterValue = event.target.checked;
+            var state = {};
+            state[parameterName] = parameterValue;
+            this.setState(state);
+
+            var apiValue = parameterValue ? "1" : "0";
+            _componentsApiClientJsx2["default"].put("/kodi/" + parameterName, apiValue, "Save Kodi");
+        }
 
         /**
          * render the component
          */
+    }, {
+        key: "render",
         value: function render() {
             var labelColumnClassName = "small-9 medium-6 large-4 columns";
             var fieldColumnClassName = "small-3 medium-6 large-8 columns end";
@@ -29507,7 +29579,13 @@ var KodiPage = (function (_React$Component) {
                         _react2["default"].createElement(
                             "div",
                             { className: "form-switch switch" },
-                            _react2["default"].createElement("input", { type: "checkbox", id: "enabled" }),
+                            _react2["default"].createElement("input", {
+                                type: "checkbox",
+                                id: "enabled",
+                                name: "enabled",
+                                checked: this.state.enabled,
+                                onChange: this.onChange.bind(this)
+                            }),
                             _react2["default"].createElement("label", { htmlFor: "enabled" })
                         )
                     )
@@ -29530,7 +29608,13 @@ var KodiPage = (function (_React$Component) {
                         _react2["default"].createElement(
                             "div",
                             { className: "form-switch switch" },
-                            _react2["default"].createElement("input", { type: "checkbox", id: "atstartup" }),
+                            _react2["default"].createElement("input", {
+                                type: "checkbox",
+                                id: "atstartup",
+                                name: "atstartup",
+                                checked: this.state.atstartup,
+                                onChange: this.onChange.bind(this)
+                            }),
                             _react2["default"].createElement("label", { htmlFor: "atstartup" })
                         )
                     )
@@ -29553,7 +29637,13 @@ var KodiPage = (function (_React$Component) {
                         _react2["default"].createElement(
                             "div",
                             { className: "form-switch switch" },
-                            _react2["default"].createElement("input", { type: "checkbox", id: "xbutton" }),
+                            _react2["default"].createElement("input", {
+                                type: "checkbox",
+                                id: "xbutton",
+                                name: "kodi.xbutton",
+                                checked: this.state.xbutton,
+                                onChange: this.onChange.bind(this)
+                            }),
                             _react2["default"].createElement("label", { htmlFor: "xbutton" })
                         )
                     )
@@ -29569,7 +29659,7 @@ exports["default"] = KodiPage;
 module.exports = exports["default"];
 
 
-},{"react":217,"react-translate-component":61}],236:[function(require,module,exports){
+},{"../../components/ApiClient.jsx":220,"react":217,"react-translate-component":61}],236:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

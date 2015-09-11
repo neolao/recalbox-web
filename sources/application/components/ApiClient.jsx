@@ -84,9 +84,14 @@ class ApiClient
         event.message = message;
         this.dispatchEvent(event);
 
+        if (!format) {
+            format = "text";
+        }
+
         return $.ajax({
             method: "GET",
             url: `${this.url}${path}`,
+            dataType: format,
             complete: () => {
                 let event = new Event("complete");
                 self.dispatchEvent(event);

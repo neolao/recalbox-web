@@ -1,11 +1,63 @@
 import React from "react";
 import Translate from "react-translate-component";
+import apiClient from "../../components/ApiClient.jsx";
 
 /**
  * The configuration of Kodi
  */
 export default class KodiPage extends React.Component
 {
+    /**
+     * Constructor
+     *
+     * @param   {object}    props   Properties
+     */
+    constructor(props) {
+        super(props);
+
+        // Initial state
+        this.state = {
+            enabled: false,
+            atstartup: false,
+            xbutton: false,
+        };
+
+    }
+
+
+
+    /**
+     * The component is mounted
+     */
+    componentDidMount()
+    {
+        let self = this;
+        apiClient.get("/kodi", "Get Kodi settings", "json").done((data) => {
+            self.setState({
+                enabled: (data["kodi.enabled"] === "1"),
+                atstartup: (data["kodi.atstartup"] === "1"),
+                xbutton: (data["kodi.xbutton"] === "1")
+            });
+        });
+    }
+
+    /**
+     * The user changes a setting
+     *
+     * @param   {object}    event   The event
+     */
+    onChange(event)
+    {
+        let parameterName = event.target.name;
+        let parameterValue = event.target.checked;
+        let state = {};
+        state[parameterName] = parameterValue;
+        this.setState(state);
+
+        let apiValue = (parameterValue)?"1":"0";
+        apiClient.put(`/kodi/${parameterName}`, apiValue, "Save Kodi");
+    }
+
     /**
      * render the component
      */
@@ -26,7 +78,13 @@ export default class KodiPage extends React.Component
                     </div>
                     <div className={fieldColumnClassName}>
                         <div className="form-switch switch">
-                            <input type="checkbox" id="enabled"/>
+                            <input 
+                                type="checkbox" 
+                                id="enabled" 
+                                name="enabled" 
+                                checked={this.state.enabled}
+                                onChange={this.onChange.bind(this)}
+                            />
                             <label htmlFor="enabled"></label>
                         </div>
                     </div>
@@ -40,7 +98,13 @@ export default class KodiPage extends React.Component
                     </div>
                     <div className={fieldColumnClassName}>
                         <div className="form-switch switch">
-                            <input type="checkbox" id="atstartup"/>
+                            <input 
+                                type="checkbox" 
+                                id="atstartup" 
+                                name="atstartup" 
+                                checked={this.state.atstartup}
+                                onChange={this.onChange.bind(this)}
+                            />
                             <label htmlFor="atstartup"></label>
                         </div>
                     </div>
@@ -55,7 +119,13 @@ export default class KodiPage extends React.Component
                     </div>
                     <div className={fieldColumnClassName}>
                         <div className="form-switch switch">
-                            <input type="checkbox" id="xbutton"/>
+                            <input 
+                                type="checkbox" 
+                                id="xbutton" 
+                                name="kodi.xbutton" 
+                                checked={this.state.xbutton}
+                                onChange={this.onChange.bind(this)}
+                            />
                             <label htmlFor="xbutton"></label>
                         </div>
                     </div>
