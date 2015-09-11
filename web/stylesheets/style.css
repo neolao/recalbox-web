@@ -6677,6 +6677,9 @@ html, body {
         background: #2ba6cb;
         color: #fff; }
 
+.header {
+  position: relative; }
+
 /**
  * The main layout of a page
  */
@@ -6724,3 +6727,25 @@ html, body {
   label.inline-for-medium-up {
     margin: 0 0 1rem 0;
     padding: 0.5625rem 0; } }
+
+/**
+ * The API indicator
+ */
+.api-indicator {
+  position: absolute;
+  display: block;
+  top: 50px;
+  right: 10px;
+  width: 50%;
+  z-index: 2; }
+  .api-indicator__alert {
+    position: absolute;
+    right: 0;
+    padding-right: 40px;
+    opacity: 1;
+    transform: translate(0, 0);
+    transition-property: all;
+    transition-duration: 200ms; }
+    .api-indicator__alert--hidden {
+      opacity: 0;
+      transform: translate(110%, 0); }

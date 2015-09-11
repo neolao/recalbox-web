@@ -1,0 +1,28 @@
+/**
+ * The API indicator
+ */
+.api-indicator {
+    position: absolute;
+    display: block;
+    top: 50px;
+    right: 10px;
+    width: 50%;
+    z-index: 2;
+
+    // An alert
+    &__alert {
+        position: absolute;
+        right: 0;
+        padding-right: 40px;
+        opacity: 1;
+        transform: translate(0 ,0);
+
+        &--hidden {
+            opacity: 0;
+            transform: translate(110% ,0);
+        }
+
+        transition-property: all;
+        transition-duration: 200ms;
+    }
+}

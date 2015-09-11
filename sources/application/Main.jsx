@@ -1,5 +1,6 @@
 import React from "react";
 import ReactRouter from "react-router";
+import apiClient from "./components/ApiClient.jsx";
 import Header from "./components/Header.jsx";
 import MenuOffCanvas from "./components/MenuOffCanvas.jsx";
 let RouteHandler = ReactRouter.RouteHandler;
@@ -21,8 +22,8 @@ export default class Main extends React.Component
         this.state = {
             apiUrl: null
         };
-
     }
+
     /**
      * The component is mounted
      */
@@ -32,6 +33,12 @@ export default class Main extends React.Component
         let self = this;
         $.ajax({url: "/config.json"}).done((data) => {
             data = JSON.parse(data);
+
+            // Update the API client
+            if (data.apiUrl) {
+                apiClient.setUrl(data.apiUrl);
+            }
+
             self.setState(data);
         });
     }
@@ -63,7 +70,7 @@ export default class Main extends React.Component
                     <MenuOffCanvas/>
                     <Header className="app-header"/>
                     <div className="app-content">
-                        <RouteHandler apiUrl={this.state.apiUrl}/>
+                        <RouteHandler/>
                     </div>
                 </div>
             </div>

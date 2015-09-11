@@ -26,7 +26,9 @@ html, body {
 
 // Components
 @import "./components/_menu-off-canvas.scss";
+@import "./components/_header.scss";
 @import "./components/_page-layout.scss";
 @import "./components/_menu-sidebar.scss";
 @import "./components/_page.scss";
 @import "./components/_form.scss";
+@import "./components/_api-indicator.scss";

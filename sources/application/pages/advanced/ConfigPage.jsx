@@ -1,6 +1,8 @@
 import React from "react";
 import Translate from "react-translate-component";
 import Textarea from "react-textarea-autosize";
+import apiClient from "../../components/ApiClient.jsx";
+//import AceEditor from "react-ace";
 
 /**
  * The main configuration file (recalbox.conf)
@@ -17,7 +19,7 @@ export default class ConfigPage extends React.Component
 
         // Initial state
         this.state = {
-            content: "Loading"
+            content: "..."
         };
 
     }
@@ -28,8 +30,7 @@ export default class ConfigPage extends React.Component
     componentDidMount()
     {
         let self = this;
-        let apiUrl = this.props.apiUrl;
-        $.ajax({url: `${apiUrl}/configuration`}).done((data) => {
+        apiClient.get("/configuration", "Get configuration").done((data) => {
             self.setState({content: data});
         });
     }
@@ -41,7 +42,9 @@ export default class ConfigPage extends React.Component
      */
     onChange(event)
     {
-        this.setState({content: event.target.value});
+        let newContent = event.target.value;
+        //let newContent = event;
+        this.setState({content: newContent});
     }
 
     /**
@@ -52,12 +55,7 @@ export default class ConfigPage extends React.Component
     onSave(event)
     {
         let self = this;
-        let apiUrl = this.props.apiUrl;
-        $.ajax({
-            method: "PUT",
-            url: `${apiUrl}/configuration`,
-            data: this.state.content
-        }).done((data) => {
+        apiClient.put("/configuration", this.state.content, "Save configuration").done((data) => {
             self.setState({content: data});
         });
     }
@@ -67,14 +65,31 @@ export default class ConfigPage extends React.Component
      */
     render()
     {
+        /*
+        let editor = (
+            <AceEditor 
+                mode="ini" 
+                theme="github" 
+                width="100%" 
+                editorProps={{$blockScrolling: true, autoScrollEditorIntoView: true}} 
+                name="config" 
+                value={this.state.content} 
+                onChange={this.onChange.bind(this)}
+            />
+        );
+        */
+        let editor = (
+            <Textarea value={this.state.content} onChange={this.onChange.bind(this)}/>
+        );
+
+
         return (
             <article className="page">
                 <h1 className="page__title"><Translate content="page.title.recalbox.conf"/></h1>
-                <Textarea value={this.state.content} onChange={this.onChange.bind(this)}/>
+                {editor}
                 <p><button onClick={this.onSave.bind(this)}><Translate content="button.save"/></button></p>
             </article>
         );
     }
 }
 
-ConfigPage.propTypes = { apiUrl: React.PropTypes.string.isRequired };

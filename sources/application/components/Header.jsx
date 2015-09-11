@@ -2,6 +2,7 @@ import counterpart from "counterpart";
 import Translate from "react-translate-component";
 import React from "react";
 import ReactRouter from "react-router";
+import ApiIndicator from "./ApiIndicator.jsx";
 let Link = ReactRouter.Link;
 
 /**
@@ -56,7 +57,8 @@ export default class Header extends React.Component
 
 
         return (
-            <header>
+            <header className="header">
+                <ApiIndicator/>
                 <nav className="tab-bar show-for-small-only">
                     <section className="left-small">
                         <a href="#" role="button" className="left-off-canvas-toggle menu-icon"><span></span></a>
