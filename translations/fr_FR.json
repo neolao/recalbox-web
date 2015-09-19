@@ -84,6 +84,36 @@
                     "label": "Clé"
                 }
             }
+        },
+        "api": {
+            "locale": {
+                "getMessage": "Chargement de la langue",
+                "getError": "Échec du chargement de la langue",
+                "putMessae": "Sauvegarde de la langue",
+                "putError": "Échec de la sauvegarde de la langue",
+                "putSuccess": "Langue sauvegardée"
+            },
+            "keyboardlayout": {
+                "getMessage": "Chargement de l'agencement du clavier",
+                "getError": "Échec du chargement de l'agencement du clavier",
+                "putMessae": "Sauvegarde de l'agencement du clavier",
+                "putError": "Échec de la sauvegarde de l'agencement du clavier",
+                "putSuccess": "Agencement du clavier sauvegardé"
+            },
+            "timezone": {
+                "getMessage": "Chargement du fuseau horaire",
+                "getError": "Échec du chargement du fuseau horaire",
+                "putMessae": "Sauvegarde du fuseau horaire",
+                "putError": "Échec de la sauvegarde du fuseau horaire",
+                "putSuccess": "Fuseau horaire sauvegardé"
+            },
+            "kodi": {
+                "getMessage": "Chargement des paramètres Kodi",
+                "getError": "Échec du chargement des paramètres Kodi",
+                "putMessage": "Sauvegarde des paramètres Kodi",
+                "putError": "Échec de la sauvegarde des paramètres Kodi",
+                "putSuccess": "Paramètres Kodi sauvegardés"
+            }
         }
 
     }

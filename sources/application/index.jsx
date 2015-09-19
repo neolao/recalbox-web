@@ -1,6 +1,6 @@
+import React from "react";
 import async from "async";
 import counterpart from "counterpart";
-import React from "react";
 import ReactRouter from "react-router";
 import projectConfiguration from "../../package.json";
 let Route = ReactRouter.Route;

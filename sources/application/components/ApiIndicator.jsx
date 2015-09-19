@@ -1,6 +1,6 @@
+import React from "react";
 import counterpart from "counterpart";
 import Translate from "react-translate-component";
-import React from "react";
 import apiClient from "./ApiClient.jsx";
 
 /**

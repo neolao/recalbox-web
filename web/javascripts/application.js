@@ -26391,7 +26391,7 @@ module.exports={
         "url": "https://github.com/neolao/recalbox-web.git"
     },
     "engines": {
-        "node": ">=0.12"
+        "node": ">=0.12 <4.0"
     },
     "dependencies": {
         "pm2"           : "0.14.*"
@@ -26681,14 +26681,15 @@ var ApiClient = (function () {
         /**
          * Execute a GET request to the API
          *
-         * @param   {string}    path    The path
-         * @param   {string}    message The message
-         * @param   {string}    format  The format (text, json, xml)
+         * @param   {string}    path            The path
+         * @param   {string}    message         The message
+         * @param   {string}    errorMessage    The error message
+         * @param   {string}    format          The format (text, json, xml)
          */
     }, {
         key: "get",
-        value: function get(path, message) {
-            var format = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
+        value: function get(path, message, errorMessage) {
+            var format = arguments.length <= 3 || arguments[3] === undefined ? null : arguments[3];
 
             var self = this;
 
@@ -26710,9 +26711,11 @@ var ApiClient = (function () {
                     var event = new Event("complete");
                     self.dispatchEvent(event);
                 },
-                error: function error(xhr, status, errorMessage) {
+                error: function error(xhr, status, _error) {
+                    console.error(_error + " (" + status + ")");
+
                     var event = new Event("error");
-                    event.message = errorMessage + " (" + status + ")";
+                    event.message = errorMessage;
                     self.dispatchEvent(event);
                 }
             });
@@ -26721,15 +26724,17 @@ var ApiClient = (function () {
         /**
          * Execute a PUT request to the API
          *
-         * @param   {string}    path    The path
-         * @param   {any}       data    The data to send
-         * @param   {string}    message The message
-         * @param   {string}    format  The format (text, json, xml)
+         * @param   {string}    path            The path
+         * @param   {any}       data            The data to send
+         * @param   {string}    message         The message
+         * @param   {string}    errorMessage    The error message
+         * @param   {string}    successMessage  The success message
+         * @param   {string}    format          The format (text, json, xml)
          */
     }, {
         key: "put",
-        value: function put(path, data, message) {
-            var format = arguments.length <= 3 || arguments[3] === undefined ? null : arguments[3];
+        value: function put(path, data, message, errorMessage, successMessage) {
+            var format = arguments.length <= 5 || arguments[5] === undefined ? null : arguments[5];
 
             var self = this;
 
@@ -26750,12 +26755,14 @@ var ApiClient = (function () {
                 dataType: format,
                 success: function success() {
                     var event = new Event("success");
-                    event.message = message;
+                    event.message = successMessage;
                     self.dispatchEvent(event);
                 },
-                error: function error(xhr, status, errorMessage) {
+                error: function error(xhr, status, _error2) {
+                    console.error(_error2 + " (" + status + ")");
+
                     var event = new Event("error");
-                    event.message = errorMessage + " (" + status + ")";
+                    event.message = errorMessage;
                     self.dispatchEvent(event);
                 }
             });
@@ -26786,6 +26793,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
 var _counterpart = require("counterpart");
 
 var _counterpart2 = _interopRequireDefault(_counterpart);
@@ -26793,10 +26804,6 @@ var _counterpart2 = _interopRequireDefault(_counterpart);
 var _reactTranslateComponent = require("react-translate-component");
 
 var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
 
 var _ApiClientJsx = require("./ApiClient.jsx");
 
@@ -27048,6 +27055,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
 var _counterpart = require("counterpart");
 
 var _counterpart2 = _interopRequireDefault(_counterpart);
@@ -27055,10 +27066,6 @@ var _counterpart2 = _interopRequireDefault(_counterpart);
 var _reactTranslateComponent = require("react-translate-component");
 
 var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require("react-router");
 
@@ -27276,13 +27283,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _counterpart = require("counterpart");
-
-var _counterpart2 = _interopRequireDefault(_counterpart);
-
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
+
+var _counterpart = require("counterpart");
+
+var _counterpart2 = _interopRequireDefault(_counterpart);
 
 var _reactRouter = require("react-router");
 
@@ -27574,6 +27581,10 @@ module.exports = exports["default"];
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
 var _async = require("async");
 
 var _async2 = _interopRequireDefault(_async);
@@ -27581,10 +27592,6 @@ var _async2 = _interopRequireDefault(_async);
 var _counterpart = require("counterpart");
 
 var _counterpart2 = _interopRequireDefault(_counterpart);
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require("react-router");
 
@@ -28571,6 +28578,10 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _counterpart = require("counterpart");
+
+var _counterpart2 = _interopRequireDefault(_counterpart);
+
 var _reactTranslateComponent = require("react-translate-component");
 
 var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
@@ -28586,23 +28597,61 @@ var _componentsApiClientJsx2 = _interopRequireDefault(_componentsApiClientJsx);
 var GeneralPage = (function (_React$Component) {
     _inherits(GeneralPage, _React$Component);
 
-    function GeneralPage() {
+    /**
+     * Constructor
+     *
+     * @param   {object}    props   Properties
+     */
+
+    function GeneralPage(props) {
         _classCallCheck(this, GeneralPage);
 
-        _get(Object.getPrototypeOf(GeneralPage.prototype), "constructor", this).apply(this, arguments);
+        _get(Object.getPrototypeOf(GeneralPage.prototype), "constructor", this).call(this, props);
+
+        // Initial state
+        this.state = {
+            locale: "",
+            keyboardlayout: "",
+            timezone: ""
+        };
     }
+
+    /**
+     * The component is mounted
+     */
 
     _createClass(GeneralPage, [{
         key: "componentDidMount",
-
-        /**
-         * The component is mounted
-         */
         value: function componentDidMount() {
             var self = this;
-            _componentsApiClientJsx2["default"].get("/locale", "Get locale").done(function (data) {
-                self.setState({ locale: data });
+            _componentsApiClientJsx2["default"].get("/locale", (0, _counterpart2["default"])("api.locale.getMessage"), (0, _counterpart2["default"])("api.locale.getError"), "json").done(function (data) {
+                self.setState({ locale: data["system.language"] });
             });
+
+            _componentsApiClientJsx2["default"].get("/keyboardlayout", (0, _counterpart2["default"])("api.keyboardlayout.getMessage"), (0, _counterpart2["default"])("api.keyboardlayout.getError"), "json").done(function (data) {
+                self.setState({ keyboardlayout: data["system.kblayout"] });
+            });
+
+            _componentsApiClientJsx2["default"].get("/timezone", (0, _counterpart2["default"])("api.timezone.getMessage"), (0, _counterpart2["default"])("api.timezone.getError"), "json").done(function (data) {
+                self.setState({ timezone: data["system.timezone"] });
+            });
+        }
+
+        /**
+         * The user changes a setting
+         *
+         * @param   {object}    event   The event
+         */
+    }, {
+        key: "onChange",
+        value: function onChange(event) {
+            var parameterName = event.target.name;
+            var parameterValue = event.target.value;
+            var state = {};
+            state[parameterName] = parameterValue;
+            this.setState(state);
+
+            _componentsApiClientJsx2["default"].put("/" + parameterName, parameterValue, (0, _counterpart2["default"])("api." + parameterName + ".putMessage"), (0, _counterpart2["default"])("api." + parameterName + ".putError"), (0, _counterpart2["default"])("api." + parameterName + ".putSuccess"));
         }
 
         /**
@@ -28639,7 +28688,7 @@ var GeneralPage = (function (_React$Component) {
                         { className: fieldColumnClassName },
                         _react2["default"].createElement(
                             "select",
-                            { id: "language" },
+                            { id: "language", name: "locale", value: this.state.locale, onChange: this.onChange.bind(this) },
                             _react2["default"].createElement(
                                 "option",
                                 { value: "en_US" },
@@ -28690,7 +28739,7 @@ var GeneralPage = (function (_React$Component) {
                         { className: fieldColumnClassName },
                         _react2["default"].createElement(
                             "select",
-                            { id: "keyboard" },
+                            { id: "keyboard", name: "keyboardlayout", value: this.state.keyboardlayout, onChange: this.onChange.bind(this) },
                             _react2["default"].createElement(
                                 "option",
                                 { value: "us" },
@@ -28736,7 +28785,7 @@ var GeneralPage = (function (_React$Component) {
                         { className: fieldColumnClassName },
                         _react2["default"].createElement(
                             "select",
-                            { id: "timezone" },
+                            { id: "timezone", name: "timezone", value: this.state.timezone, onChange: this.onChange.bind(this) },
                             _react2["default"].createElement(
                                 "option",
                                 { value: "Pacific/Midway" },
@@ -29461,7 +29510,7 @@ exports["default"] = GeneralPage;
 module.exports = exports["default"];
 
 
-},{"../../components/ApiClient.jsx":220,"react":217,"react-translate-component":61}],235:[function(require,module,exports){
+},{"../../components/ApiClient.jsx":220,"counterpart":7,"react":217,"react-translate-component":61}],235:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29481,6 +29530,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
+
+var _counterpart = require("counterpart");
+
+var _counterpart2 = _interopRequireDefault(_counterpart);
 
 var _reactTranslateComponent = require("react-translate-component");
 
@@ -29524,7 +29577,7 @@ var KodiPage = (function (_React$Component) {
         key: "componentDidMount",
         value: function componentDidMount() {
             var self = this;
-            _componentsApiClientJsx2["default"].get("/kodi", "Get Kodi settings", "json").done(function (data) {
+            _componentsApiClientJsx2["default"].get("/kodi", (0, _counterpart2["default"])("api.kodi.getMessage"), (0, _counterpart2["default"])("api.kodi.getError"), "json").done(function (data) {
                 self.setState({
                     enabled: data["kodi.enabled"] === "1",
                     atstartup: data["kodi.atstartup"] === "1",
@@ -29548,7 +29601,7 @@ var KodiPage = (function (_React$Component) {
             this.setState(state);
 
             var apiValue = parameterValue ? "1" : "0";
-            _componentsApiClientJsx2["default"].put("/kodi/" + parameterName, apiValue, "Save Kodi");
+            _componentsApiClientJsx2["default"].put("/kodi/" + parameterName, apiValue, (0, _counterpart2["default"])("api.kodi.putMessage"), (0, _counterpart2["default"])("api.kodi.putError"), (0, _counterpart2["default"])("api.kodi.putSuccess"));
         }
 
         /**
@@ -29647,7 +29700,7 @@ var KodiPage = (function (_React$Component) {
                             _react2["default"].createElement("input", {
                                 type: "checkbox",
                                 id: "xbutton",
-                                name: "kodi.xbutton",
+                                name: "xbutton",
                                 checked: this.state.xbutton,
                                 onChange: this.onChange.bind(this)
                             }),
@@ -29666,7 +29719,7 @@ exports["default"] = KodiPage;
 module.exports = exports["default"];
 
 
-},{"../../components/ApiClient.jsx":220,"react":217,"react-translate-component":61}],236:[function(require,module,exports){
+},{"../../components/ApiClient.jsx":220,"counterpart":7,"react":217,"react-translate-component":61}],236:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30173,6 +30226,36 @@ module.exports={
                     "label": "Key"
                 }
             }
+        },
+        "api": {
+            "locale": {
+                "getMessage": "Get language setting",
+                "getError": "Failed to get language setting",
+                "putMessae": "Saving language",
+                "putError": "Failed to save language",
+                "putSuccess": "Language saved"
+            },
+            "keyboardlayout": {
+                "getMessage": "Get keyboard layout",
+                "getError": "Failed to get keyboard layout",
+                "putMessae": "Saving keyboard layout",
+                "putError": "Failed to save keyboard layout",
+                "putSuccess": "Keyboard layout saved"
+            },
+            "timezone": {
+                "getMessage": "Get timezone setting",
+                "getError": "Failed to get timezone setting",
+                "putMessae": "Saving timezone setting",
+                "putError": "Failed to save timezone",
+                "putSuccess": "Timezone saved"
+            },
+            "kodi": {
+                "getMessage": "Get Kodi settings",
+                "getError": "Failed to get Kodi settings",
+                "putMessae": "Saving Kodi settings",
+                "putError": "Failed to save Kodi settings",
+                "putSuccess": "Kodi settings saved"
+            }
         }
     }
 }
@@ -30263,6 +30346,36 @@ module.exports={
                 "key": {
                     "label": "Clé"
                 }
+            }
+        },
+        "api": {
+            "locale": {
+                "getMessage": "Chargement de la langue",
+                "getError": "Échec du chargement de la langue",
+                "putMessae": "Sauvegarde de la langue",
+                "putError": "Échec de la sauvegarde de la langue",
+                "putSuccess": "Langue sauvegardée"
+            },
+            "keyboardlayout": {
+                "getMessage": "Chargement de l'agencement du clavier",
+                "getError": "Échec du chargement de l'agencement du clavier",
+                "putMessae": "Sauvegarde de l'agencement du clavier",
+                "putError": "Échec de la sauvegarde de l'agencement du clavier",
+                "putSuccess": "Agencement du clavier sauvegardé"
+            },
+            "timezone": {
+                "getMessage": "Chargement du fuseau horaire",
+                "getError": "Échec du chargement du fuseau horaire",
+                "putMessae": "Sauvegarde du fuseau horaire",
+                "putError": "Échec de la sauvegarde du fuseau horaire",
+                "putSuccess": "Fuseau horaire sauvegardé"
+            },
+            "kodi": {
+                "getMessage": "Chargement des paramètres Kodi",
+                "getError": "Échec du chargement des paramètres Kodi",
+                "putMessage": "Sauvegarde des paramètres Kodi",
+                "putError": "Échec de la sauvegarde des paramètres Kodi",
+                "putSuccess": "Paramètres Kodi sauvegardés"
             }
         }
 

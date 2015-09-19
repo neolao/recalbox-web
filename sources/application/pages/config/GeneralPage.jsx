@@ -1,4 +1,5 @@
 import React from "react";
+import counterpart from "counterpart";
 import Translate from "react-translate-component";
 import apiClient from "../../components/ApiClient.jsx";
 
@@ -8,14 +9,76 @@ import apiClient from "../../components/ApiClient.jsx";
 export default class GeneralPage extends React.Component
 {
     /**
+     * Constructor
+     *
+     * @param   {object}    props   Properties
+     */
+    constructor(props) {
+        super(props);
+
+        // Initial state
+        this.state = {
+            locale: "",
+            keyboardlayout: "",
+            timezone: "",
+        };
+    }
+
+
+    /**
      * The component is mounted
      */
     componentDidMount()
     {
         let self = this;
-        apiClient.get("/locale", "Get locale").done((data) => {
-            self.setState({locale: data});
+        apiClient.get(
+            "/locale", 
+            counterpart("api.locale.getMessage"), 
+            counterpart("api.locale.getError"), 
+            "json"
+        ).done((data) => {
+            self.setState({locale: data["system.language"]});
         });
+
+        apiClient.get(
+            "/keyboardlayout", 
+            counterpart("api.keyboardlayout.getMessage"), 
+            counterpart("api.keyboardlayout.getError"), 
+            "json"
+        ).done((data) => {
+            self.setState({keyboardlayout: data["system.kblayout"]});
+        });
+
+        apiClient.get(
+            "/timezone", 
+            counterpart("api.timezone.getMessage"), 
+            counterpart("api.timezone.getError"), 
+            "json"
+        ).done((data) => {
+            self.setState({timezone: data["system.timezone"]});
+        });
+    }
+
+    /**
+     * The user changes a setting
+     *
+     * @param   {object}    event   The event
+     */
+    onChange(event)
+    {
+        let parameterName = event.target.name;
+        let parameterValue = event.target.value;
+        let state = {};
+        state[parameterName] = parameterValue;
+        this.setState(state);
+
+        apiClient.put(
+            `/${parameterName}`, 
+            parameterValue, 
+            counterpart(`api.${parameterName}.putMessage`),
+            counterpart(`api.${parameterName}.putError`),
+            counterpart(`api.${parameterName}.putSuccess`)
+        );
     }
 
 
@@ -39,7 +102,7 @@ export default class GeneralPage extends React.Component
                         </label>
                     </div>
                     <div className={fieldColumnClassName}>
-                        <select id="language">
+                        <select id="language" name="locale" value={this.state.locale} onChange={this.onChange.bind(this)}>
                             <option value="en_US">English (US)</option>
                             <option value="en_GB">English (GB)</option>
                             <option value="fr_FR">Français</option>
@@ -57,7 +120,7 @@ export default class GeneralPage extends React.Component
                         </label>
                     </div>
                     <div className={fieldColumnClassName}>
-                        <select id="keyboard">
+                        <select id="keyboard" name="keyboardlayout" value={this.state.keyboardlayout} onChange={this.onChange.bind(this)}>
                             <option value="us">English (US)</option>
                             <option value="en">English (UK)</option>
                             <option value="fr">Français</option>
@@ -74,7 +137,7 @@ export default class GeneralPage extends React.Component
                         </label>
                     </div>
                     <div className={fieldColumnClassName}>
-                        <select id="timezone">
+                        <select id="timezone" name="timezone" value={this.state.timezone} onChange={this.onChange.bind(this)}>
                             <option value="Pacific/Midway">Pacific/Midway</option>
                             <option value="Pacific/Samoa">Pacific/Samoa</option>
                             <option value="Pacific/Honolulu">Pacific/Honolulu</option>

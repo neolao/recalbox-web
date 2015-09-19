@@ -1,4 +1,5 @@
 import React from "react";
+import counterpart from "counterpart";
 import Translate from "react-translate-component";
 import apiClient from "../../components/ApiClient.jsx";
 
@@ -21,10 +22,7 @@ export default class KodiPage extends React.Component
             atstartup: false,
             xbutton: false,
         };
-
     }
-
-
 
     /**
      * The component is mounted
@@ -32,7 +30,12 @@ export default class KodiPage extends React.Component
     componentDidMount()
     {
         let self = this;
-        apiClient.get("/kodi", "Get Kodi settings", "json").done((data) => {
+        apiClient.get(
+            "/kodi", 
+            counterpart("api.kodi.getMessage"), 
+            counterpart("api.kodi.getError"), 
+            "json"
+        ).done((data) => {
             self.setState({
                 enabled: (data["kodi.enabled"] === "1"),
                 atstartup: (data["kodi.atstartup"] === "1"),
@@ -55,7 +58,13 @@ export default class KodiPage extends React.Component
         this.setState(state);
 
         let apiValue = (parameterValue)?"1":"0";
-        apiClient.put(`/kodi/${parameterName}`, apiValue, "Save Kodi");
+        apiClient.put(
+            `/kodi/${parameterName}`, 
+            apiValue, 
+            counterpart("api.kodi.putMessage"),
+            counterpart("api.kodi.putError"),
+            counterpart("api.kodi.putSuccess")
+        );
     }
 
     /**
@@ -122,7 +131,7 @@ export default class KodiPage extends React.Component
                             <input 
                                 type="checkbox" 
                                 id="xbutton" 
-                                name="kodi.xbutton" 
+                                name="xbutton" 
                                 checked={this.state.xbutton}
                                 onChange={this.onChange.bind(this)}
                             />

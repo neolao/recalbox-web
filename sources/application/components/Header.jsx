@@ -1,6 +1,6 @@
+import React from "react";
 import counterpart from "counterpart";
 import Translate from "react-translate-component";
-import React from "react";
 import ReactRouter from "react-router";
 import ApiIndicator from "./ApiIndicator.jsx";
 let Link = ReactRouter.Link;

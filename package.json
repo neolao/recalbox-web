@@ -9,7 +9,7 @@
         "url": "https://github.com/neolao/recalbox-web.git"
     },
     "engines": {
-        "node": ">=0.12"
+        "node": ">=0.12 <4.0"
     },
     "dependencies": {
         "pm2"           : "0.14.*"

@@ -71,11 +71,12 @@ class ApiClient
     /**
      * Execute a GET request to the API
      *
-     * @param   {string}    path    The path
-     * @param   {string}    message The message
-     * @param   {string}    format  The format (text, json, xml)
+     * @param   {string}    path            The path
+     * @param   {string}    message         The message
+     * @param   {string}    errorMessage    The error message
+     * @param   {string}    format          The format (text, json, xml)
      */
-    get(path:string, message:string, format:string = null)
+    get(path:string, message:string, errorMessage:string, format:string = null)
     {
         let self = this;
 
@@ -97,9 +98,11 @@ class ApiClient
                 let event = new Event("complete");
                 self.dispatchEvent(event);
             },
-            error: (xhr, status, errorMessage) => {
+            error: (xhr, status, error) => {
+                console.error(`${error} (${status})`);
+
                 let event = new Event("error");
-                event.message = `${errorMessage} (${status})`;
+                event.message = errorMessage;
                 self.dispatchEvent(event);
             }
         });
@@ -108,12 +111,14 @@ class ApiClient
     /**
      * Execute a PUT request to the API
      *
-     * @param   {string}    path    The path
-     * @param   {any}       data    The data to send
-     * @param   {string}    message The message
-     * @param   {string}    format  The format (text, json, xml)
+     * @param   {string}    path            The path
+     * @param   {any}       data            The data to send
+     * @param   {string}    message         The message
+     * @param   {string}    errorMessage    The error message
+     * @param   {string}    successMessage  The success message
+     * @param   {string}    format          The format (text, json, xml)
      */
-    put(path:string, data, message:string, format:string = null)
+    put(path:string, data, message:string, errorMessage:string, successMessage:string, format:string = null)
     {
         let self = this;
 
@@ -134,12 +139,14 @@ class ApiClient
             dataType: format,
             success: () => {
                 let event = new Event("success");
-                event.message = message;
+                event.message = successMessage;
                 self.dispatchEvent(event);
             },
-            error: (xhr, status, errorMessage) => {
+            error: (xhr, status, error) => {
+                console.error(`${error} (${status})`);
+
                 let event = new Event("error");
-                event.message = `${errorMessage} (${status})`;
+                event.message = errorMessage;
                 self.dispatchEvent(event);
             }
         });

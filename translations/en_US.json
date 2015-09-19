@@ -84,6 +84,36 @@
                     "label": "Key"
                 }
             }
+        },
+        "api": {
+            "locale": {
+                "getMessage": "Get language setting",
+                "getError": "Failed to get language setting",
+                "putMessae": "Saving language",
+                "putError": "Failed to save language",
+                "putSuccess": "Language saved"
+            },
+            "keyboardlayout": {
+                "getMessage": "Get keyboard layout",
+                "getError": "Failed to get keyboard layout",
+                "putMessae": "Saving keyboard layout",
+                "putError": "Failed to save keyboard layout",
+                "putSuccess": "Keyboard layout saved"
+            },
+            "timezone": {
+                "getMessage": "Get timezone setting",
+                "getError": "Failed to get timezone setting",
+                "putMessae": "Saving timezone setting",
+                "putError": "Failed to save timezone",
+                "putSuccess": "Timezone saved"
+            },
+            "kodi": {
+                "getMessage": "Get Kodi settings",
+                "getError": "Failed to get Kodi settings",
+                "putMessae": "Saving Kodi settings",
+                "putError": "Failed to save Kodi settings",
+                "putSuccess": "Kodi settings saved"
+            }
         }
     }
 }

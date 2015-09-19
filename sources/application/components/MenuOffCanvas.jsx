@@ -1,5 +1,5 @@
-import counterpart from "counterpart";
 import React from "react";
+import counterpart from "counterpart";
 import ReactRouter from "react-router";
 import Translate from "react-translate-component";
 let Link = ReactRouter.Link;
