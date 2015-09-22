@@ -103,9 +103,16 @@
             "timezone": {
                 "getMessage": "Get timezone setting",
                 "getError": "Failed to get timezone setting",
-                "putMessae": "Saving timezone setting",
+                "putMessage": "Saving timezone setting",
                 "putError": "Failed to save timezone",
                 "putSuccess": "Timezone saved"
+            },
+            "hostname": {
+                "getMessage": "Get hostname",
+                "getError": "Failed to get hostname",
+                "putMessage": "Saving hostname",
+                "putError": "Failed to save hostname",
+                "putSuccess": "Hostname saved"
             },
             "kodi": {
                 "getMessage": "Get Kodi settings",
@@ -113,6 +120,13 @@
                 "putMessae": "Saving Kodi settings",
                 "putError": "Failed to save Kodi settings",
                 "putSuccess": "Kodi settings saved"
+            },
+            "wifi": {
+                "getMessage": "Get WIFI settings",
+                "getError": "Failed to get WIFI settings",
+                "putMessae": "Saving WIFI settings",
+                "putError": "Failed to save WIFI settings",
+                "putSuccess": "WIFI settings saved"
             }
         }
     }

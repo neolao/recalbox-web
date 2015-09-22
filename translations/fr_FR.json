@@ -103,9 +103,16 @@
             "timezone": {
                 "getMessage": "Chargement du fuseau horaire",
                 "getError": "Échec du chargement du fuseau horaire",
-                "putMessae": "Sauvegarde du fuseau horaire",
+                "putMessage": "Sauvegarde du fuseau horaire",
                 "putError": "Échec de la sauvegarde du fuseau horaire",
                 "putSuccess": "Fuseau horaire sauvegardé"
+            },
+            "hostname": {
+                "getMessage": "Chargement du nom d'hôte",
+                "getError": "Échec du chargement du nom d'hôte",
+                "putMessage": "Sauvegarde nom d'hôte",
+                "putError": "Échec de la sauvegarde du nom d'hôte",
+                "putSuccess": "Nom d'hôte sauvegardé"
             },
             "kodi": {
                 "getMessage": "Chargement des paramètres Kodi",
@@ -113,8 +120,14 @@
                 "putMessage": "Sauvegarde des paramètres Kodi",
                 "putError": "Échec de la sauvegarde des paramètres Kodi",
                 "putSuccess": "Paramètres Kodi sauvegardés"
+            },
+            "wifi": {
+                "getMessage": "Chargement des paramètres WIFI",
+                "getError": "Échec du chargement des paramètres WIFI",
+                "putMessae": "Sauvegarde des paramètres WIFI",
+                "putError": "Échec de la sauvegarde des paramètres WIFI",
+                "putSuccess": "Paramètres WIFI sauvegardés"
             }
         }
-
     }
 }

@@ -29740,9 +29740,17 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _counterpart = require("counterpart");
+
+var _counterpart2 = _interopRequireDefault(_counterpart);
+
 var _reactTranslateComponent = require("react-translate-component");
 
 var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
+var _componentsApiClientJsx = require("../../components/ApiClient.jsx");
+
+var _componentsApiClientJsx2 = _interopRequireDefault(_componentsApiClientJsx);
 
 /**
  * The configuration of the network
@@ -29751,18 +29759,138 @@ var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent)
 var NetworkPage = (function (_React$Component) {
     _inherits(NetworkPage, _React$Component);
 
-    function NetworkPage() {
+    /**
+     * Constructor
+     *
+     * @param   {object}    props   Properties
+     */
+
+    function NetworkPage(props) {
         _classCallCheck(this, NetworkPage);
 
-        _get(Object.getPrototypeOf(NetworkPage.prototype), "constructor", this).apply(this, arguments);
+        _get(Object.getPrototypeOf(NetworkPage.prototype), "constructor", this).call(this, props);
+
+        // Initial state
+        this.state = {
+            hostname: "",
+            wifiEnabled: false,
+            wifiSSID: "",
+            wifiKey: ""
+        };
+
+        this.timeoutHostname = null;
+        this.timeoutWifiSSID = null;
+        this.timeoutWifiKey = null;
     }
 
+    /**
+     * The component is mounted
+     */
+
     _createClass(NetworkPage, [{
-        key: "render",
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            var self = this;
+            _componentsApiClientJsx2["default"].get("/hostname", (0, _counterpart2["default"])("api.hostname.getMessage"), (0, _counterpart2["default"])("api.hostname.getError"), "json").done(function (data) {
+                self.setState({ hostname: data["system.hostname"] });
+            });
+
+            _componentsApiClientJsx2["default"].get("/wifi", (0, _counterpart2["default"])("api.wifi.getMessage"), (0, _counterpart2["default"])("api.wifi.getError"), "json").done(function (data) {
+                self.setState({
+                    wifiEnabled: data["wifi.enabled"] === "1",
+                    wifiSSID: data["wifi.ssid"],
+                    wifiKey: data["wifi.key"]
+                });
+            });
+        }
+
+        /**
+         * The user changes the hostname
+         *
+         * @param   {object}    event   The event
+         */
+    }, {
+        key: "onChangeHostname",
+        value: function onChangeHostname(event) {
+            var parameterName = event.target.name;
+            var parameterValue = event.target.value;
+            var state = {
+                hostname: parameterValue
+            };
+            this.setState(state);
+
+            clearTimeout(this.timeoutHostname);
+            this.timeoutHostname = setTimeout(function () {
+                _componentsApiClientJsx2["default"].put("/hostname", parameterValue, (0, _counterpart2["default"])("api.hostname.putMessage"), (0, _counterpart2["default"])("api.hostname.putError"), (0, _counterpart2["default"])("api.hostname.putSuccess"));
+            }, 1000);
+        }
+
+        /**
+         * The user enables/disables the WIFI
+         *
+         * @param   {object}    event   The event
+         */
+    }, {
+        key: "onChangeWifiEnabled",
+        value: function onChangeWifiEnabled(event) {
+            var parameterName = event.target.name;
+            var parameterValue = event.target.checked;
+            var state = {
+                wifiEnabled: parameterValue
+            };
+            this.setState(state);
+
+            var apiValue = parameterValue ? "1" : "0";
+            _componentsApiClientJsx2["default"].put("/wifi/enabled", apiValue, (0, _counterpart2["default"])("api.wifi.putMessage"), (0, _counterpart2["default"])("api.wifi.putError"), (0, _counterpart2["default"])("api.wifi.putSuccess"));
+        }
+
+        /**
+         * The user changes the wifi SSID
+         *
+         * @param   {object}    event   The event
+         */
+    }, {
+        key: "onChangeWifiSSID",
+        value: function onChangeWifiSSID(event) {
+            var parameterName = event.target.name;
+            var parameterValue = event.target.value;
+            var state = {
+                wifiSSID: parameterValue
+            };
+            this.setState(state);
+
+            clearTimeout(this.timeoutWifiSSID);
+            this.timeoutWifiSSID = setTimeout(function () {
+                _componentsApiClientJsx2["default"].put("/wifi/ssid", parameterValue, (0, _counterpart2["default"])("api.wifi.putMessage"), (0, _counterpart2["default"])("api.wifi.putError"), (0, _counterpart2["default"])("api.wifi.putSuccess"));
+            }, 1000);
+        }
+
+        /**
+         * The user changes the wifi Key
+         *
+         * @param   {object}    event   The event
+         */
+    }, {
+        key: "onChangeWifiKey",
+        value: function onChangeWifiKey(event) {
+            var parameterName = event.target.name;
+            var parameterValue = event.target.value;
+            var state = {
+                wifiKey: parameterValue
+            };
+            this.setState(state);
+
+            clearTimeout(this.timeoutWifiKey);
+            this.timeoutWifiKey = setTimeout(function () {
+                _componentsApiClientJsx2["default"].put("/wifi/key", parameterValue, (0, _counterpart2["default"])("api.wifi.putMessage"), (0, _counterpart2["default"])("api.wifi.putError"), (0, _counterpart2["default"])("api.wifi.putSuccess"));
+            }, 1000);
+        }
 
         /**
          * render the component
          */
+    }, {
+        key: "render",
         value: function render() {
             var labelColumnClassName = "small-12 medium-4 large-2 columns";
             var fieldColumnClassName = "small-12 medium-8 large-6 columns end";
@@ -29790,7 +29918,13 @@ var NetworkPage = (function (_React$Component) {
                     _react2["default"].createElement(
                         "div",
                         { className: fieldColumnClassName },
-                        _react2["default"].createElement("input", { type: "text", id: "hostname" })
+                        _react2["default"].createElement("input", {
+                            type: "text",
+                            id: "hostname",
+                            name: "system.hostname",
+                            value: this.state.hostname,
+                            onChange: this.onChangeHostname.bind(this)
+                        })
                     )
                 ),
                 _react2["default"].createElement(
@@ -29811,7 +29945,13 @@ var NetworkPage = (function (_React$Component) {
                         _react2["default"].createElement(
                             "div",
                             { className: "form-switch switch" },
-                            _react2["default"].createElement("input", { type: "checkbox", id: "enabled" }),
+                            _react2["default"].createElement("input", {
+                                type: "checkbox",
+                                id: "enabled",
+                                name: "wifi.enabled",
+                                checked: this.state.wifiEnabled,
+                                onChange: this.onChangeWifiEnabled.bind(this)
+                            }),
                             _react2["default"].createElement("label", { htmlFor: "enabled" })
                         )
                     )
@@ -29831,7 +29971,13 @@ var NetworkPage = (function (_React$Component) {
                     _react2["default"].createElement(
                         "div",
                         { className: fieldColumnClassName },
-                        _react2["default"].createElement("input", { type: "text", id: "ssid" })
+                        _react2["default"].createElement("input", {
+                            type: "text",
+                            id: "ssid",
+                            name: "wifi.ssid",
+                            value: this.state.wifiSSID,
+                            onChange: this.onChangeWifiSSID.bind(this)
+                        })
                     )
                 ),
                 _react2["default"].createElement(
@@ -29849,7 +29995,13 @@ var NetworkPage = (function (_React$Component) {
                     _react2["default"].createElement(
                         "div",
                         { className: fieldColumnClassName },
-                        _react2["default"].createElement("input", { type: "text", id: "key" })
+                        _react2["default"].createElement("input", {
+                            type: "text",
+                            id: "key",
+                            name: "wifi.key",
+                            value: this.state.wifiKey,
+                            onChange: this.onChangeWifiKey.bind(this)
+                        })
                     )
                 )
             );
@@ -29863,7 +30015,7 @@ exports["default"] = NetworkPage;
 module.exports = exports["default"];
 
 
-},{"react":217,"react-translate-component":61}],237:[function(require,module,exports){
+},{"../../components/ApiClient.jsx":220,"counterpart":7,"react":217,"react-translate-component":61}],237:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30245,9 +30397,16 @@ module.exports={
             "timezone": {
                 "getMessage": "Get timezone setting",
                 "getError": "Failed to get timezone setting",
-                "putMessae": "Saving timezone setting",
+                "putMessage": "Saving timezone setting",
                 "putError": "Failed to save timezone",
                 "putSuccess": "Timezone saved"
+            },
+            "hostname": {
+                "getMessage": "Get hostname",
+                "getError": "Failed to get hostname",
+                "putMessage": "Saving hostname",
+                "putError": "Failed to save hostname",
+                "putSuccess": "Hostname saved"
             },
             "kodi": {
                 "getMessage": "Get Kodi settings",
@@ -30255,6 +30414,13 @@ module.exports={
                 "putMessae": "Saving Kodi settings",
                 "putError": "Failed to save Kodi settings",
                 "putSuccess": "Kodi settings saved"
+            },
+            "wifi": {
+                "getMessage": "Get WIFI settings",
+                "getError": "Failed to get WIFI settings",
+                "putMessae": "Saving WIFI settings",
+                "putError": "Failed to save WIFI settings",
+                "putSuccess": "WIFI settings saved"
             }
         }
     }
@@ -30366,9 +30532,16 @@ module.exports={
             "timezone": {
                 "getMessage": "Chargement du fuseau horaire",
                 "getError": "Échec du chargement du fuseau horaire",
-                "putMessae": "Sauvegarde du fuseau horaire",
+                "putMessage": "Sauvegarde du fuseau horaire",
                 "putError": "Échec de la sauvegarde du fuseau horaire",
                 "putSuccess": "Fuseau horaire sauvegardé"
+            },
+            "hostname": {
+                "getMessage": "Chargement du nom d'hôte",
+                "getError": "Échec du chargement du nom d'hôte",
+                "putMessage": "Sauvegarde nom d'hôte",
+                "putError": "Échec de la sauvegarde du nom d'hôte",
+                "putSuccess": "Nom d'hôte sauvegardé"
             },
             "kodi": {
                 "getMessage": "Chargement des paramètres Kodi",
@@ -30376,9 +30549,15 @@ module.exports={
                 "putMessage": "Sauvegarde des paramètres Kodi",
                 "putError": "Échec de la sauvegarde des paramètres Kodi",
                 "putSuccess": "Paramètres Kodi sauvegardés"
+            },
+            "wifi": {
+                "getMessage": "Chargement des paramètres WIFI",
+                "getError": "Échec du chargement des paramètres WIFI",
+                "putMessae": "Sauvegarde des paramètres WIFI",
+                "putError": "Échec de la sauvegarde des paramètres WIFI",
+                "putSuccess": "Paramètres WIFI sauvegardés"
             }
         }
-
     }
 }
 
