@@ -36,6 +36,9 @@ export default class Main extends React.Component
 
             // Update the API client
             if (data.apiUrl) {
+                if (data.apiUrl[0] === ":") {
+                    data.apiUrl = "http://" + window.location.hostname + data.apiUrl;
+                }
                 apiClient.setUrl(data.apiUrl);
             }
 

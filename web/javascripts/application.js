@@ -26512,6 +26512,9 @@ var Main = (function (_React$Component) {
 
                 // Update the API client
                 if (data.apiUrl) {
+                    if (data.apiUrl[0] === ":") {
+                        data.apiUrl = "http://" + window.location.hostname + data.apiUrl;
+                    }
                     _componentsApiClientJsx2["default"].setUrl(data.apiUrl);
                 }
 

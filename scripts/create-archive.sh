@@ -14,3 +14,5 @@ tar cvf web.tar \
     node_modules/.bin \
     node_modules/npm \
     node_modules/pm2
+
+xz --compress --verbose --extreme web.tar

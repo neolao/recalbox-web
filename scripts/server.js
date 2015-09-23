@@ -115,8 +115,20 @@ var server = http.createServer(function(request, response)
     });
 });
 
+// Load configuration
+var port = 80;
+try {
+    var parameters = require(__dirname + "/../web/config.json");
+
+    if (parameters.port) {
+        port = parameters.port;
+    }
+
+} catch (error) {
+}
+
 // Start the server
-server.listen(8003, "127.0.0.1", function()
+server.listen(port, "127.0.0.1", function()
 {
-    console.log("Server started");
+    console.log("Server started on port " + port);
 });
