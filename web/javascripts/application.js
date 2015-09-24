@@ -28374,9 +28374,17 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _counterpart = require("counterpart");
+
+var _counterpart2 = _interopRequireDefault(_counterpart);
+
 var _reactTranslateComponent = require("react-translate-component");
 
 var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
+var _componentsApiClientJsx = require("../../components/ApiClient.jsx");
+
+var _componentsApiClientJsx2 = _interopRequireDefault(_componentsApiClientJsx);
 
 /**
  * The audio settings
@@ -28385,19 +28393,112 @@ var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent)
 var AudioPage = (function (_React$Component) {
     _inherits(AudioPage, _React$Component);
 
-    function AudioPage() {
+    /**
+     * Constructor
+     *
+     * @param   {object}    props   Properties
+     */
+
+    function AudioPage(props) {
         _classCallCheck(this, AudioPage);
 
-        _get(Object.getPrototypeOf(AudioPage.prototype), "constructor", this).apply(this, arguments);
+        _get(Object.getPrototypeOf(AudioPage.prototype), "constructor", this).call(this, props);
+
+        // Initial state
+        this.state = {
+            device: "auto",
+            volume: "90",
+            bgmusic: true
+        };
     }
 
+    /**
+     * The component is mounted
+     */
+
     _createClass(AudioPage, [{
-        key: "render",
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            var self = this;
+            _componentsApiClientJsx2["default"].get("/audio", (0, _counterpart2["default"])("api.audio.getMessage"), (0, _counterpart2["default"])("api.audio.getError"), "json").done(function (data) {
+                self.setState({
+                    device: data["audio.device"],
+                    volume: data["audio.volume"],
+                    bgmusic: data["audio.bgmusic"] === "1"
+                });
+            });
+        }
+
+        /**
+         * The user enables/disables the background music
+         *
+         * @param   {object}    event   The event
+         */
+    }, {
+        key: "onChangeBgMusic",
+        value: function onChangeBgMusic(event) {
+            var parameterName = event.target.name;
+            var parameterValue = event.target.checked;
+            var state = {};
+            state[parameterName] = parameterValue;
+            this.setState(state);
+
+            var apiValue = parameterValue ? "1" : "0";
+            _componentsApiClientJsx2["default"].put("/audio/bgmusic", apiValue, (0, _counterpart2["default"])("api.audio.putMessage"), (0, _counterpart2["default"])("api.audio.putError"), (0, _counterpart2["default"])("api.audio.putSuccess"));
+        }
+
+        /**
+         * The user changes the volume
+         *
+         * @param   {object}    event   The event
+         */
+    }, {
+        key: "onChangeVolume",
+        value: function onChangeVolume(event) {
+            var parameterName = event.target.name;
+            var parameterValue = event.target.value;
+            var state = {};
+            state[parameterName] = parameterValue;
+            this.setState(state);
+
+            _componentsApiClientJsx2["default"].put("/audio/volume", parameterValue, (0, _counterpart2["default"])("api.audio.putMessage"), (0, _counterpart2["default"])("api.audio.putError"), (0, _counterpart2["default"])("api.audio.putSuccess"));
+        }
+
+        /**
+         * The user changes the device
+         *
+         * @param   {object}    event   The event
+         */
+    }, {
+        key: "onChangeDevice",
+        value: function onChangeDevice(event) {
+            var parameterName = event.target.name;
+            var parameterValue = event.target.value;
+            var state = {};
+            state[parameterName] = parameterValue;
+            this.setState(state);
+
+            _componentsApiClientJsx2["default"].put("/audio/device", parameterValue, (0, _counterpart2["default"])("api.audio.putMessage"), (0, _counterpart2["default"])("api.audio.putError"), (0, _counterpart2["default"])("api.audio.putSuccess"));
+        }
 
         /**
          * render the component
          */
+    }, {
+        key: "render",
         value: function render() {
+            var labelColumnClassName = "small-9 medium-6 large-4 columns";
+            var fieldColumnClassName = "small-3 medium-6 large-8 columns end";
+
+            var volumes = [];
+            for (var volume = 100; volume >= 0; volume--) {
+                volumes.push(_react2["default"].createElement(
+                    "option",
+                    { value: volume, key: "volume-" + volume },
+                    volume
+                ));
+            }
+
             return _react2["default"].createElement(
                 "article",
                 { className: "page" },
@@ -28407,9 +28508,91 @@ var AudioPage = (function (_React$Component) {
                     _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.audio" })
                 ),
                 _react2["default"].createElement(
-                    "p",
-                    null,
-                    "Lorem ipsum"
+                    "div",
+                    { className: "clearfix" },
+                    _react2["default"].createElement(
+                        "div",
+                        { className: labelColumnClassName },
+                        _react2["default"].createElement(
+                            "label",
+                            { htmlFor: "device", className: "inline" },
+                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.audio.device.label" })
+                        )
+                    ),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: fieldColumnClassName },
+                        _react2["default"].createElement(
+                            "select",
+                            { id: "device", name: "device", value: this.state.device, onChange: this.onChangeDevice.bind(this) },
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "auto" },
+                                (0, _counterpart2["default"])("setting.audio.device.auto")
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "hdmi" },
+                                (0, _counterpart2["default"])("setting.audio.device.hdmi")
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "jack" },
+                                (0, _counterpart2["default"])("setting.audio.device.jack")
+                            )
+                        )
+                    )
+                ),
+                _react2["default"].createElement(
+                    "div",
+                    { className: "clearfix" },
+                    _react2["default"].createElement(
+                        "div",
+                        { className: labelColumnClassName },
+                        _react2["default"].createElement(
+                            "label",
+                            { htmlFor: "volume", className: "inline" },
+                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.audio.volume.label" })
+                        )
+                    ),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: fieldColumnClassName },
+                        _react2["default"].createElement(
+                            "select",
+                            { id: "volume", name: "volume", value: this.state.volume, onChange: this.onChangeVolume.bind(this) },
+                            volumes
+                        )
+                    )
+                ),
+                _react2["default"].createElement(
+                    "div",
+                    { className: "clearfix" },
+                    _react2["default"].createElement(
+                        "div",
+                        { className: labelColumnClassName },
+                        _react2["default"].createElement(
+                            "label",
+                            { htmlFor: "bgmusic", className: "inline" },
+                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "setting.audio.bgmusic.label" })
+                        )
+                    ),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: fieldColumnClassName },
+                        _react2["default"].createElement(
+                            "div",
+                            { className: "form-switch switch" },
+                            _react2["default"].createElement("input", {
+                                type: "checkbox",
+                                id: "bgmusic",
+                                name: "bgmusic",
+                                checked: this.state.bgmusic,
+                                onChange: this.onChangeBgMusic.bind(this)
+                            }),
+                            _react2["default"].createElement("label", { htmlFor: "bgmusic" })
+                        )
+                    )
                 )
             );
         }
@@ -28422,7 +28605,7 @@ exports["default"] = AudioPage;
 module.exports = exports["default"];
 
 
-},{"react":217,"react-translate-component":61}],232:[function(require,module,exports){
+},{"../../components/ApiClient.jsx":220,"counterpart":7,"react":217,"react-translate-component":61}],232:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30380,6 +30563,20 @@ module.exports={
                 "key": {
                     "label": "Key"
                 }
+            },
+            "audio": {
+                "device": {
+                    "label": "Output",
+                    "auto": "Automatic",
+                    "hdmi": "HDMI",
+                    "jack": "Jack"
+                },
+                "volume": {
+                    "label": "Volume"
+                },
+                "bgmusic": {
+                    "label": "Background music"
+                }
             }
         },
         "api": {
@@ -30424,6 +30621,13 @@ module.exports={
                 "putMessae": "Saving WIFI settings",
                 "putError": "Failed to save WIFI settings",
                 "putSuccess": "WIFI settings saved"
+            },
+            "audio": {
+                "getMessage": "Get audio settings",
+                "getError": "Failed to get audio settings",
+                "putMessae": "Saving audio settings",
+                "putError": "Failed to save audio settings",
+                "putSuccess": "audio settings saved"
             }
         }
     }
@@ -30515,6 +30719,20 @@ module.exports={
                 "key": {
                     "label": "Clé"
                 }
+            },
+            "audio": {
+                "device": {
+                    "label": "Sortie",
+                    "auto": "Automatique",
+                    "hdmi": "HDMI",
+                    "jack": "Jack"
+                },
+                "volume": {
+                    "label": "Volume"
+                },
+                "bgmusic": {
+                    "label": "Musique de fond"
+                }
             }
         },
         "api": {
@@ -30559,6 +30777,13 @@ module.exports={
                 "putMessae": "Sauvegarde des paramètres WIFI",
                 "putError": "Échec de la sauvegarde des paramètres WIFI",
                 "putSuccess": "Paramètres WIFI sauvegardés"
+            },
+            "wifi": {
+                "getMessage": "Chargement des paramètres audio",
+                "getError": "Échec du chargement des paramètres audio",
+                "putMessae": "Sauvegarde des paramètres audio",
+                "putError": "Échec de la sauvegarde des paramètres audio",
+                "putSuccess": "Paramètres audio sauvegardés"
             }
         }
     }

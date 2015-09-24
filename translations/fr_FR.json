@@ -83,6 +83,20 @@
                 "key": {
                     "label": "Clé"
                 }
+            },
+            "audio": {
+                "device": {
+                    "label": "Sortie",
+                    "auto": "Automatique",
+                    "hdmi": "HDMI",
+                    "jack": "Jack"
+                },
+                "volume": {
+                    "label": "Volume"
+                },
+                "bgmusic": {
+                    "label": "Musique de fond"
+                }
             }
         },
         "api": {
@@ -127,6 +141,13 @@
                 "putMessae": "Sauvegarde des paramètres WIFI",
                 "putError": "Échec de la sauvegarde des paramètres WIFI",
                 "putSuccess": "Paramètres WIFI sauvegardés"
+            },
+            "wifi": {
+                "getMessage": "Chargement des paramètres audio",
+                "getError": "Échec du chargement des paramètres audio",
+                "putMessae": "Sauvegarde des paramètres audio",
+                "putError": "Échec de la sauvegarde des paramètres audio",
+                "putSuccess": "Paramètres audio sauvegardés"
             }
         }
     }

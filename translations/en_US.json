@@ -83,6 +83,20 @@
                 "key": {
                     "label": "Key"
                 }
+            },
+            "audio": {
+                "device": {
+                    "label": "Output",
+                    "auto": "Automatic",
+                    "hdmi": "HDMI",
+                    "jack": "Jack"
+                },
+                "volume": {
+                    "label": "Volume"
+                },
+                "bgmusic": {
+                    "label": "Background music"
+                }
             }
         },
         "api": {
@@ -127,6 +141,13 @@
                 "putMessae": "Saving WIFI settings",
                 "putError": "Failed to save WIFI settings",
                 "putSuccess": "WIFI settings saved"
+            },
+            "audio": {
+                "getMessage": "Get audio settings",
+                "getError": "Failed to get audio settings",
+                "putMessae": "Saving audio settings",
+                "putError": "Failed to save audio settings",
+                "putSuccess": "audio settings saved"
             }
         }
     }
