@@ -5,9 +5,9 @@ import apiClient from "../../components/ApiClient.jsx";
 
 
 /**
- * The system BIOS
+ * The listing of games
  */
-export default class BiosPage extends React.Component
+export default class ListingPage extends React.Component
 {
     /**
      * Constructor
@@ -19,6 +19,7 @@ export default class BiosPage extends React.Component
 
         // Initial state
         this.state = {
+            systemId: "snes",
             list: [],
             total: 0,
             count: 0,
@@ -33,11 +34,36 @@ export default class BiosPage extends React.Component
      */
     componentDidMount()
     {
-        let self = this;
+        this.loadList();
+    }
+
+    /**
+     * The user changes the system
+     *
+     * @param   {object}    event   The event
+     */
+    onChangeSystem(event)
+    {
+        let parameterName = event.target.name;
+        let parameterValue = event.target.value;
+        let state = {};
+        state[parameterName] = parameterValue;
+        this.setState(state);
+
+        process.nextTick(() => {
+            this.loadList();
+        });
+    }
+
+    /**
+     * Load the ROM list based on the filters
+     */
+    loadList()
+    {
         apiClient.get(
-            "/bios", 
-            counterpart("api.bios.getMessage"), 
-            counterpart("api.bios.getError"), 
+            `/systems/${this.state.systemId}/roms`, 
+            counterpart("api.roms.getMessage"), 
+            counterpart("api.roms.getError"), 
             "json"
         ).done((data, status, xhr) => {
             let pagination = xhr.getResponseHeader("Content-Range");
@@ -48,7 +74,7 @@ export default class BiosPage extends React.Component
             let indexStart = rangeSplit[0];
             let indexEnd = rangeSplit[1];
 
-            self.setState({
+            this.setState({
                 list: data,
                 count: data.length,
                 total: total,
@@ -57,7 +83,6 @@ export default class BiosPage extends React.Component
             });
         });
     }
-
 
     /**
      * render the component
@@ -79,8 +104,17 @@ export default class BiosPage extends React.Component
 
         return (
             <article className="page">
-                <h1 className="page__title"><Translate content="page.title.bios"/></h1>
-                
+                <h1 className="page__title"><Translate content="page.title.roms"/></h1>
+
+                <div className="panel">
+                    <div className="small-12 medium-6 columns">
+                        <select name="systemId" value={this.state.systemId} onChange={this.onChangeSystem.bind(this)}>
+                            <option value="gba">{counterpart("system.gba.label")}</option>
+                            <option value="snes">{counterpart("system.snes.label")}</option>
+                        </select>
+                    </div>
+                </div>
+
                 <p>Total: {this.state.total}</p>
                 <table className="small-12 medium-12 large-8 columns end">
                     <thead>
@@ -97,6 +131,7 @@ export default class BiosPage extends React.Component
                 <ul className="pagination" role="menubar" aria-label="Pagination">
                     {pagination}
                 </ul>
+
             </article>
         );
     }

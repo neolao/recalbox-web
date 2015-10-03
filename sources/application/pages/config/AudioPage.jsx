@@ -118,8 +118,11 @@ export default class AudioPage extends React.Component
      */
     render()
     {
-        let labelColumnClassName = "small-9 medium-6 large-4 columns";
-        let fieldColumnClassName = "small-3 medium-6 large-8 columns end";
+        //let labelColumnClassName = "small-9 medium-6 large-4 columns";
+        //let fieldColumnClassName = "small-3 medium-6 large-8 columns end";
+        let labelColumnClassName = "small-6 medium-4 large-2 columns";
+        let fieldColumnClassName = "small-6 medium-6 large-4 columns end";
+
 
         let volumes = [];
         for (let volume = 100; volume >= 0; volume--) {

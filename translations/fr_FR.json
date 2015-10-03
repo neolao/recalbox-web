@@ -14,7 +14,7 @@
             "controllers": "Manettes",
             "emulators": "Émulateurs",
             "games": "Jeux",
-            "listing": "Liste",
+            "roms": "ROMs",
             "bios": "BIOS",
             "saves": "Sauvegardes",
             "screenshots": "Captures",
@@ -37,9 +37,7 @@
                 "audio": "Configuration du son",
                 "controllers": "Configuration des manettes",
                 "emulators": "Configuration des émulateurs",
-                "games": {
-                    "listing": "Jeux"
-                },
+                "roms": "ROMs",
                 "bios": "BIOS des systèmes",
                 "saves": "Sauvegardes des jeux",
                 "screenshots": "Captures des jeux",
@@ -47,6 +45,21 @@
                     "conf": "recalbox.conf"
                 },
                 "logs": "Logs"
+            },
+            "listing": {
+                "header": {
+                    "fileName": "Nom",
+                    "size": "Taille"
+                }
+            }
+
+        },
+        "system": {
+            "gba": {
+                "label": "Game Boy Advance"
+            },
+            "snes": {
+                "label": "Super Nintendo"
             }
         },
         "setting": {
@@ -142,13 +155,22 @@
                 "putError": "Échec de la sauvegarde des paramètres WIFI",
                 "putSuccess": "Paramètres WIFI sauvegardés"
             },
-            "wifi": {
+            "audio": {
                 "getMessage": "Chargement des paramètres audio",
                 "getError": "Échec du chargement des paramètres audio",
                 "putMessae": "Sauvegarde des paramètres audio",
                 "putError": "Échec de la sauvegarde des paramètres audio",
                 "putSuccess": "Paramètres audio sauvegardés"
+            },
+            "bios": {
+                "getMessage": "Récupération des BIOS",
+                "getError": "Échec de la récupération des BIOS"
+            },
+            "roms": {
+                "getMessage": "Récupération des ROMs",
+                "getError": "Échec de la récupération des ROMs"
             }
+
         }
     }
 }

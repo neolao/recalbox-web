@@ -14,7 +14,7 @@
             "controllers": "Controllers",
             "emulators": "Emulators",
             "games": "Games",
-            "listing": "Listing",
+            "roms": "ROMs",
             "bios": "BIOS",
             "saves": "Saves",
             "screenshots": "Screenshots",
@@ -37,9 +37,7 @@
                 "audio": "Sound settings",
                 "controllers": "Controllers settings",
                 "emulators": "Emulators settings",
-                "games": {
-                    "listing": "Games"
-                },
+                "roms": "ROMs",
                 "bios": "System BIOS",
                 "saves": "Game saves",
                 "screenshots": "Game screenshots",
@@ -47,6 +45,20 @@
                     "conf": "recalbox.conf"
                 },
                 "logs": "Logs"
+            },
+            "listing": {
+                "header": {
+                    "fileName": "File name",
+                    "size": "Size"
+                }
+            }
+        },
+        "system": {
+            "gba": {
+                "label": "Game Boy Advance"
+            },
+            "snes": {
+                "label": "Super Nintendo"
             }
         },
         "setting": {
@@ -148,6 +160,14 @@
                 "putMessae": "Saving audio settings",
                 "putError": "Failed to save audio settings",
                 "putSuccess": "audio settings saved"
+            },
+            "bios": {
+                "getMessage": "Get BIOS",
+                "getError": "Failed to get BIOS"
+            },
+            "roms": {
+                "getMessage": "Get ROMs",
+                "getError": "Failed to get ROMs"
             }
         }
     }

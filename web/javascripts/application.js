@@ -27224,7 +27224,7 @@ var Header = (function (_React$Component) {
                                 null,
                                 _react2["default"].createElement(
                                     Link,
-                                    { to: "games:listing" },
+                                    { to: "games:roms" },
                                     _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.games" })
                                 )
                             ),
@@ -27489,8 +27489,8 @@ var MenuOffCanvas = (function (_React$Component) {
                                 { className: "menu-off-canvas__item" },
                                 _react2["default"].createElement(
                                     Link,
-                                    { to: "games:listing", className: "menu-off-canvas__link" },
-                                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.listing" })
+                                    { to: "games:roms", className: "menu-off-canvas__link" },
+                                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.roms" })
                                 )
                             ),
                             _react2["default"].createElement(
@@ -27656,9 +27656,9 @@ var _pagesGamesPageJsx = require("./pages/GamesPage.jsx");
 
 var _pagesGamesPageJsx2 = _interopRequireDefault(_pagesGamesPageJsx);
 
-var _pagesGamesListingPageJsx = require("./pages/games/ListingPage.jsx");
+var _pagesGamesRomsPageJsx = require("./pages/games/RomsPage.jsx");
 
-var _pagesGamesListingPageJsx2 = _interopRequireDefault(_pagesGamesListingPageJsx);
+var _pagesGamesRomsPageJsx2 = _interopRequireDefault(_pagesGamesRomsPageJsx);
 
 var _pagesGamesBiosPageJsx = require("./pages/games/BiosPage.jsx");
 
@@ -27709,7 +27709,7 @@ var routes = _react2["default"].createElement(
     _react2["default"].createElement(
         Route,
         { name: "games", path: "/games", handler: _pagesGamesPageJsx2["default"] },
-        _react2["default"].createElement(Route, { name: "games:listing", path: "/games/listing", handler: _pagesGamesListingPageJsx2["default"] }),
+        _react2["default"].createElement(Route, { name: "games:roms", path: "/games/roms", handler: _pagesGamesRomsPageJsx2["default"] }),
         _react2["default"].createElement(Route, { name: "games:bios", path: "/games/bios", handler: _pagesGamesBiosPageJsx2["default"] }),
         _react2["default"].createElement(Route, { name: "games:saves", path: "/games/saves", handler: _pagesGamesSavesPageJsx2["default"] }),
         _react2["default"].createElement(Route, { name: "games:screenshots", path: "/games/screenshots", handler: _pagesGamesScreenshotsPageJsx2["default"] })
@@ -27726,7 +27726,7 @@ _reactRouter2["default"].run(routes, HistoryLocation, function (Root) {
 });
 
 
-},{"../../package.json":218,"../../translations/en_US.json":241,"../../translations/fr_FR.json":242,"./Main.jsx":219,"./pages/AdvancedPage.jsx":225,"./pages/ConfigPage.jsx":226,"./pages/GamesPage.jsx":227,"./pages/HomePage.jsx":228,"./pages/advanced/ConfigPage.jsx":229,"./pages/advanced/LogsPage.jsx":230,"./pages/config/AudioPage.jsx":231,"./pages/config/ControllersPage.jsx":232,"./pages/config/EmulatorsPage.jsx":233,"./pages/config/GeneralPage.jsx":234,"./pages/config/KodiPage.jsx":235,"./pages/config/NetworkPage.jsx":236,"./pages/games/BiosPage.jsx":237,"./pages/games/ListingPage.jsx":238,"./pages/games/SavesPage.jsx":239,"./pages/games/ScreenshotsPage.jsx":240,"async":1,"counterpart":7,"react":217,"react-router":44}],225:[function(require,module,exports){
+},{"../../package.json":218,"../../translations/en_US.json":241,"../../translations/fr_FR.json":242,"./Main.jsx":219,"./pages/AdvancedPage.jsx":225,"./pages/ConfigPage.jsx":226,"./pages/GamesPage.jsx":227,"./pages/HomePage.jsx":228,"./pages/advanced/ConfigPage.jsx":229,"./pages/advanced/LogsPage.jsx":230,"./pages/config/AudioPage.jsx":231,"./pages/config/ControllersPage.jsx":232,"./pages/config/EmulatorsPage.jsx":233,"./pages/config/GeneralPage.jsx":234,"./pages/config/KodiPage.jsx":235,"./pages/config/NetworkPage.jsx":236,"./pages/games/BiosPage.jsx":237,"./pages/games/RomsPage.jsx":238,"./pages/games/SavesPage.jsx":239,"./pages/games/ScreenshotsPage.jsx":240,"async":1,"counterpart":7,"react":217,"react-router":44}],225:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28022,8 +28022,8 @@ var GamesPage = (function (_React$Component) {
                             null,
                             _react2["default"].createElement(
                                 Link,
-                                { to: "games:listing", className: "menu-sidebar__link" },
-                                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.listing" })
+                                { to: "games:roms", className: "menu-sidebar__link" },
+                                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "menu.roms" })
                             )
                         ),
                         _react2["default"].createElement(
@@ -28487,8 +28487,10 @@ var AudioPage = (function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
-            var labelColumnClassName = "small-9 medium-6 large-4 columns";
-            var fieldColumnClassName = "small-3 medium-6 large-8 columns end";
+            //let labelColumnClassName = "small-9 medium-6 large-4 columns";
+            //let fieldColumnClassName = "small-3 medium-6 large-8 columns end";
+            var labelColumnClassName = "small-6 medium-4 large-2 columns";
+            var fieldColumnClassName = "small-6 medium-6 large-4 columns end";
 
             var volumes = [];
             for (var volume = 100; volume >= 0; volume--) {
@@ -30222,9 +30224,17 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _counterpart = require("counterpart");
+
+var _counterpart2 = _interopRequireDefault(_counterpart);
+
 var _reactTranslateComponent = require("react-translate-component");
 
 var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
+var _componentsApiClientJsx = require("../../components/ApiClient.jsx");
+
+var _componentsApiClientJsx2 = _interopRequireDefault(_componentsApiClientJsx);
 
 /**
  * The system BIOS
@@ -30233,19 +30243,104 @@ var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent)
 var BiosPage = (function (_React$Component) {
     _inherits(BiosPage, _React$Component);
 
-    function BiosPage() {
+    /**
+     * Constructor
+     *
+     * @param   {object}    props   Properties
+     */
+
+    function BiosPage(props) {
         _classCallCheck(this, BiosPage);
 
-        _get(Object.getPrototypeOf(BiosPage.prototype), "constructor", this).apply(this, arguments);
+        _get(Object.getPrototypeOf(BiosPage.prototype), "constructor", this).call(this, props);
+
+        // Initial state
+        this.state = {
+            list: [],
+            total: 0,
+            count: 0,
+            indexStart: 0,
+            indexEnd: 0
+        };
     }
 
+    /**
+     * The component is mounted
+     */
+
     _createClass(BiosPage, [{
-        key: "render",
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            var self = this;
+            _componentsApiClientJsx2["default"].get("/bios", (0, _counterpart2["default"])("api.bios.getMessage"), (0, _counterpart2["default"])("api.bios.getError"), "json").done(function (data, status, xhr) {
+                var pagination = xhr.getResponseHeader("Content-Range");
+                var paginationSplit = pagination.split("/");
+                var total = paginationSplit[1];
+                var range = paginationSplit[0];
+                var rangeSplit = range.split("-");
+                var indexStart = rangeSplit[0];
+                var indexEnd = rangeSplit[1];
+
+                self.setState({
+                    list: data,
+                    count: data.length,
+                    total: total,
+                    indexStart: indexStart,
+                    indexEnd: indexEnd
+                });
+            });
+        }
 
         /**
          * render the component
          */
+    }, {
+        key: "render",
         value: function render() {
+            // Files
+            var rows = [];
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.state.list[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var file = _step.value;
+
+                    rows.push(_react2["default"].createElement(
+                        "tr",
+                        { key: file.basename },
+                        _react2["default"].createElement(
+                            "td",
+                            null,
+                            file.basename
+                        ),
+                        _react2["default"].createElement(
+                            "td",
+                            { width: "100" },
+                            file.sizeHuman
+                        )
+                    ));
+                }
+
+                // Pagination
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator["return"]) {
+                        _iterator["return"]();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            var pagination = [];
+
             return _react2["default"].createElement(
                 "article",
                 { className: "page" },
@@ -30257,7 +30352,40 @@ var BiosPage = (function (_React$Component) {
                 _react2["default"].createElement(
                     "p",
                     null,
-                    "Lorem ipsum"
+                    "Total: ",
+                    this.state.total
+                ),
+                _react2["default"].createElement(
+                    "table",
+                    { className: "small-12 medium-12 large-8 columns end" },
+                    _react2["default"].createElement(
+                        "thead",
+                        null,
+                        _react2["default"].createElement(
+                            "tr",
+                            null,
+                            _react2["default"].createElement(
+                                "th",
+                                null,
+                                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.listing.header.fileName" })
+                            ),
+                            _react2["default"].createElement(
+                                "th",
+                                null,
+                                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.listing.header.size" })
+                            )
+                        )
+                    ),
+                    _react2["default"].createElement(
+                        "tbody",
+                        null,
+                        rows
+                    )
+                ),
+                _react2["default"].createElement(
+                    "ul",
+                    { className: "pagination", role: "menubar", "aria-label": "Pagination" },
+                    pagination
                 )
             );
         }
@@ -30270,7 +30398,8 @@ exports["default"] = BiosPage;
 module.exports = exports["default"];
 
 
-},{"react":217,"react-translate-component":61}],238:[function(require,module,exports){
+},{"../../components/ApiClient.jsx":220,"counterpart":7,"react":217,"react-translate-component":61}],238:[function(require,module,exports){
+(function (process){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30291,9 +30420,17 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _counterpart = require("counterpart");
+
+var _counterpart2 = _interopRequireDefault(_counterpart);
+
 var _reactTranslateComponent = require("react-translate-component");
 
 var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
+var _componentsApiClientJsx = require("../../components/ApiClient.jsx");
+
+var _componentsApiClientJsx2 = _interopRequireDefault(_componentsApiClientJsx);
 
 /**
  * The listing of games
@@ -30302,31 +30439,203 @@ var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent)
 var ListingPage = (function (_React$Component) {
     _inherits(ListingPage, _React$Component);
 
-    function ListingPage() {
+    /**
+     * Constructor
+     *
+     * @param   {object}    props   Properties
+     */
+
+    function ListingPage(props) {
         _classCallCheck(this, ListingPage);
 
-        _get(Object.getPrototypeOf(ListingPage.prototype), "constructor", this).apply(this, arguments);
+        _get(Object.getPrototypeOf(ListingPage.prototype), "constructor", this).call(this, props);
+
+        // Initial state
+        this.state = {
+            systemId: "snes",
+            list: [],
+            total: 0,
+            count: 0,
+            indexStart: 0,
+            indexEnd: 0
+        };
     }
 
+    /**
+     * The component is mounted
+     */
+
     _createClass(ListingPage, [{
-        key: "render",
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            this.loadList();
+        }
+
+        /**
+         * The user changes the system
+         *
+         * @param   {object}    event   The event
+         */
+    }, {
+        key: "onChangeSystem",
+        value: function onChangeSystem(event) {
+            var _this = this;
+
+            var parameterName = event.target.name;
+            var parameterValue = event.target.value;
+            var state = {};
+            state[parameterName] = parameterValue;
+            this.setState(state);
+
+            process.nextTick(function () {
+                _this.loadList();
+            });
+        }
+
+        /**
+         * Load the ROM list based on the filters
+         */
+    }, {
+        key: "loadList",
+        value: function loadList() {
+            var _this2 = this;
+
+            _componentsApiClientJsx2["default"].get("/systems/" + this.state.systemId + "/roms", (0, _counterpart2["default"])("api.roms.getMessage"), (0, _counterpart2["default"])("api.roms.getError"), "json").done(function (data, status, xhr) {
+                var pagination = xhr.getResponseHeader("Content-Range");
+                var paginationSplit = pagination.split("/");
+                var total = paginationSplit[1];
+                var range = paginationSplit[0];
+                var rangeSplit = range.split("-");
+                var indexStart = rangeSplit[0];
+                var indexEnd = rangeSplit[1];
+
+                _this2.setState({
+                    list: data,
+                    count: data.length,
+                    total: total,
+                    indexStart: indexStart,
+                    indexEnd: indexEnd
+                });
+            });
+        }
 
         /**
          * render the component
          */
+    }, {
+        key: "render",
         value: function render() {
+            // Files
+            var rows = [];
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.state.list[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var file = _step.value;
+
+                    rows.push(_react2["default"].createElement(
+                        "tr",
+                        { key: file.basename },
+                        _react2["default"].createElement(
+                            "td",
+                            null,
+                            file.basename
+                        ),
+                        _react2["default"].createElement(
+                            "td",
+                            { width: "100" },
+                            file.sizeHuman
+                        )
+                    ));
+                }
+
+                // Pagination
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator["return"]) {
+                        _iterator["return"]();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            var pagination = [];
+
             return _react2["default"].createElement(
                 "article",
                 { className: "page" },
                 _react2["default"].createElement(
                     "h1",
                     { className: "page__title" },
-                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.games.listing" })
+                    _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.title.roms" })
+                ),
+                _react2["default"].createElement(
+                    "div",
+                    { className: "panel" },
+                    _react2["default"].createElement(
+                        "div",
+                        { className: "small-12 medium-6 columns" },
+                        _react2["default"].createElement(
+                            "select",
+                            { name: "systemId", value: this.state.systemId, onChange: this.onChangeSystem.bind(this) },
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "gba" },
+                                (0, _counterpart2["default"])("system.gba.label")
+                            ),
+                            _react2["default"].createElement(
+                                "option",
+                                { value: "snes" },
+                                (0, _counterpart2["default"])("system.snes.label")
+                            )
+                        )
+                    )
                 ),
                 _react2["default"].createElement(
                     "p",
                     null,
-                    "Lorem ipsum"
+                    "Total: ",
+                    this.state.total
+                ),
+                _react2["default"].createElement(
+                    "table",
+                    { className: "small-12 medium-12 large-8 columns end" },
+                    _react2["default"].createElement(
+                        "thead",
+                        null,
+                        _react2["default"].createElement(
+                            "tr",
+                            null,
+                            _react2["default"].createElement(
+                                "th",
+                                null,
+                                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.listing.header.fileName" })
+                            ),
+                            _react2["default"].createElement(
+                                "th",
+                                null,
+                                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "page.listing.header.size" })
+                            )
+                        )
+                    ),
+                    _react2["default"].createElement(
+                        "tbody",
+                        null,
+                        rows
+                    )
+                ),
+                _react2["default"].createElement(
+                    "ul",
+                    { className: "pagination", role: "menubar", "aria-label": "Pagination" },
+                    pagination
                 )
             );
         }
@@ -30339,7 +30648,8 @@ exports["default"] = ListingPage;
 module.exports = exports["default"];
 
 
-},{"react":217,"react-translate-component":61}],239:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"../../components/ApiClient.jsx":220,"_process":4,"counterpart":7,"react":217,"react-translate-component":61}],239:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30494,7 +30804,7 @@ module.exports={
             "controllers": "Controllers",
             "emulators": "Emulators",
             "games": "Games",
-            "listing": "Listing",
+            "roms": "ROMs",
             "bios": "BIOS",
             "saves": "Saves",
             "screenshots": "Screenshots",
@@ -30517,9 +30827,7 @@ module.exports={
                 "audio": "Sound settings",
                 "controllers": "Controllers settings",
                 "emulators": "Emulators settings",
-                "games": {
-                    "listing": "Games"
-                },
+                "roms": "ROMs",
                 "bios": "System BIOS",
                 "saves": "Game saves",
                 "screenshots": "Game screenshots",
@@ -30527,6 +30835,20 @@ module.exports={
                     "conf": "recalbox.conf"
                 },
                 "logs": "Logs"
+            },
+            "listing": {
+                "header": {
+                    "fileName": "File name",
+                    "size": "Size"
+                }
+            }
+        },
+        "system": {
+            "gba": {
+                "label": "Game Boy Advance"
+            },
+            "snes": {
+                "label": "Super Nintendo"
             }
         },
         "setting": {
@@ -30628,6 +30950,14 @@ module.exports={
                 "putMessae": "Saving audio settings",
                 "putError": "Failed to save audio settings",
                 "putSuccess": "audio settings saved"
+            },
+            "bios": {
+                "getMessage": "Get BIOS",
+                "getError": "Failed to get BIOS"
+            },
+            "roms": {
+                "getMessage": "Get ROMs",
+                "getError": "Failed to get ROMs"
             }
         }
     }
@@ -30650,7 +30980,7 @@ module.exports={
             "controllers": "Manettes",
             "emulators": "Émulateurs",
             "games": "Jeux",
-            "listing": "Liste",
+            "roms": "ROMs",
             "bios": "BIOS",
             "saves": "Sauvegardes",
             "screenshots": "Captures",
@@ -30673,9 +31003,7 @@ module.exports={
                 "audio": "Configuration du son",
                 "controllers": "Configuration des manettes",
                 "emulators": "Configuration des émulateurs",
-                "games": {
-                    "listing": "Jeux"
-                },
+                "roms": "ROMs",
                 "bios": "BIOS des systèmes",
                 "saves": "Sauvegardes des jeux",
                 "screenshots": "Captures des jeux",
@@ -30683,6 +31011,21 @@ module.exports={
                     "conf": "recalbox.conf"
                 },
                 "logs": "Logs"
+            },
+            "listing": {
+                "header": {
+                    "fileName": "Nom",
+                    "size": "Taille"
+                }
+            }
+
+        },
+        "system": {
+            "gba": {
+                "label": "Game Boy Advance"
+            },
+            "snes": {
+                "label": "Super Nintendo"
             }
         },
         "setting": {
@@ -30778,13 +31121,22 @@ module.exports={
                 "putError": "Échec de la sauvegarde des paramètres WIFI",
                 "putSuccess": "Paramètres WIFI sauvegardés"
             },
-            "wifi": {
+            "audio": {
                 "getMessage": "Chargement des paramètres audio",
                 "getError": "Échec du chargement des paramètres audio",
                 "putMessae": "Sauvegarde des paramètres audio",
                 "putError": "Échec de la sauvegarde des paramètres audio",
                 "putSuccess": "Paramètres audio sauvegardés"
+            },
+            "bios": {
+                "getMessage": "Récupération des BIOS",
+                "getError": "Échec de la récupération des BIOS"
+            },
+            "roms": {
+                "getMessage": "Récupération des ROMs",
+                "getError": "Échec de la récupération des ROMs"
             }
+
         }
     }
 }

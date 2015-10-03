@@ -27,7 +27,7 @@ import ConfigAudioPage      from "./pages/config/AudioPage.jsx";
 import ConfigControllersPage from "./pages/config/ControllersPage.jsx";
 import ConfigEmulatorsPage  from "./pages/config/EmulatorsPage.jsx";
 import GamesPage            from "./pages/GamesPage.jsx";
-import GameListingPage      from "./pages/games/ListingPage.jsx";
+import GameRomsPage         from "./pages/games/RomsPage.jsx";
 import GameBiosPage         from "./pages/games/BiosPage.jsx";
 import GameSavesPage        from "./pages/games/SavesPage.jsx";
 import GameScreenshotsPage  from "./pages/games/ScreenshotsPage.jsx";
@@ -46,7 +46,7 @@ let routes = (
             <Route name="configuration:emulators" path="/configuration/emulators" handler={ConfigEmulatorsPage}/>
         </Route>
         <Route name="games" path="/games" handler={GamesPage}>
-            <Route name="games:listing" path="/games/listing" handler={GameListingPage}/>
+            <Route name="games:roms" path="/games/roms" handler={GameRomsPage}/>
             <Route name="games:bios" path="/games/bios" handler={GameBiosPage}/>
             <Route name="games:saves" path="/games/saves" handler={GameSavesPage}/>
             <Route name="games:screenshots" path="/games/screenshots" handler={GameScreenshotsPage}/>

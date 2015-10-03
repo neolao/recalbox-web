@@ -82,7 +82,7 @@ export default class Header extends React.Component
                                 <Link to="configuration:general"><Translate content="menu.configuration"/></Link>
                             </li>
                             <li>
-                                <Link to="games:listing"><Translate content="menu.games"/></Link>
+                                <Link to="games:roms"><Translate content="menu.games"/></Link>
                             </li>
                             <li>
                                 <Link to="advanced:config"><Translate content="menu.advanced"/></Link>

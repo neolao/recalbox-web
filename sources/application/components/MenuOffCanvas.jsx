@@ -92,7 +92,7 @@ export default class MenuOffCanvas extends React.Component
                         <span className="menu-off-canvas__section-title"><Translate content="menu.games"/></span>
                         <ul className="menu-off-canvas__section">
                             <li className="menu-off-canvas__item">
-                                <Link to="games:listing" className="menu-off-canvas__link"><Translate content="menu.listing"/></Link>
+                                <Link to="games:roms" className="menu-off-canvas__link"><Translate content="menu.roms"/></Link>
                             </li>
                             <li className="menu-off-canvas__item">
                                 <Link to="games:bios" className="menu-off-canvas__link"><Translate content="menu.bios"/></Link>
