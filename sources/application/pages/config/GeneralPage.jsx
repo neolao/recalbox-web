@@ -37,7 +37,7 @@ export default class GeneralPage extends React.Component
             counterpart("api.locale.getError"), 
             "json"
         ).done((data) => {
-            self.setState({locale: data["system.language"]});
+            self.setState({locale: data["language"]});
         });
 
         apiClient.get(
@@ -46,7 +46,7 @@ export default class GeneralPage extends React.Component
             counterpart("api.keyboardlayout.getError"), 
             "json"
         ).done((data) => {
-            self.setState({keyboardlayout: data["system.kblayout"]});
+            self.setState({keyboardlayout: data["kblayout"]});
         });
 
         apiClient.get(
@@ -55,7 +55,7 @@ export default class GeneralPage extends React.Component
             counterpart("api.timezone.getError"), 
             "json"
         ).done((data) => {
-            self.setState({timezone: data["system.timezone"]});
+            self.setState({timezone: data["timezone"]});
         });
     }
 

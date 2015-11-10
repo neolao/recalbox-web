@@ -39,9 +39,9 @@ export default class AudioPage extends React.Component
             "json"
         ).done((data) => {
             self.setState({
-                device: data["audio.device"],
-                volume: data["audio.volume"],
-                bgmusic: (data["audio.bgmusic"] === "1")
+                device: data["device"],
+                volume: data["volume"],
+                bgmusic: (data["bgmusic"] === "1")
             });
         });
     }
@@ -118,8 +118,6 @@ export default class AudioPage extends React.Component
      */
     render()
     {
-        //let labelColumnClassName = "small-9 medium-6 large-4 columns";
-        //let fieldColumnClassName = "small-3 medium-6 large-8 columns end";
         let labelColumnClassName = "small-6 medium-4 large-2 columns";
         let fieldColumnClassName = "small-6 medium-6 large-4 columns end";
 

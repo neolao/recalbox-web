@@ -37,9 +37,9 @@ export default class KodiPage extends React.Component
             "json"
         ).done((data) => {
             self.setState({
-                enabled: (data["kodi.enabled"] === "1"),
-                atstartup: (data["kodi.atstartup"] === "1"),
-                xbutton: (data["kodi.xbutton"] === "1")
+                enabled: (data["enabled"] === "1"),
+                atstartup: (data["atstartup"] === "1"),
+                xbutton: (data["xbutton"] === "1")
             });
         });
     }

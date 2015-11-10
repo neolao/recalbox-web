@@ -43,7 +43,7 @@ export default class NetworkPage extends React.Component
             counterpart("api.hostname.getError"), 
             "json"
         ).done((data) => {
-            self.setState({hostname: data["system.hostname"]});
+            self.setState({hostname: data["hostname"]});
         });
 
         apiClient.get(
@@ -53,9 +53,9 @@ export default class NetworkPage extends React.Component
             "json"
         ).done((data) => {
             self.setState({
-                wifiEnabled: (data["wifi.enabled"] === "1"),
-                wifiSSID: data["wifi.ssid"],
-                wifiKey: data["wifi.key"]
+                wifiEnabled: (data["enabled"] === "1"),
+                wifiSSID: data["ssid"],
+                wifiKey: data["key"]
             });
         });
     }

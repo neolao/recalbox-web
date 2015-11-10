@@ -28422,9 +28422,9 @@ var AudioPage = (function (_React$Component) {
             var self = this;
             _componentsApiClientJsx2["default"].get("/audio", (0, _counterpart2["default"])("api.audio.getMessage"), (0, _counterpart2["default"])("api.audio.getError"), "json").done(function (data) {
                 self.setState({
-                    device: data["audio.device"],
-                    volume: data["audio.volume"],
-                    bgmusic: data["audio.bgmusic"] === "1"
+                    device: data["device"],
+                    volume: data["volume"],
+                    bgmusic: data["bgmusic"] === "1"
                 });
             });
         }
@@ -28487,8 +28487,6 @@ var AudioPage = (function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
-            //let labelColumnClassName = "small-9 medium-6 large-4 columns";
-            //let fieldColumnClassName = "small-3 medium-6 large-8 columns end";
             var labelColumnClassName = "small-6 medium-4 large-2 columns";
             var fieldColumnClassName = "small-6 medium-6 large-4 columns end";
 
@@ -28813,15 +28811,15 @@ var GeneralPage = (function (_React$Component) {
         value: function componentDidMount() {
             var self = this;
             _componentsApiClientJsx2["default"].get("/locale", (0, _counterpart2["default"])("api.locale.getMessage"), (0, _counterpart2["default"])("api.locale.getError"), "json").done(function (data) {
-                self.setState({ locale: data["system.language"] });
+                self.setState({ locale: data["language"] });
             });
 
             _componentsApiClientJsx2["default"].get("/keyboardlayout", (0, _counterpart2["default"])("api.keyboardlayout.getMessage"), (0, _counterpart2["default"])("api.keyboardlayout.getError"), "json").done(function (data) {
-                self.setState({ keyboardlayout: data["system.kblayout"] });
+                self.setState({ keyboardlayout: data["kblayout"] });
             });
 
             _componentsApiClientJsx2["default"].get("/timezone", (0, _counterpart2["default"])("api.timezone.getMessage"), (0, _counterpart2["default"])("api.timezone.getError"), "json").done(function (data) {
-                self.setState({ timezone: data["system.timezone"] });
+                self.setState({ timezone: data["timezone"] });
             });
         }
 
@@ -29767,9 +29765,9 @@ var KodiPage = (function (_React$Component) {
             var self = this;
             _componentsApiClientJsx2["default"].get("/kodi", (0, _counterpart2["default"])("api.kodi.getMessage"), (0, _counterpart2["default"])("api.kodi.getError"), "json").done(function (data) {
                 self.setState({
-                    enabled: data["kodi.enabled"] === "1",
-                    atstartup: data["kodi.atstartup"] === "1",
-                    xbutton: data["kodi.xbutton"] === "1"
+                    enabled: data["enabled"] === "1",
+                    atstartup: data["atstartup"] === "1",
+                    xbutton: data["xbutton"] === "1"
                 });
             });
         }
@@ -29980,14 +29978,14 @@ var NetworkPage = (function (_React$Component) {
         value: function componentDidMount() {
             var self = this;
             _componentsApiClientJsx2["default"].get("/hostname", (0, _counterpart2["default"])("api.hostname.getMessage"), (0, _counterpart2["default"])("api.hostname.getError"), "json").done(function (data) {
-                self.setState({ hostname: data["system.hostname"] });
+                self.setState({ hostname: data["hostname"] });
             });
 
             _componentsApiClientJsx2["default"].get("/wifi", (0, _counterpart2["default"])("api.wifi.getMessage"), (0, _counterpart2["default"])("api.wifi.getError"), "json").done(function (data) {
                 self.setState({
-                    wifiEnabled: data["wifi.enabled"] === "1",
-                    wifiSSID: data["wifi.ssid"],
-                    wifiKey: data["wifi.key"]
+                    wifiEnabled: data["enabled"] === "1",
+                    wifiSSID: data["ssid"],
+                    wifiKey: data["key"]
                 });
             });
         }
