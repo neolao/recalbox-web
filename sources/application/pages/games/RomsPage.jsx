@@ -106,7 +106,7 @@ export default class ListingPage extends React.Component
             <article className="page">
                 <h1 className="page__title"><Translate content="page.title.roms"/></h1>
 
-                <div className="panel">
+                <div className="form-container">
                     <div className="small-12 medium-6 columns">
                         <select name="systemId" value={this.state.systemId} onChange={this.onChangeSystem.bind(this)}>
                             <option value="gba">{counterpart("system.gba.label")}</option>
@@ -115,8 +115,8 @@ export default class ListingPage extends React.Component
                     </div>
                 </div>
 
-                <p>Total: {this.state.total}</p>
-                <table className="small-12 medium-12 large-8 columns end">
+                <p className="listing-total">Total: {this.state.total}</p>
+                <table className="listing">
                     <thead>
                         <tr>
                             <th><Translate content="page.listing.header.fileName"/></th>

@@ -30349,13 +30349,13 @@ var BiosPage = (function (_React$Component) {
                 ),
                 _react2["default"].createElement(
                     "p",
-                    null,
+                    { className: "listing-total" },
                     "Total: ",
                     this.state.total
                 ),
                 _react2["default"].createElement(
                     "table",
-                    { className: "small-12 medium-12 large-8 columns end" },
+                    { className: "listing" },
                     _react2["default"].createElement(
                         "thead",
                         null,
@@ -30577,7 +30577,7 @@ var ListingPage = (function (_React$Component) {
                 ),
                 _react2["default"].createElement(
                     "div",
-                    { className: "panel" },
+                    { className: "form-container" },
                     _react2["default"].createElement(
                         "div",
                         { className: "small-12 medium-6 columns" },
@@ -30599,13 +30599,13 @@ var ListingPage = (function (_React$Component) {
                 ),
                 _react2["default"].createElement(
                     "p",
-                    null,
+                    { className: "listing-total" },
                     "Total: ",
                     this.state.total
                 ),
                 _react2["default"].createElement(
                     "table",
-                    { className: "small-12 medium-12 large-8 columns end" },
+                    { className: "listing" },
                     _react2["default"].createElement(
                         "thead",
                         null,

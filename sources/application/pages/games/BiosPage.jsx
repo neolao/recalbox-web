@@ -81,8 +81,8 @@ export default class BiosPage extends React.Component
             <article className="page">
                 <h1 className="page__title"><Translate content="page.title.bios"/></h1>
                 
-                <p>Total: {this.state.total}</p>
-                <table className="small-12 medium-12 large-8 columns end">
+                <p className="listing-total">Total: {this.state.total}</p>
+                <table className="listing">
                     <thead>
                         <tr>
                             <th><Translate content="page.listing.header.fileName"/></th>
