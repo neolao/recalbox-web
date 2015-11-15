@@ -2,7 +2,13 @@
  * The page elements
  */
 .page {
-    padding: 1em;
+    padding: 1em 1em 5em 1em;
+
+    &:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
 
     // The main title
     &__title {

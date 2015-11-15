@@ -27582,6 +27582,123 @@ module.exports = exports["default"];
 },{"counterpart":7,"react":217,"react-router":44,"react-translate-component":61}],224:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _counterpart = require("counterpart");
+
+var _counterpart2 = _interopRequireDefault(_counterpart);
+
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
+var _ApiClientJsx = require("./ApiClient.jsx");
+
+var _ApiClientJsx2 = _interopRequireDefault(_ApiClientJsx);
+
+/**
+ * Pagination
+ */
+
+var Pagination = (function (_React$Component) {
+    _inherits(Pagination, _React$Component);
+
+    /**
+     * Constructor
+     *
+     * @param   {object}    props   The properties
+     */
+
+    function Pagination(props) {
+        _classCallCheck(this, Pagination);
+
+        _get(Object.getPrototypeOf(Pagination.prototype), "constructor", this).call(this, props);
+    }
+
+    /**
+     * The user clicks on a page
+     *
+     * @param   {Number}    index   The new page index
+     * @param   {object}    event   The click event
+     */
+
+    _createClass(Pagination, [{
+        key: "onChange",
+        value: function onChange(index, event) {
+            if (this.props.onChange) {
+                this.props.onChange(index, event);
+            }
+        }
+
+        /**
+         * render the copmonent
+         */
+    }, {
+        key: "render",
+        value: function render() {
+            if (this.props.pageCount <= 1) {
+                return _react2["default"].createElement("div", null);
+            }
+
+            var pages = [];
+            for (var index = 1; index <= this.props.pageCount; index++) {
+                if (index === this.props.page) {
+                    pages.push(_react2["default"].createElement(
+                        "li",
+                        { className: "pagination__page pagination__page--current current" },
+                        _react2["default"].createElement(
+                            "a",
+                            null,
+                            index
+                        )
+                    ));
+                } else {
+                    pages.push(_react2["default"].createElement(
+                        "li",
+                        { className: "pagination__page" },
+                        _react2["default"].createElement(
+                            "a",
+                            { onClick: this.onChange.bind(this, index) },
+                            index
+                        )
+                    ));
+                }
+            }
+
+            return _react2["default"].createElement(
+                "ul",
+                { className: "pagination" },
+                pages
+            );
+        }
+    }]);
+
+    return Pagination;
+})(_react2["default"].Component);
+
+exports["default"] = Pagination;
+module.exports = exports["default"];
+
+
+},{"./ApiClient.jsx":220,"counterpart":7,"react":217,"react-translate-component":61}],225:[function(require,module,exports){
+"use strict";
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _react = require("react");
@@ -27726,7 +27843,7 @@ _reactRouter2["default"].run(routes, HistoryLocation, function (Root) {
 });
 
 
-},{"../../package.json":218,"../../translations/en_US.json":241,"../../translations/fr_FR.json":242,"./Main.jsx":219,"./pages/AdvancedPage.jsx":225,"./pages/ConfigPage.jsx":226,"./pages/GamesPage.jsx":227,"./pages/HomePage.jsx":228,"./pages/advanced/ConfigPage.jsx":229,"./pages/advanced/LogsPage.jsx":230,"./pages/config/AudioPage.jsx":231,"./pages/config/ControllersPage.jsx":232,"./pages/config/EmulatorsPage.jsx":233,"./pages/config/GeneralPage.jsx":234,"./pages/config/KodiPage.jsx":235,"./pages/config/NetworkPage.jsx":236,"./pages/games/BiosPage.jsx":237,"./pages/games/RomsPage.jsx":238,"./pages/games/SavesPage.jsx":239,"./pages/games/ScreenshotsPage.jsx":240,"async":1,"counterpart":7,"react":217,"react-router":44}],225:[function(require,module,exports){
+},{"../../package.json":218,"../../translations/en_US.json":242,"../../translations/fr_FR.json":243,"./Main.jsx":219,"./pages/AdvancedPage.jsx":226,"./pages/ConfigPage.jsx":227,"./pages/GamesPage.jsx":228,"./pages/HomePage.jsx":229,"./pages/advanced/ConfigPage.jsx":230,"./pages/advanced/LogsPage.jsx":231,"./pages/config/AudioPage.jsx":232,"./pages/config/ControllersPage.jsx":233,"./pages/config/EmulatorsPage.jsx":234,"./pages/config/GeneralPage.jsx":235,"./pages/config/KodiPage.jsx":236,"./pages/config/NetworkPage.jsx":237,"./pages/games/BiosPage.jsx":238,"./pages/games/RomsPage.jsx":239,"./pages/games/SavesPage.jsx":240,"./pages/games/ScreenshotsPage.jsx":241,"async":1,"counterpart":7,"react":217,"react-router":44}],226:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27823,7 +27940,7 @@ exports["default"] = AdvancedPage;
 module.exports = exports["default"];
 
 
-},{"react":217,"react-router":44,"react-translate-component":61}],226:[function(require,module,exports){
+},{"react":217,"react-router":44,"react-translate-component":61}],227:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27956,7 +28073,7 @@ exports["default"] = ConfigPage;
 module.exports = exports["default"];
 
 
-},{"react":217,"react-router":44,"react-translate-component":61}],227:[function(require,module,exports){
+},{"react":217,"react-router":44,"react-translate-component":61}],228:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28071,7 +28188,7 @@ exports["default"] = GamesPage;
 module.exports = exports["default"];
 
 
-},{"react":217,"react-router":44,"react-translate-component":61}],228:[function(require,module,exports){
+},{"react":217,"react-router":44,"react-translate-component":61}],229:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28135,7 +28252,7 @@ exports["default"] = HomePage;
 module.exports = exports["default"];
 
 
-},{"react":217,"react-translate-component":61}],229:[function(require,module,exports){
+},{"react":217,"react-translate-component":61}],230:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28284,7 +28401,7 @@ exports["default"] = ConfigPage;
 module.exports = exports["default"];
 
 
-},{"../../components/ApiClient.jsx":220,"react":217,"react-textarea-autosize":59,"react-translate-component":61}],230:[function(require,module,exports){
+},{"../../components/ApiClient.jsx":220,"react":217,"react-textarea-autosize":59,"react-translate-component":61}],231:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28353,7 +28470,7 @@ exports["default"] = LogsPage;
 module.exports = exports["default"];
 
 
-},{"react":217,"react-translate-component":61}],231:[function(require,module,exports){
+},{"react":217,"react-translate-component":61}],232:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28605,7 +28722,7 @@ exports["default"] = AudioPage;
 module.exports = exports["default"];
 
 
-},{"../../components/ApiClient.jsx":220,"counterpart":7,"react":217,"react-translate-component":61}],232:[function(require,module,exports){
+},{"../../components/ApiClient.jsx":220,"counterpart":7,"react":217,"react-translate-component":61}],233:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28674,7 +28791,7 @@ exports["default"] = ControllersPage;
 module.exports = exports["default"];
 
 
-},{"react":217,"react-translate-component":61}],233:[function(require,module,exports){
+},{"react":217,"react-translate-component":61}],234:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28743,7 +28860,7 @@ exports["default"] = EmulatorsPage;
 module.exports = exports["default"];
 
 
-},{"react":217,"react-translate-component":61}],234:[function(require,module,exports){
+},{"react":217,"react-translate-component":61}],235:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29696,7 +29813,7 @@ exports["default"] = GeneralPage;
 module.exports = exports["default"];
 
 
-},{"../../components/ApiClient.jsx":220,"counterpart":7,"react":217,"react-translate-component":61}],235:[function(require,module,exports){
+},{"../../components/ApiClient.jsx":220,"counterpart":7,"react":217,"react-translate-component":61}],236:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29905,7 +30022,7 @@ exports["default"] = KodiPage;
 module.exports = exports["default"];
 
 
-},{"../../components/ApiClient.jsx":220,"counterpart":7,"react":217,"react-translate-component":61}],236:[function(require,module,exports){
+},{"../../components/ApiClient.jsx":220,"counterpart":7,"react":217,"react-translate-component":61}],237:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30201,7 +30318,8 @@ exports["default"] = NetworkPage;
 module.exports = exports["default"];
 
 
-},{"../../components/ApiClient.jsx":220,"counterpart":7,"react":217,"react-translate-component":61}],237:[function(require,module,exports){
+},{"../../components/ApiClient.jsx":220,"counterpart":7,"react":217,"react-translate-component":61}],238:[function(require,module,exports){
+(function (process){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30234,6 +30352,10 @@ var _componentsApiClientJsx = require("../../components/ApiClient.jsx");
 
 var _componentsApiClientJsx2 = _interopRequireDefault(_componentsApiClientJsx);
 
+var _componentsPaginationJsx = require("../../components/Pagination.jsx");
+
+var _componentsPaginationJsx2 = _interopRequireDefault(_componentsPaginationJsx);
+
 /**
  * The system BIOS
  */
@@ -30258,7 +30380,9 @@ var BiosPage = (function (_React$Component) {
             total: 0,
             count: 0,
             indexStart: 0,
-            indexEnd: 0
+            indexEnd: 0,
+            page: 1,
+            itemByPage: 100
         };
     }
 
@@ -30270,7 +30394,7 @@ var BiosPage = (function (_React$Component) {
         key: "componentDidMount",
         value: function componentDidMount() {
             var self = this;
-            _componentsApiClientJsx2["default"].get("/bios", (0, _counterpart2["default"])("api.bios.getMessage"), (0, _counterpart2["default"])("api.bios.getError"), "json").done(function (data, status, xhr) {
+            _componentsApiClientJsx2["default"].get("/bios?count=" + this.state.itemByPage + "&page=" + this.state.page, (0, _counterpart2["default"])("api.bios.getMessage"), (0, _counterpart2["default"])("api.bios.getError"), "json").done(function (data, status, xhr) {
                 var pagination = xhr.getResponseHeader("Content-Range");
                 var paginationSplit = pagination.split("/");
                 var total = paginationSplit[1];
@@ -30286,6 +30410,24 @@ var BiosPage = (function (_React$Component) {
                     indexStart: indexStart,
                     indexEnd: indexEnd
                 });
+            });
+        }
+
+        /**
+         * The user clicks on a page
+         *
+         * @param   {Number}    index   The new page index
+         * @param   {object}    event   The click event
+         */
+    }, {
+        key: "onChangePage",
+        value: function onChangePage(index, event) {
+            var _this = this;
+
+            this.setState({ page: index });
+
+            process.nextTick(function () {
+                _this.loadList();
             });
         }
 
@@ -30337,7 +30479,7 @@ var BiosPage = (function (_React$Component) {
                 }
             }
 
-            var pagination = [];
+            var pageCount = Math.ceil(this.state.total / this.state.itemByPage);
 
             return _react2["default"].createElement(
                 "article",
@@ -30383,7 +30525,7 @@ var BiosPage = (function (_React$Component) {
                 _react2["default"].createElement(
                     "ul",
                     { className: "pagination", role: "menubar", "aria-label": "Pagination" },
-                    pagination
+                    _react2["default"].createElement(_componentsPaginationJsx2["default"], { pageCount: pageCount, page: this.state.page, onChange: this.onChangePage.bind(this) })
                 )
             );
         }
@@ -30396,7 +30538,8 @@ exports["default"] = BiosPage;
 module.exports = exports["default"];
 
 
-},{"../../components/ApiClient.jsx":220,"counterpart":7,"react":217,"react-translate-component":61}],238:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"../../components/ApiClient.jsx":220,"../../components/Pagination.jsx":224,"_process":4,"counterpart":7,"react":217,"react-translate-component":61}],239:[function(require,module,exports){
 (function (process){
 "use strict";
 
@@ -30430,6 +30573,10 @@ var _componentsApiClientJsx = require("../../components/ApiClient.jsx");
 
 var _componentsApiClientJsx2 = _interopRequireDefault(_componentsApiClientJsx);
 
+var _componentsPaginationJsx = require("../../components/Pagination.jsx");
+
+var _componentsPaginationJsx2 = _interopRequireDefault(_componentsPaginationJsx);
+
 /**
  * The listing of games
  */
@@ -30455,7 +30602,9 @@ var ListingPage = (function (_React$Component) {
             total: 0,
             count: 0,
             indexStart: 0,
-            indexEnd: 0
+            indexEnd: 0,
+            page: 1,
+            itemByPage: 100
         };
     }
 
@@ -30491,14 +30640,32 @@ var ListingPage = (function (_React$Component) {
         }
 
         /**
+         * The user clicks on a page
+         *
+         * @param   {Number}    index   The new page index
+         * @param   {object}    event   The click event
+         */
+    }, {
+        key: "onChangePage",
+        value: function onChangePage(index, event) {
+            var _this2 = this;
+
+            this.setState({ page: index });
+
+            process.nextTick(function () {
+                _this2.loadList();
+            });
+        }
+
+        /**
          * Load the ROM list based on the filters
          */
     }, {
         key: "loadList",
         value: function loadList() {
-            var _this2 = this;
+            var _this3 = this;
 
-            _componentsApiClientJsx2["default"].get("/systems/" + this.state.systemId + "/roms", (0, _counterpart2["default"])("api.roms.getMessage"), (0, _counterpart2["default"])("api.roms.getError"), "json").done(function (data, status, xhr) {
+            _componentsApiClientJsx2["default"].get("/systems/" + this.state.systemId + "/roms?count=" + this.state.itemByPage + "&page=" + this.state.page, (0, _counterpart2["default"])("api.roms.getMessage"), (0, _counterpart2["default"])("api.roms.getError"), "json").done(function (data, status, xhr) {
                 var pagination = xhr.getResponseHeader("Content-Range");
                 var paginationSplit = pagination.split("/");
                 var total = paginationSplit[1];
@@ -30507,7 +30674,7 @@ var ListingPage = (function (_React$Component) {
                 var indexStart = rangeSplit[0];
                 var indexEnd = rangeSplit[1];
 
-                _this2.setState({
+                _this3.setState({
                     list: data,
                     count: data.length,
                     total: total,
@@ -30565,7 +30732,7 @@ var ListingPage = (function (_React$Component) {
                 }
             }
 
-            var pagination = [];
+            var pageCount = Math.ceil(this.state.total / this.state.itemByPage);
 
             return _react2["default"].createElement(
                 "article",
@@ -30633,7 +30800,7 @@ var ListingPage = (function (_React$Component) {
                 _react2["default"].createElement(
                     "ul",
                     { className: "pagination", role: "menubar", "aria-label": "Pagination" },
-                    pagination
+                    _react2["default"].createElement(_componentsPaginationJsx2["default"], { pageCount: pageCount, page: this.state.page, onChange: this.onChangePage.bind(this) })
                 )
             );
         }
@@ -30647,7 +30814,7 @@ module.exports = exports["default"];
 
 
 }).call(this,require('_process'))
-},{"../../components/ApiClient.jsx":220,"_process":4,"counterpart":7,"react":217,"react-translate-component":61}],239:[function(require,module,exports){
+},{"../../components/ApiClient.jsx":220,"../../components/Pagination.jsx":224,"_process":4,"counterpart":7,"react":217,"react-translate-component":61}],240:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30716,7 +30883,7 @@ exports["default"] = SavesPage;
 module.exports = exports["default"];
 
 
-},{"react":217,"react-translate-component":61}],240:[function(require,module,exports){
+},{"react":217,"react-translate-component":61}],241:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30785,7 +30952,7 @@ exports["default"] = ScreenshotsPage;
 module.exports = exports["default"];
 
 
-},{"react":217,"react-translate-component":61}],241:[function(require,module,exports){
+},{"react":217,"react-translate-component":61}],242:[function(require,module,exports){
 module.exports={
     "messages": {
         "locale": {
@@ -30961,7 +31128,7 @@ module.exports={
     }
 }
 
-},{}],242:[function(require,module,exports){
+},{}],243:[function(require,module,exports){
 module.exports={
     "messages": {
         "locale": {
@@ -31139,4 +31306,4 @@ module.exports={
     }
 }
 
-},{}]},{},[224]);
+},{}]},{},[225]);

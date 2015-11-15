@@ -6712,7 +6712,11 @@ html, body {
  * The page elements
  */
 .page {
-  padding: 1em; }
+  padding: 1em 1em 5em 1em; }
+  .page:after {
+    content: "";
+    display: block;
+    clear: both; }
   .page__title {
     margin: 0 0 1em 0;
     color: #2ba6cb; }
@@ -6744,6 +6748,9 @@ html, body {
 .listing {
   width: 100%; }
 
+/**
+ * Pagination
+ */
 /**
  * The API indicator
  */

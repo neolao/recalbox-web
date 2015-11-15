@@ -2,6 +2,7 @@ import React from "react";
 import counterpart from "counterpart";
 import Translate from "react-translate-component";
 import apiClient from "../../components/ApiClient.jsx";
+import Pagination from "../../components/Pagination.jsx";
 
 
 /**
@@ -24,7 +25,9 @@ export default class ListingPage extends React.Component
             total: 0,
             count: 0,
             indexStart: 0,
-            indexEnd: 0
+            indexEnd: 0,
+            page: 1,
+            itemByPage: 100
         };
     }
 
@@ -56,12 +59,27 @@ export default class ListingPage extends React.Component
     }
 
     /**
+     * The user clicks on a page
+     *
+     * @param   {Number}    index   The new page index
+     * @param   {object}    event   The click event
+     */
+    onChangePage(index, event)
+    {
+        this.setState({page: index});
+
+        process.nextTick(() => {
+            this.loadList();
+        });
+    }
+
+    /**
      * Load the ROM list based on the filters
      */
     loadList()
     {
         apiClient.get(
-            `/systems/${this.state.systemId}/roms`, 
+            `/systems/${this.state.systemId}/roms?count=${this.state.itemByPage}&page=${this.state.page}`, 
             counterpart("api.roms.getMessage"), 
             counterpart("api.roms.getError"), 
             "json"
@@ -99,8 +117,7 @@ export default class ListingPage extends React.Component
         }
 
         // Pagination
-        let pagination = [];
-    
+        let pageCount = Math.ceil(this.state.total / this.state.itemByPage);
 
         return (
             <article className="page">
@@ -129,7 +146,7 @@ export default class ListingPage extends React.Component
                 </table>
 
                 <ul className="pagination" role="menubar" aria-label="Pagination">
-                    {pagination}
+                    <Pagination pageCount={pageCount} page={this.state.page} onChange={this.onChangePage.bind(this)}/>
                 </ul>
 
             </article>
