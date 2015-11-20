@@ -6727,6 +6727,9 @@ html, body {
 .form-switch {
   margin-bottom: .8rem; }
 
+.button {
+  margin-bottom: 0; }
+
 .form-container {
   overflow: auto;
   background: #F2F2F2;
@@ -6741,9 +6744,16 @@ html, body {
 /**
  * A listing (ROMs, BIOS, etc.)
  */
+.listing-header {
+  margin: 1rem 0; }
+
 .listing-total {
-  margin: 1rem 0;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  line-height: 3rem; }
+
+.listing-actions {
+  text-align: right;
+  line-height: 3rem; }
 
 .listing {
   width: 100%; }

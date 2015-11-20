@@ -26,7 +26,9 @@
             "language": "Langue"
         },
         "button": {
-            "save": "Enregistrer"
+            "save": "Enregistrer",
+            "delete": "Supprimer",
+            "add": "Ajouter"
         },
         "page": {
             "title": {
@@ -49,7 +51,8 @@
             "listing": {
                 "header": {
                     "fileName": "Nom",
-                    "size": "Taille"
+                    "size": "Taille",
+                    "action": "Action"
                 }
             }
 
@@ -168,7 +171,9 @@
             },
             "roms": {
                 "getMessage": "Récupération des ROMs",
-                "getError": "Échec de la récupération des ROMs"
+                "getError": "Échec de la récupération des ROMs",
+                "deleteMessage": "Suppression",
+                "deleteError": "Échec de la suppression"
             }
 
         }

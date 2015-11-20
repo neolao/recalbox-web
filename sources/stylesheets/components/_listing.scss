@@ -2,10 +2,21 @@
  * A listing (ROMs, BIOS, etc.)
  */
 
+// The header
+.listing-header {
+    margin: 1rem 0;
+}
+
 // The total
 .listing-total {
-    margin: 1rem 0;
     text-transform: uppercase;
+    line-height: 3rem;
+}
+
+// The actions
+.listing-actions {
+    text-align: right;
+    line-height: 3rem;
 }
 
 // The table

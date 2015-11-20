@@ -37,7 +37,7 @@ export default class GeneralPage extends React.Component
             counterpart("api.locale.getError"), 
             "json"
         ).done((data) => {
-            self.setState({locale: data["language"]});
+            self.setState({locale: data["locale"]});
         });
 
         apiClient.get(
@@ -46,7 +46,7 @@ export default class GeneralPage extends React.Component
             counterpart("api.keyboardlayout.getError"), 
             "json"
         ).done((data) => {
-            self.setState({keyboardlayout: data["kblayout"]});
+            self.setState({keyboardlayout: data["keyboardlayout"]});
         });
 
         apiClient.get(

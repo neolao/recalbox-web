@@ -151,6 +151,49 @@ class ApiClient
             }
         });
     }
+
+    /**
+     * Execute a DELETE request to the API
+     *
+     * @param   {string}    path            The path
+     * @param   {string}    message         The message
+     * @param   {string}    errorMessage    The error message
+     * @param   {string}    successMessage  The success message
+     * @param   {string}    format          The format (text, json, xml)
+     */
+    remove(path:string, message:string, errorMessage:string, successMessage:string, format:string = null)
+    {
+        let self = this;
+
+        // Dispatch the event
+        let event = new Event("request");
+        event.message = message;
+        this.dispatchEvent(event);
+
+        // The requested format
+        if (!format) {
+            format = "text";
+        }
+
+        return $.ajax({
+            method: "DELETE",
+            url: `${this.url}${path}`,
+            dataType: format,
+            success: () => {
+                let event = new Event("success");
+                event.message = successMessage;
+                self.dispatchEvent(event);
+            },
+            error: (xhr, status, error) => {
+                console.error(`${error} (${status})`);
+
+                let event = new Event("error");
+                event.message = errorMessage;
+                self.dispatchEvent(event);
+            }
+        });
+    }
+
 }
 
 export default new ApiClient();

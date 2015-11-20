@@ -26,7 +26,9 @@
             "language": "Language"
         },
         "button": {
-            "save": "Save"
+            "save": "Save",
+            "delete": "Delete",
+            "add": "Add"
         },
         "page": {
             "title": {
@@ -49,7 +51,8 @@
             "listing": {
                 "header": {
                     "fileName": "File name",
-                    "size": "Size"
+                    "size": "Size",
+                    "action": "Action"
                 }
             }
         },
@@ -167,7 +170,9 @@
             },
             "roms": {
                 "getMessage": "Get ROMs",
-                "getError": "Failed to get ROMs"
+                "getError": "Failed to get ROMs",
+                "deleteMessage": "Deleting",
+                "deleteError": "Failed to delete"
             }
         }
     }

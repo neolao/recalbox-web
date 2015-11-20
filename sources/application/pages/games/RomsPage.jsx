@@ -3,6 +3,7 @@ import counterpart from "counterpart";
 import Translate from "react-translate-component";
 import apiClient from "../../components/ApiClient.jsx";
 import Pagination from "../../components/Pagination.jsx";
+import ModalUpload from "../../components/ModalUpload.jsx";
 
 
 /**
@@ -103,6 +104,24 @@ export default class ListingPage extends React.Component
     }
 
     /**
+     * The user delete a file
+     *
+     * @param   {string}    fileName    The file name
+     * @param   {object}    event       The event
+     */
+    onDelete(fileName, event)
+    {
+        apiClient.remove(
+            `/systems/${this.state.systemId}/roms/${fileName}`, 
+            counterpart("api.roms.getMessage"), 
+            counterpart("api.roms.getError"), 
+            "json"
+        ).done((data, status, xhr) => {
+            this.loadList();
+        });
+    }
+
+    /**
      * render the component
      */
     render()
@@ -113,6 +132,9 @@ export default class ListingPage extends React.Component
             rows.push(<tr key={file.basename}>
                 <td>{file.basename}</td>
                 <td width="100">{file.sizeHuman}</td>
+                <td>
+                    <button className="button tiny alert" onClick={this.onDelete.bind(this, file.basename)}><Translate content="button.delete"/></button>
+                </td>
             </tr>);
         }
 
@@ -132,12 +154,21 @@ export default class ListingPage extends React.Component
                     </div>
                 </div>
 
-                <p className="listing-total">Total: {this.state.total}</p>
+                <div className="listing-header">
+                    <p className="small-6 columns listing-total">
+                        Total: {this.state.total}
+                    </p>
+                    <p className="small-6 columns listing-actions">
+                        <button className="button small" data-reveal-id="upload"><Translate content="button.add"/></button>
+                        <ModalUpload/>
+                    </p>
+                </div>
                 <table className="listing">
                     <thead>
                         <tr>
                             <th><Translate content="page.listing.header.fileName"/></th>
                             <th><Translate content="page.listing.header.size"/></th>
+                            <th><Translate content="page.listing.header.action"/></th>
                         </tr>
                     </thead>
                     <tbody>
