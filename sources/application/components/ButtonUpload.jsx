@@ -4,9 +4,9 @@ import Translate from "react-translate-component";
 import apiClient from "./ApiClient.jsx";
 
 /**
- * Modal to upload files
+ * Button to upload files
  */
-export default class ModalUpload extends React.Component
+export default class ButtonUpload extends React.Component
 {
     /**
      * Constructor
@@ -24,11 +24,10 @@ export default class ModalUpload extends React.Component
     render()
     {
         return (
-            <div id="upload" className="reveal-modal" data-reveal aria-labelledby="Upload modal" aria-hidden="true" role="dialog">
-                <h1>Upload</h1>
-                <a className="close-reveal-modal" aria-label="Close">&#215;</a>
-            </div>
-
+            <span className="button small button-upload">
+                <Translate content="button.add"/>
+                <input type="file"/>
+            </span>
         );
     }
 }

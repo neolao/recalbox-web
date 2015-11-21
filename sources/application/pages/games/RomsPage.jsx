@@ -3,7 +3,7 @@ import counterpart from "counterpart";
 import Translate from "react-translate-component";
 import apiClient from "../../components/ApiClient.jsx";
 import Pagination from "../../components/Pagination.jsx";
-import ModalUpload from "../../components/ModalUpload.jsx";
+import ButtonUpload from "../../components/ButtonUpload.jsx";
 
 
 /**
@@ -159,8 +159,7 @@ export default class ListingPage extends React.Component
                         Total: {this.state.total}
                     </p>
                     <p className="small-6 columns listing-actions">
-                        <button className="button small" data-reveal-id="upload"><Translate content="button.add"/></button>
-                        <ModalUpload/>
+                        <ButtonUpload/>
                     </p>
                 </div>
                 <table className="listing">

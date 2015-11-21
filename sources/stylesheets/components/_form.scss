@@ -28,3 +28,17 @@ label.inline-for-medium-up {
         @include form-label(inline, false);
     }
 }
+
+// Upload button
+.button-upload {
+    input {
+        cursor: pointer;
+        position: absolute;
+        font-size: 0;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        height: 100%;
+        width: 100%;
+    }
+}

@@ -26703,7 +26703,7 @@ exports["default"] = Main;
 module.exports = exports["default"];
 
 
-},{"./components/ApiClient.jsx":223,"./components/Header.jsx":225,"./components/MenuOffCanvas.jsx":226,"react":220,"react-router":44}],223:[function(require,module,exports){
+},{"./components/ApiClient.jsx":223,"./components/Header.jsx":226,"./components/MenuOffCanvas.jsx":227,"react":220,"react-router":44}],223:[function(require,module,exports){
 /**
  * The API client
  */
@@ -27245,6 +27245,81 @@ var _reactTranslateComponent = require("react-translate-component");
 
 var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
 
+var _ApiClientJsx = require("./ApiClient.jsx");
+
+var _ApiClientJsx2 = _interopRequireDefault(_ApiClientJsx);
+
+/**
+ * Button to upload files
+ */
+
+var ButtonUpload = (function (_React$Component) {
+    _inherits(ButtonUpload, _React$Component);
+
+    /**
+     * Constructor
+     *
+     * @param   {object}    props   The properties
+     */
+
+    function ButtonUpload(props) {
+        _classCallCheck(this, ButtonUpload);
+
+        _get(Object.getPrototypeOf(ButtonUpload.prototype), "constructor", this).call(this, props);
+    }
+
+    /**
+     * Render the component
+     */
+
+    _createClass(ButtonUpload, [{
+        key: "render",
+        value: function render() {
+            return _react2["default"].createElement(
+                "span",
+                { className: "button small button-upload" },
+                _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "button.add" }),
+                _react2["default"].createElement("input", { type: "file" })
+            );
+        }
+    }]);
+
+    return ButtonUpload;
+})(_react2["default"].Component);
+
+exports["default"] = ButtonUpload;
+module.exports = exports["default"];
+
+
+},{"./ApiClient.jsx":223,"counterpart":7,"react":220,"react-translate-component":64}],226:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _counterpart = require("counterpart");
+
+var _counterpart2 = _interopRequireDefault(_counterpart);
+
+var _reactTranslateComponent = require("react-translate-component");
+
+var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
+
 var _reactRouter = require("react-router");
 
 var _reactRouter2 = _interopRequireDefault(_reactRouter);
@@ -27444,7 +27519,7 @@ exports["default"] = Header;
 module.exports = exports["default"];
 
 
-},{"./ApiIndicator.jsx":224,"counterpart":7,"react":220,"react-router":44,"react-translate-component":64}],226:[function(require,module,exports){
+},{"./ApiIndicator.jsx":224,"counterpart":7,"react":220,"react-router":44,"react-translate-component":64}],227:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27736,90 +27811,7 @@ exports["default"] = MenuOffCanvas;
 module.exports = exports["default"];
 
 
-},{"counterpart":7,"react":220,"react-router":44,"react-translate-component":64}],227:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _counterpart = require("counterpart");
-
-var _counterpart2 = _interopRequireDefault(_counterpart);
-
-var _reactTranslateComponent = require("react-translate-component");
-
-var _reactTranslateComponent2 = _interopRequireDefault(_reactTranslateComponent);
-
-var _ApiClientJsx = require("./ApiClient.jsx");
-
-var _ApiClientJsx2 = _interopRequireDefault(_ApiClientJsx);
-
-/**
- * Modal to upload files
- */
-
-var ModalUpload = (function (_React$Component) {
-    _inherits(ModalUpload, _React$Component);
-
-    /**
-     * Constructor
-     *
-     * @param   {object}    props   The properties
-     */
-
-    function ModalUpload(props) {
-        _classCallCheck(this, ModalUpload);
-
-        _get(Object.getPrototypeOf(ModalUpload.prototype), "constructor", this).call(this, props);
-    }
-
-    /**
-     * render the copmonent
-     */
-
-    _createClass(ModalUpload, [{
-        key: "render",
-        value: function render() {
-            return _react2["default"].createElement(
-                "div",
-                { id: "upload", className: "reveal-modal", "data-reveal": true, "aria-labelledby": "Upload modal", "aria-hidden": "true", role: "dialog" },
-                _react2["default"].createElement(
-                    "h1",
-                    null,
-                    "Upload"
-                ),
-                _react2["default"].createElement(
-                    "a",
-                    { className: "close-reveal-modal", "aria-label": "Close" },
-                    "×"
-                )
-            );
-        }
-    }]);
-
-    return ModalUpload;
-})(_react2["default"].Component);
-
-exports["default"] = ModalUpload;
-module.exports = exports["default"];
-
-
-},{"./ApiClient.jsx":223,"counterpart":7,"react":220,"react-translate-component":64}],228:[function(require,module,exports){
+},{"counterpart":7,"react":220,"react-router":44,"react-translate-component":64}],228:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30799,9 +30791,9 @@ var _componentsPaginationJsx = require("../../components/Pagination.jsx");
 
 var _componentsPaginationJsx2 = _interopRequireDefault(_componentsPaginationJsx);
 
-var _componentsModalUploadJsx = require("../../components/ModalUpload.jsx");
+var _componentsButtonUploadJsx = require("../../components/ButtonUpload.jsx");
 
-var _componentsModalUploadJsx2 = _interopRequireDefault(_componentsModalUploadJsx);
+var _componentsButtonUploadJsx2 = _interopRequireDefault(_componentsButtonUploadJsx);
 
 /**
  * The listing of games
@@ -31027,12 +31019,7 @@ var ListingPage = (function (_React$Component) {
                     _react2["default"].createElement(
                         "p",
                         { className: "small-6 columns listing-actions" },
-                        _react2["default"].createElement(
-                            "button",
-                            { className: "button small", "data-reveal-id": "upload" },
-                            _react2["default"].createElement(_reactTranslateComponent2["default"], { content: "button.add" })
-                        ),
-                        _react2["default"].createElement(_componentsModalUploadJsx2["default"], null)
+                        _react2["default"].createElement(_componentsButtonUploadJsx2["default"], null)
                     )
                 ),
                 _react2["default"].createElement(
@@ -31084,7 +31071,7 @@ module.exports = exports["default"];
 
 
 }).call(this,require('_process'))
-},{"../../components/ApiClient.jsx":223,"../../components/ModalUpload.jsx":227,"../../components/Pagination.jsx":228,"_process":4,"counterpart":7,"react":220,"react-translate-component":64}],244:[function(require,module,exports){
+},{"../../components/ApiClient.jsx":223,"../../components/ButtonUpload.jsx":225,"../../components/Pagination.jsx":228,"_process":4,"counterpart":7,"react":220,"react-translate-component":64}],244:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
